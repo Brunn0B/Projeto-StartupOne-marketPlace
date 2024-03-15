@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace de Troca e Venda</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+    background-color: rgba(36, 35, 35, 0.5);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        section.banner {
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 100px 20px;
+            color: #000000;
+        }
+
+        section.products {
+            padding: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .product {
+            width: calc(33.33% - 20px);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            color: #666;
+        }
+
+        button {
+            background-color: #7e7e7e;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1d1d1d;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        .filter select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+       
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 9999;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .popup label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .popup input[type="text"],
+        .popup textarea,
+        .popup input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .popup button {
+            background-color: #323232;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #323133;
+        }
+
+       
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+    </style>
+</head>
+<body>
+    <header style="position: relative; z-index: 9999;">
+        <h1>Marketplace Inclusivo</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <img style=" margin-top: -200px; height: auto;width:100%;" src="IMG/93b86ebc-b32d-4a67-a169-7c7599e44400.jpeg" alt="Imagen grande">
+    </section>
+
+    <section class="filter">
+        <button onclick="togglePopup()">Acessar Formulário</button>
+        <label for="productTypeFilter">Filtrar:</label>
+        <select id="productTypeFilter" onchange="filterProducts()">
+            <option value="all">Todos</option>
+            <option value="buy">Comprando</option>
+            <option value="sell">Vendendo</option>
+        </select>
+        <label for="toggleSpeech">Ativar Descrição por Voz:</label>
+        <input type="checkbox" id="toggleSpeech" onchange="toggleSpeech()">
+    </section>
+
+    <div class="popup" id="popupForm">
+        <h2>Adicionar Produto</h2>
+        <form action="#" method="post">
+            <label for="productName">Nome do Produto:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productDescription">Descrição do Produto:</label>
+            <textarea name="productDescription" id="productDescription" rows="4" required></textarea>
+
+            <label for="productPrice">Preço do Produto:</label>
+            <input type="text" id="productPrice" name="productPrice" required>
+
+            <label for="productImage">Imagem do Produto:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <label for="productType">Tipo de Produto:</label>
+            <input type="radio" id="productTypeBuy" name="productType" value="buy" required>
+            <label for="productTypeBuy">Comprar</label>
+            <input type="radio" id="productTypeSell" name="productType" value="sell" required>
+            <label for="productTypeSell">Vender</label>
+
+            <button type="submit">Adicionar Produto</button>
+        </form>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+    <section class="products">
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
+            <h3>Tênis Esportivo Modelo X</h3>
+            <p>Tênis esportivo de perna esquera.</p>
+            <p>Tamanho: 42</p>
+            <p>Preço: R$ 199,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
+            <h3>Tênis Esportivo Modelo X</h3>
+            <p>Tênis esportivo de perna esquera.</p>
+            <p>Tamanho: 42</p>
+            <p>Preço: R$ 199,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
+            <h3>Tênis Esportivo Modelo X</h3>
+            <p>Tênis esportivo de perna esquera.</p>
+            <p>Tamanho: 42</p>
+            <p>Preço: R$ 199,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
+            <h3>Tênis Esportivo Modelo X</h3>
+            <p>Tênis esportivo de perna esquera.</p>
+            <p>Tamanho: 42</p>
+            <p>Preço: R$ 199,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <button>Comprar</button>
+        </div>
+    
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <button>Comprar</button>
+        </div>
+       
+    
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Marketplace UPX. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        var speechEnabled = false;
+
+        function togglePopup() {
+            var popup = document.getElementById('popupForm');
+            var overlay = document.getElementById('overlay');
+            if (popup.style.display === 'none' || popup.style.display === '') {
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            } else {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }
+        }
+    
+        function closePopup() {
+            var popup = document.getElementById('popupForm');
+            var overlay = document.getElementById('overlay');
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+    
+        function filterProducts() {
+            var filter = document.getElementById('productTypeFilter').value;
+            var products = document.querySelectorAll('.product');
+            
+            products.forEach(function(product) {
+                if (filter === 'all' || product.getAttribute('data-type') === filter) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleSpeech() {
+            speechEnabled = !speechEnabled;
+            if (speechEnabled) {
+                alert("Descrição por voz ativada!");
+            } else {
+                alert("Descrição por voz desativada!");
+            }
+        }
+
+        function speakProduct(text) {
+            if (speechEnabled) {
+                var speech = new SpeechSynthesisUtterance();
+                speech.text = text;
+                speech.lang = 'pt-BR';
+                speech.volume = 1;
+                speech.rate = 1;
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+    </script>
+    
+</body>
+</html>
