@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <link rel="stylesheet" href="estilo_Mobile.css">
+    
 
     <style>
         * {
@@ -260,6 +260,251 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
         }
+        /* Estilos para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: #fff;
+    }
+
+    header {
+        background: #111;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header img {
+        height: 40px;
+        width: auto;
+        margin-right: 10px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    nav ul li a:hover {
+        color: #ccc;
+    }
+
+    section.banner {
+        height: 200px;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+    }
+
+    .carousel {
+        display: flex;
+        width: 100%;
+        animation: carousel 20s infinite;
+    }
+
+    .carousel img {
+        width: 100%;
+        height: auto;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .banner h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .banner p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .banner button {
+        background-color: #7e7e7e;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .banner button:hover {
+        background-color: #1d1d1d;
+    }
+
+    section.products {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .product {
+        width: calc(50% - 20px);
+        background-color: #333;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .product img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .product h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .product p {
+        color: #ccc;
+        font-size: 14px;
+    }
+
+    .product button {
+        background-color: #7e7e7e;
+        color: #000000;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .product button:hover {
+        background-color: #1d1d1d;
+    }
+
+    footer {
+        background-color: #111;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .filter {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .filter select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #494747;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        z-index: 9999;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .popup label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .popup input[type="text"],
+    .popup textarea,
+    .popup input[type="file"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #000000;
+        margin-bottom: 10px;
+    }
+
+    .popup button {
+        background-color: #323232;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .popup button:hover {
+        background-color: #323133;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }
+
+    .slide {
+        flex: 1 0 100%;
+        overflow: hidden;
+    }
+
+    .slide img {
+        width: 100%;
+    }
+
+    nav ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        margin-top: 10px;
+        padding: 5px 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+}
+
     </style>
 </head>
 <body>
