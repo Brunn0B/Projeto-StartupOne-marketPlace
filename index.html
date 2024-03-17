@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ease Walk</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <link rel="stylesheet" href="estilo_Mobile.css">
+
     <style>
         * {
             margin: 0;
@@ -16,12 +18,12 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #222; /* Alterado para uma cor mais escura */
+            background-color: #222;
             color: #fff;
         }
 
         header {
-            background: #111; /* Alterado para uma cor mais escura */
+            background: #111;
             padding: 20px;
             display: flex;
             justify-content: space-between;
@@ -63,8 +65,8 @@
 
         .carousel {
             display: flex;
-            width: 100%; /* Ajustando para 100% para ocupar todo o espaço */
-            animation: carousel 20s infinite; /* 5 slides x 4 segundos */
+            width: 100%;
+            animation: carousel 20s infinite;
         }
 
         .carousel img {
@@ -74,15 +76,15 @@
 
         @keyframes carousel {
             0% { transform: translateX(0); }
-            20% { transform: translateX(0); } /* Primeiro slide fica por 4 segundos */
-            25% { transform: translateX(-100%); } /* Transição para segundo slide */
-            40% { transform: translateX(-100%); } /* Segundo slide fica por 4 segundos */
-            45% { transform: translateX(-200%); } /* Transição para terceiro slide */
-            60% { transform: translateX(-200%); } /* Terceiro slide fica por 4 segundos */
-            65% { transform: translateX(-300%); } /* Transição para quarto slide */
-            80% { transform: translateX(-300%); } /* Quarto slide fica por 4 segundos */
-            85% { transform: translateX(-400%); } /* Transição para quinto slide */
-            100% { transform: translateX(-400%); } /* Fim da animação */
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            40% { transform: translateX(-100%); }
+            45% { transform: translateX(-200%); }
+            60% { transform: translateX(-200%); }
+            65% { transform: translateX(-300%); }
+            80% { transform: translateX(-300%); }
+            85% { transform: translateX(-400%); }
+            100% { transform: translateX(-400%); }
         }
 
         .banner-content {
@@ -125,7 +127,7 @@
 
         .product {
             width: calc(33.33% - 20px);
-            background-color: #333; /* Alterado para uma cor mais escura */
+            background-color: #333;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -162,7 +164,7 @@
         }
 
         footer {
-            background-color: #111; /* Alterado para uma cor mais escura */
+            background-color: #111;
             color: #fff;
             text-align: center;
             padding: 20px 0;
@@ -238,8 +240,8 @@
         }
 
         .slide {
-            flex: 1 0 100%; /* Cada slide ocupa 100% do espaço */
-            overflow: hidden; /* Adicionando overflow para garantir que apenas um slide seja visível */
+            flex: 1 0 100%;
+            overflow: hidden;
         }
 
         .slide img {
