@@ -7,8 +7,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   
-    <link rel="stylesheet" href="MidiaStyle.css">
-    <link rel="stylesheet" href="Scroller.css">
 <style>
     * {
     margin: 0;
@@ -20,6 +18,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     color: #fff;
+    transition: background-color 0.5s ease; /* Adicionando uma transição suave */
 }
 
 header {
@@ -149,10 +148,14 @@ section.products {
 }
 
 .product img {
-    width: 100%;
+    max-width: 100%; /* Alterando para uma unidade relativa */
+    height: auto;
+    width: auto; /* Adicionando esta linha para permitir que a imagem diminua conforme necessário */
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+
 
 .product h3 {
     font-size: 20px;
@@ -177,17 +180,6 @@ section.products {
 .product button:hover {
     background-color: #1d1d1d;
 }
-
-footer {
-    background-color: #111;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
 
 .filter {
     color: #000000;
@@ -277,7 +269,77 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
 }
+/* Estilos para o footer */
+footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 50px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+            transition: bottom 0.5s ease;
+            position: relative; /* Adicionando posição relativa */
+            z-index: 1; /* Adicionando um índice de empilhamento para garantir que esteja acima de outros elementos */
+        }
 
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1; /* Ocupa o espaço igualmente */
+            margin-right: 20px; /* Espaçamento entre as colunas */
+            margin-bottom: 20px; /* Espaçamento na parte inferior */
+        }
+
+        .footer-column h5 {
+            margin-bottom: 15px; /* Espaçamento extra abaixo do título */
+            color: #ffffff; /* Cor do texto */
+        }
+
+        .footer-column ul {
+            list-style: none; /* Removendo marcadores de lista */
+            padding: 0; /* Removendo o preenchimento padrão */
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+        }
+
+        .footer-column ul li a {
+            color: #cccccc; /* Cor do texto */
+            text-decoration: none; /* Removendo sublinhado */
+            transition: color 0.3s ease; /* Adicionando uma transição suave */
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffffff; /* Cor do texto ao passar o mouse */
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            color: #cccccc; /* Cor do texto */
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 999;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #1d1d1d;
+        }
 /* Estilos para celulares */
 @media screen and (max-width: 768px) {
     * {
@@ -526,7 +588,7 @@ nav ul li a:hover {
 </style>
 
 </head>
-<body>
+<>
     <header>
         <img src="IMG/EASEWALK-removebg-preview hd.png" alt="Logo">
         <nav>
@@ -590,8 +652,9 @@ nav ul li a:hover {
 
     <div class="overlay" id="overlay" onclick="closePopup()"></div>
 
+
     <section class="products">
-        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+        <div class="product" data-type="buy" onmouseover="speakProduct(this, 'Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')" onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
             <h3>Tênis Esportivo Modelo YAHIA</h3>
             <p>Tênis esportivo de perna esquera.</p>
@@ -602,7 +665,7 @@ nav ul li a:hover {
         </div>
     
         
-        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')" onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
             <h3>Tênis Casual Modelo Y</h3>
             <p>Tênis casual perna direita.</p>
@@ -613,7 +676,7 @@ nav ul li a:hover {
         </div>
     
         
-        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
             <h3>Tênis de Corrida Modelo Z</h3>
             <p>Tênis de corrida perna direita.</p>
@@ -623,7 +686,7 @@ nav ul li a:hover {
             <button>Comprar</button>
         </div>
 
-        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')">
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')" onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
             <h3>Tênis Esportivo Modelo YAHIA</h3>
             <p>Tênis esportivo de perna esquera.</p>
@@ -634,7 +697,7 @@ nav ul li a:hover {
         </div>
     
         
-        <div class="product" data-type="sell" onmouseover="speakProduct('Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')">
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
             <h3>Tênis Casual Modelo Y</h3>
             <p>Tênis casual perna direita.</p>
@@ -645,7 +708,7 @@ nav ul li a:hover {
         </div>
     
         
-        <div class="product" data-type="buy" onmouseover="speakProduct('Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')">
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
             <h3>Tênis de Corrida Modelo Z</h3>
             <p>Tênis de corrida perna direita.</p>
@@ -657,7 +720,69 @@ nav ul li a:hover {
     
     </section>
 
-<script src="Scroller.js"></script>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h5><img style="width: 150px; height: auto" src="IMG/EASEWALK-removebg-preview hd.png" alt=""></h5>
+            </div>
+            <div class="footer-column">
+                <h5>Links Úteis</h5>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Contato</h5>
+                <ul>
+                    <li><a href="#">E-mail</a></li>
+                    <li><a href="#">Telefone</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h5>Redes Sociais</h5>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©2024 Todos os direitos reservados.</p>
+        </div>
+        <button onclick="topFunction()" class="scroll-to-top" id="scrollBtn" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <script>
+        // Função para mostrar o footer quando a página chega ao fim
+        window.onscroll = function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                showFooter();
+            } else {
+                hideFooter();
+            }
+        };
+
+        function showFooter() {
+            document.querySelector('footer').classList.add('show-footer');
+        }
+
+        function hideFooter() {
+            document.querySelector('footer').classList.remove('show-footer');
+        }
+
+        // Função para rolar suavemente para o topo da página
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    
+    
 
     <script>
         var speechEnabled = false;
@@ -703,17 +828,25 @@ nav ul li a:hover {
             }
         }
 
-        function speakProduct(text) {
-            if (speechEnabled) {
-                var speech = new SpeechSynthesisUtterance();
-                speech.text = text;
-                speech.lang = 'pt-BR';
-                speech.volume = 1;
-                speech.rate = 1;
-                speech.pitch = 1;
-                window.speechSynthesis.speak(speech);
-            }
+        function speakProduct(product, text) {
+        if (speechEnabled) {
+            currentSpeech = new SpeechSynthesisUtterance();
+            currentSpeech.text = text;
+            currentSpeech.lang = 'pt-BR';
+            currentSpeech.volume = 1;
+            currentSpeech.rate = 1;
+            currentSpeech.pitch = 1;
+            window.speechSynthesis.speak(currentSpeech);
         }
+    }
+
+    function stopSpeech() {
+        if (currentSpeech !== null) {
+            window.speechSynthesis.cancel(currentSpeech);
+            currentSpeech = null;
+        }
+    }
+
     </script>
     
 </body>
