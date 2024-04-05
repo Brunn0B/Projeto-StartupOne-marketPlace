@@ -6,75 +6,29 @@
     <title>Ease Walk</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
+    
 <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #fff;
-    transition: background-color 0.5s ease; /* Adicionando uma transição suave */
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #fff;
+            transition: background-color 0.5s ease;
+        }
 
-header {
-    background:rgb(255, 255, 255);
-    padding: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffffff;
-    position: relative;
-}
 
-header img {
-    position: absolute;
-    left: 20px;
-    top: 62px;
-    transform: translateY(-50%);
-    height: auto;
-    max-height: 300px;
-    width: auto;
-    max-width: 200px;
-}
-
-nav {
-    position: absolute;
-    top: 50%;
-    right: 500px;
-    transform: translateY(-50%);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #000000;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-nav ul li a:hover {
-    color: #000000;
-}
-
-section.banner {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    text-align: center;
-    color: #000000;
-}
+        section.banner {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            text-align: center;
+            color: #000000;
+        }
 
 .carousel {
     display: flex;
@@ -148,9 +102,9 @@ section.products {
 }
 
 .product img {
-    max-width: 100%; /* Alterando para uma unidade relativa */
+    max-width: 100%;
     height: auto;
-    width: auto; /* Adicionando esta linha para permitir que a imagem diminua conforme necessário */
+    width: auto;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -269,7 +223,7 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
 }
-/* Estilos para o footer */
+
 footer {
             background-color: #000000;
             color: #ffffff;
@@ -278,8 +232,8 @@ footer {
             margin-top: auto;
             width: 100%;
             transition: bottom 0.5s ease;
-            position: relative; /* Adicionando posição relativa */
-            z-index: 1; /* Adicionando um índice de empilhamento para garantir que esteja acima de outros elementos */
+            position: relative;
+            z-index: 1;
         }
 
         .footer-container {
@@ -289,38 +243,38 @@ footer {
         }
 
         .footer-column {
-            flex: 1; /* Ocupa o espaço igualmente */
-            margin-right: 20px; /* Espaçamento entre as colunas */
-            margin-bottom: 20px; /* Espaçamento na parte inferior */
+            flex: 1;
+            margin-right: 20px;
+            margin-bottom: 20px;
         }
 
         .footer-column h5 {
-            margin-bottom: 15px; /* Espaçamento extra abaixo do título */
-            color: #ffffff; /* Cor do texto */
+            margin-bottom: 15px;
+            color: #ffffff;
         }
 
         .footer-column ul {
-            list-style: none; /* Removendo marcadores de lista */
-            padding: 0; /* Removendo o preenchimento padrão */
+            list-style: none;
+            padding: 0;
         }
 
         .footer-column ul li {
-            margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+            margin-bottom: 10px;
         }
 
         .footer-column ul li a {
-            color: #cccccc; /* Cor do texto */
-            text-decoration: none; /* Removendo sublinhado */
-            transition: color 0.3s ease; /* Adicionando uma transição suave */
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer-column ul li a:hover {
-            color: #ffffff; /* Cor do texto ao passar o mouse */
+            color: #ffffff;
         }
 
         .footer-bottom {
             margin-top: 20px;
-            color: #cccccc; /* Cor do texto */
+            color: #cccccc;
         }
 
         .scroll-to-top {
@@ -340,6 +294,30 @@ footer {
         .scroll-to-top:hover {
             background-color: #1d1d1d;
         }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            background-color: #2f2f2f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination button:hover {
+            background-color: #9e9e9e;
+        }
+        
+        .pagination .active {
+            background-color: #a5a5a5;
+        }
 /* Estilos para celulares */
 @media screen and (max-width: 768px) {
     * {
@@ -350,12 +328,12 @@ footer {
     
     body {
     font-family: Arial, sans-serif;
-    background-color: #222;
+    background-color: #ffffff;
     color: #fff;
     }
     
     header {
-    background: #111;
+    background: #060606;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -448,7 +426,7 @@ footer {
     
     .product {
     width: calc(50% - 20px);
-    background-color: #333;
+    background-color: #a0a0a0;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -467,7 +445,7 @@ footer {
     }
     
     .product p {
-    color: #ccc;
+    color: #000000;
     font-size: 14px;
     }
     
@@ -583,24 +561,140 @@ footer {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     }
+    footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 50px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+            transition: bottom 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h5 {
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            color: #cccccc;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 999;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #1d1d1d;
+        }
     }
-    
 </style>
 
 </head>
-<>
-    <header>
-        <img src="IMG/EASEWALK-removebg-preview hd.png" alt="Logo">
+<body>
+    <header style="background-color: #ffffff; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <img src="IMG/EASEWALK-removebg-preview hd.png" alt="Logo" style="width: auto; max-height: 200px;">
         <nav>
-            <ul>
-                <li style="text-decoration: #000000;"><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fas fa-box-open"></i> Produtos</a></li>
-                <li><a href="#"><i class="fas fa-info-circle"></i> Sobre</a></li>
-                <li><a href="#" onclick="togglePopup()"><i class="fas fa-plus"></i> Adicionar Produto</a></li>
-                <li><a href="#"><i class="fas fa-envelope"></i> Contato</a></li>
-            </ul>
+<ul style="list-style: none; display: flex; align-items: center; font-size: 20px;">
+    <li style="margin-right: 20px;">
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-home"></i> Home
+        </a>
+    </li>
+    <li style="margin-right: 20px;">
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-box-open"></i> Produtos
+        </a>
+    </li>
+    <li style="margin-right: 20px;">
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-info-circle"></i> Sobre
+        </a>
+    </li>
+    <li style="margin-right: 20px;">
+        <a href="#" onclick="togglePopup()" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-plus"></i> Adicionar Produto
+        </a>
+    </li>
+    <li style="margin-right: 20px;">
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-envelope"></i> Contato
+        </a>
+    </li>
+    <li style="margin-right: 20px;">
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+           onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class=" fas fa-shopping-cart "></i> Carrinho  
+        </a>
+    </li>
+    <li>
+        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;border-radius: 50%; height: 60px; width: 60px;"
+           onmouseover="this.style.backgroundColor='#7a2b2b'; this.style.boxShadow='0 0 15px #7a2b2b, 0 0 20px #7a2b2b, 0 0 25px #7a2b2b, 0 0 30px #7a2b2b, 0 0 35px #7a2b2b, 0 0 40px #7a2b2b, 0 0 45px #7a2b2b, 0 0 50px #7a2b2b';"
+           onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
+           <i class="fas fa-user"></i>
+        </a>
+    </li>
+</ul>
+            
+            
         </nav>
     </header>
+    
     
 
     <section class="banner">
@@ -686,16 +780,46 @@ footer {
             <button>Comprar</button>
         </div>
 
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
-            <h3>Tênis Esportivo Modelo YAHIA</h3>
-            <p>Tênis esportivo de perna esquera.</p>
-            <p>Tamanho: 42</p>
-            <p>Preço: R$ 199,99</p>
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
             <br>
             <button>Comprar</button>
         </div>
     
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>  
         
         <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
             <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
@@ -717,9 +841,74 @@ footer {
             <br>
             <button>Comprar</button>
         </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <br>
+            <button>Comprar</button>
+        </div> 
+
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
     
+        
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
+            <h3>Tênis de Corrida Modelo Z</h3>
+            <p>Tênis de corrida perna direita.</p>
+            <p>Tamanho: 40</p>
+            <p>Preço: R$ 249,99</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+
+        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
+            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
+            <h3>Tênis Casual Modelo Y</h3>
+            <p>Tênis casual perna direita.</p>
+            <p>Tamanho: 38</p>
+            <p>Preço: R$ 149,99</p>
+            <br>
+            <button>Comprar</button>
+        </div> 
     </section>
 
+    <section class="pagination">
+        <button onclick="prevPage()">Anterior</button>
+        <span id="page-numbers"></span>
+        <button onclick="nextPage()">Próxima</button>
+    </section>
 
     <footer>
         <div class="footer-container">
@@ -757,8 +946,70 @@ footer {
         <button onclick="topFunction()" class="scroll-to-top" id="scrollBtn" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
+   <!-- Script da Paginação de Produtos -->
     <script>
-        // Função para mostrar o footer quando a página chega ao fim
+        var currentPage = 1;
+        var productsPerPage = 12;
+        var products = document.querySelectorAll('.product');
+    
+        function displayProducts() {
+            var start = (currentPage - 1) * productsPerPage;
+            var end = Math.min(start + productsPerPage, products.length);
+    
+            products.forEach(function(product, index) {
+                if (index >= start && index < end) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    
+       
+        function nextPage() {
+            var totalPages = Math.ceil(products.length / productsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPageNumbers();
+                displayProducts();
+            }
+        }
+    
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPageNumbers();
+                displayProducts();
+            }
+        }
+    
+        window.onload = function() {
+            renderPageNumbers();
+            displayProducts();
+        };
+    
+        function renderPageNumbers() {
+            var totalPages = Math.ceil(products.length / productsPerPage);
+            var pageNumberContainer = document.getElementById('page-numbers');
+            pageNumberContainer.innerHTML = '';
+    
+            for (var i = 1; i <= totalPages; i++) {
+                var pageNumberButton = document.createElement('button');
+                pageNumberButton.textContent = i;
+                pageNumberButton.onclick = function() {
+                    currentPage = parseInt(this.textContent);
+                    displayProducts();
+                };
+                if (i === currentPage) {
+                    pageNumberButton.classList.add('active');
+                }
+                pageNumberContainer.appendChild(pageNumberButton);
+            }
+        }
+    </script>
+ 
+ <!-- Script do Footer-->
+    <script>
         window.onscroll = function() {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                 showFooter();
@@ -775,15 +1026,13 @@ footer {
             document.querySelector('footer').classList.remove('show-footer');
         }
 
-        // Função para rolar suavemente para o topo da página
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
     </script>
-    
-    
-
+   
+   <!-- Script do Popup Formulario/Filtro de Produtos/Assecibilidade Auditiva-->>
     <script>
         var speechEnabled = false;
 
