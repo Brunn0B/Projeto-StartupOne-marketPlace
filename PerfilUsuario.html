@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+    <h1>Perfil do Usuário</h1>
+    <div id="user-type"></div>
+
+    <script>
+        
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        if (storedUser) {
+            if (storedUser.userType === 'comprador') {
+                document.getElementById('user-type').innerText = 'Você é um comprador.';
+            } else if (storedUser.userType === 'vendedor') {
+                document.getElementById('user-type').innerText = 'Você é um vendedor.';
+            } else {
+                document.getElementById('user-type').innerText = 'Tipo de usuário desconhecido.';
+            }
+        } else {
+            document.getElementById('user-type').innerText = 'Usuário não encontrado.';
+        }
+    </script>
+</body>
+</html>

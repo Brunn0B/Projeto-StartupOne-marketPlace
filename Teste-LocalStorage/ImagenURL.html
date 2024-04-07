@@ -1,0 +1,40 @@
+<!--Teste bem sucedido!
+a url das imagens sao puchadas no local storage e depois exibidas no elemento <div id="imagem-container"> 
+este teste possibilita a integraçao de imagens para o site assim simula um falso banco de dados-->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Local Storage</title>
+</head>
+<body>
+    <button onclick="armazenarImagem()">Armazenar URL da imagem</button>
+
+    <div id="imagem-container"></div>
+
+    <script>
+        function armazenarImagem() {
+            const urlDaImagem = prompt("Por favor, insira a URL da imagem:");
+
+            if (urlDaImagem) {
+                localStorage.setItem('imagem', urlDaImagem);
+                exibirImagem(urlDaImagem);
+            } else {
+                alert("URL da imagem não fornecida!");
+            }
+        }
+
+        function exibirImagem(url) {
+            const imagemContainer = document.getElementById('imagem-container');
+            imagemContainer.innerHTML = `<img src="${url}" alt="Imagem armazenada">`;
+        }
+
+        const urlArmazenada = localStorage.getItem('imagem');
+        if (urlArmazenada) {
+            exibirImagem(urlArmazenada);
+        }
+    </script>
+</body>
+</html>
