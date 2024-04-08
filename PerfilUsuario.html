@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/Cartao de Credito/Estilo.css">
     <style>
         body {
-            background-color: #1a1a1a;
+            background-color: #f7f2f2;
             color: #ddd;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
@@ -21,7 +21,7 @@
         }
 
         nav {
-            background-color: #282c31;
+            background-color: #2b2b2b;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -59,7 +59,7 @@
         }
 
         nav a:hover {
-            background-color: #b8860b;
+            background-color: #bbbbbb;
         }
 
         main {
@@ -72,13 +72,14 @@
 
         section {
             padding: 20px;
-            background-color: #333;
+            background-color: #cccccc;
             margin: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             flex-grow: 1;
             display: none;
             overflow: auto;
+            color: black;
         }
 
         section.active {
@@ -104,7 +105,7 @@
         button {
             padding: 10px;
             border-radius: 5px;
-            background-color: #8b4513;
+            background-color: #5a5a5a;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -114,7 +115,7 @@
         }
 
         button:hover {
-            background-color: #cd853f;
+            background-color: #c9c9c9;
         }
 
         #updateButton {
@@ -179,7 +180,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: #ddd;
+            background-color: #a5a5a5;
             background-size: cover;
             background-position: center;
             cursor: pointer;
@@ -241,14 +242,14 @@
             </div>
 
             <form id="profileForm">
-                <label for="profileName">Nome</label>
-                <input type="text" id="profileName" required readonly>
+                <label for="profileName">Nome Completo</label>
+                <input type="text" id="profileName" required>
 
                 <label for="profileEmail">E-mail</label>
                 <input type="text" id="profileEmail" required readonly>
 
                 <label for="profileCPF">CPF</label>
-                <input type="text" id="profileCPF" required readonly>
+                <input type="text" id="profileCPF" required>
 
                 <label for="profileAddressCEP">CEP</label>
                 <input type="text" id="profileAddressCEP" class="address-input-full">
@@ -422,84 +423,108 @@
     </main>
 
     <script>
-    let currentUser = JSON.parse(localStorage.getItem('user')) || {};
+    let userEmail;
+let currentUser;
+let cardData;
 
-        function fillProfileFields() {
-            if (currentUser) {
-                document.getElementById('profileName').value = currentUser.name || '';
-                document.getElementById('profileEmail').value = currentUser.email || '';
-                document.getElementById('profileCPF').value = currentUser.cpf || '';
-                document.getElementById('userType').textContent = currentUser.userType === 'vendedor' ? 'Vendedor' : 'Comprador';
-        
-                if (currentUser.address) {
-                    document.getElementById('profileAddressCEP').value = currentUser.address.cep || '';
-                    document.getElementById('profileAddressState').value = currentUser.address.state || '';
-                    document.getElementById('profileAddressCity').value = currentUser.address.city || '';
-                    document.getElementById('profileAddressNeighborhood').value = currentUser.address.neighborhood || '';
-                    document.getElementById('profileAddressStreet').value = currentUser.address.street || '';
-                    document.getElementById('profileAddressNumber').value = currentUser.address.number || '';
-                }
-        
-                if (currentUser.profileImage) {
-                    document.getElementById('profileImage').style.backgroundImage = "url('" + currentUser.profileImage + "')";
-                }
-        
-                const cardData = JSON.parse(localStorage.getItem('cardData'));
-    if (cardData) {
-        document.getElementById('card-number').value = cardData.cardNumber || '';
-        document.getElementById('card-holder').value = cardData.cardHolder || '';
-        document.getElementById('card-expiration-month').value = cardData.expirationMonth || '';
-        document.getElementById('card-expiration-year').value = cardData.expirationYear || '';
-        document.getElementById('card-ccv').value = cardData.ccv || '';
+function fillProfileFields() {
+    // Verificar se há um usuário logado
+    const currentUserData = localStorage.getItem('currentUser');
+    if (currentUserData) {
+        const currentUserInfo = JSON.parse(currentUserData);
+        userEmail = currentUserInfo.email;
 
-        cardData = storedCardData;
-    }
-}
-        }
-        
-        function saveUserData() {
-            localStorage.setItem('user', JSON.stringify(currentUser));
-        }
-        
-        function submitProfileForm() {
-            if (currentUser) {
-                currentUser.name = document.getElementById('profileName').value;
-                currentUser.email = document.getElementById('profileEmail').value;
-                currentUser.cpf = document.getElementById('profileCPF').value;
-        
-                if (!currentUser.address) {
-                    currentUser.address = {};
-                }
-                currentUser.address.cep = document.getElementById('profileAddressCEP').value;
-                currentUser.address.state = document.getElementById('profileAddressState').value;
-                currentUser.address.city = document.getElementById('profileAddressCity').value;
-                currentUser.address.neighborhood = document.getElementById('profileAddressNeighborhood').value;
-                currentUser.address.street = document.getElementById('profileAddressStreet').value;
-                currentUser.address.number = document.getElementById('profileAddressNumber').value;
-        
-                saveUserData();
-                alert('Dados do perfil atualizados com sucesso!');
+        // Obter os dados do perfil do usuário usando o email como parte da chave
+        currentUser = JSON.parse(localStorage.getItem(userEmail + '_profile')) || {};
+
+        // Obter os dados do cartão do usuário usando o email como parte da chave
+        cardData = JSON.parse(localStorage.getItem(userEmail + '_cardData'));
+
+        if (currentUser) {
+            document.getElementById('profileName').value = currentUser.name || '';
+            document.getElementById('profileEmail').value = userEmail || ''; // Usar o email do usuário atual
+            document.getElementById('profileCPF').value = currentUser.cpf || '';
+            document.getElementById('userType').textContent = currentUser.userType === 'vendedor' ? 'Vendedor' : 'Comprador';
+
+            if (currentUser.address) {
+                document.getElementById('profileAddressCEP').value = currentUser.address.cep || '';
+                document.getElementById('profileAddressState').value = currentUser.address.state || '';
+                document.getElementById('profileAddressCity').value = currentUser.address.city || '';
+                document.getElementById('profileAddressNeighborhood').value = currentUser.address.neighborhood || '';
+                document.getElementById('profileAddressStreet').value = currentUser.address.street || '';
+                document.getElementById('profileAddressNumber').value = currentUser.address.number || '';
+            }
+
+            if (currentUser.profileImage) {
+                document.getElementById('profileImage').style.backgroundImage = "url('" + currentUser.profileImage + "')";
             }
         }
-        
-        function fillCardFields() {
-            const cardData = JSON.parse(localStorage.getItem('cardData')); // Defina a variável cardData aqui
 
-    if (cardData) {
-        document.getElementById('card-number').value = cardData.cardNumber || '';
-        document.getElementById('card-holder').value = cardData.cardHolder || '';
-        document.getElementById('card-expiration-month').value = cardData.expirationMonth || '';
-        document.getElementById('card-expiration-year').value = cardData.expirationYear || '';
-        document.getElementById('card-ccv').value = cardData.ccv || '';
+        if (cardData) {
+            document.getElementById('card-number').value = cardData.cardNumber || '';
+            document.getElementById('card-holder').value = cardData.cardHolder || '';
+            document.getElementById('card-expiration-month').value = cardData.expirationMonth || '';
+            document.getElementById('card-expiration-year').value = cardData.expirationYear || '';
+            document.getElementById('card-ccv').value = cardData.ccv || '';
+        }
+    } else {
+        // Se não houver um usuário logado, redirecionar para a página de login ou executar outra ação adequada
+        console.log('Nenhum usuário logado');
+        // Aqui você pode redirecionar para a página de login ou executar outra ação adequada, conforme necessário
     }
+}
+
+function saveUserData() {
+    // Salva os dados do perfil do usuário usando o email como parte da chave
+    localStorage.setItem(userEmail + '_profile', JSON.stringify(currentUser));
 }
 
 function saveCardData() {
-    localStorage.setItem('cardData', JSON.stringify(cardData));
+    // Salva os dados do cartão do usuário usando o email como parte da chave
+    localStorage.setItem(userEmail + '_cardData', JSON.stringify(cardData));
+}
+
+function submitProfileForm() {
+    // Obter os dados do usuário atualizados do formulário
+    const newName = document.getElementById('profileName').value;
+    const newEmail = document.getElementById('profileEmail').value;
+    const newCPF = document.getElementById('profileCPF').value;
+
+    // Atualizar os dados do usuário apenas se todos os campos estiverem preenchidos
+    if (newName && newEmail && newCPF) {
+        currentUser.name = newName;
+        currentUser.email = newEmail;
+        currentUser.cpf = newCPF;
+
+        // Atualizar os dados do endereço
+        if (!currentUser.address) {
+            currentUser.address = {};
+        }
+        currentUser.address.cep = document.getElementById('profileAddressCEP').value;
+        currentUser.address.state = document.getElementById('profileAddressState').value;
+        currentUser.address.city = document.getElementById('profileAddressCity').value;
+        currentUser.address.neighborhood = document.getElementById('profileAddressNeighborhood').value;
+        currentUser.address.street = document.getElementById('profileAddressStreet').value;
+        currentUser.address.number = document.getElementById('profileAddressNumber').value;
+
+        // Salvar os dados atualizados do usuário
+        saveUserData();
+        alert('Dados do perfil atualizados com sucesso!');
+    } 
+}
+
+function fillCardFields() {
+    if (cardData) {
+        document.getElementById('card-number').value = cardData.cardNumber || '';
+        document.getElementById('card-holder').value = cardData.cardHolder || '';
+        document.getElementById('card-expiration-month').value = cardData.expirationMonth || '';
+        document.getElementById('card-expiration-year').value = cardData.expirationYear || '';
+        document.getElementById('card-ccv').value = cardData.ccv || '';
+    }
 }
 
 function submitCardData() {
-    const cardNumber = document.getElementById('card-number').value.replace(/\D/g, ''); 
+    const cardNumber = document.getElementById('card-number').value.replace(/\D/g, '');
     const cardHolder = document.getElementById('card-holder').value;
     const expirationMonth = document.getElementById('card-expiration-month').value;
     const expirationYear = document.getElementById('card-expiration-year').value;
@@ -517,35 +542,32 @@ function submitCardData() {
     alert('Dados do cartão salvos com sucesso!');
 }
 
-fillCardFields();
-        function displayProfileImage(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').style.backgroundImage = "url('" + e.target.result + "')";
-                    if (currentUser) {
-                        currentUser.profileImage = e.target.result;
-                        saveUserData();
-                    }
-                }
-                reader.readAsDataURL(input.files[0]);
+function displayProfileImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('profileImage').style.backgroundImage = "url('" + e.target.result + "')";
+            if (currentUser) {
+                currentUser.profileImage = e.target.result;
+                saveUserData();
             }
         }
-        
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-        }
-        
-        function logout() {
-            localStorage.clear();
-            window.location.href = 'login.html';
-        }
-        
-        fillProfileFields();
-        </script>
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function showSection(sectionId) {
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+}
+
+fillProfileFields();
+fillCardFields();
+
+    </script>
+    
 
 
 <script src="/Cartao de Credito/script.js"></script>

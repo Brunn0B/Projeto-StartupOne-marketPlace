@@ -2,7 +2,7 @@
     margin: 150px auto 30px;
     position: relative;
     width: 460px;
-    background: white;
+    background: rgb(195, 195, 195);
     border-radius: 15px;
     padding: 160px 45px 30px;
     box-shadow: 0 10px 40px hsla(0, 0, 0, .1);
@@ -28,7 +28,7 @@
       height: 250px;
       border-radius: 15px;
       backface-visibility: hidden;
-      background: linear-gradient(135deg, #bd6772, #53223f);
+      background: linear-gradient(135deg, #868686, #494949);
       position: absolute;
       color: #fff;
       font-family: Inconsolata;
