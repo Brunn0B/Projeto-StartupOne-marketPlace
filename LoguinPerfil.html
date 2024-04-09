@@ -257,7 +257,9 @@
         transition: all .4s ease-in;
     }</style>
 </head>
+
 <body>
+
     <section class="forms-section">
         <div class="forms">
             <div class="form-wrapper is-active">
@@ -352,7 +354,7 @@
                     </form>
                 </div>
             </div>
-            <!-- Fim do seu HTML -->
+            
         
         </section>
         
@@ -367,31 +369,28 @@
                     });
                 });
         
-                // Tratamento do formulário de login
                 const loginForm = document.querySelector('.form-login');
                 loginForm.addEventListener('submit', function (event) {
                     event.preventDefault();
                     const email = document.getElementById('login-email').value;
-                    const name = document.getElementById('login-name').value; // Adicionado nome
+                    const name = document.getElementById('login-name').value;
                     const password = document.getElementById('login-password').value;
                     const userType = document.getElementById('login-usertype').value;
                     const users = JSON.parse(localStorage.getItem('users')) || [];
         
-                    // Procura pelo usuário correspondente com o email, nome, senha e tipo de usuário fornecidos
-                    const user = users.find(user => user.email === email && user.name === name && user.password === password && user.userType === userType); // Adicionado verificação do nome
+                    const user = users.find(user => user.email === email && user.name === name && user.password === password && user.userType === userType);
                     if (user) {
                         alert('Login efetuado com sucesso!');
-                        localStorage.setItem('currentUser', JSON.stringify(user)); // Salva o usuário atual
-                        window.location.href = "PerfilUsuario.html"; // Redirecionamento após o login bem-sucedido
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                        window.location.href = "PerfilUsuario.html";
                     } else {
                         alert('Falha no login. Verifique suas credenciais.');
                     }
         
-                    // Limpa os campos do formulário
+                    
                     loginForm.reset();
                 });
         
-                // Tratamento do formulário de cadastro
                 const signupForm = document.querySelector('.form-signup');
                 signupForm.addEventListener('submit', function (event) {
                     event.preventDefault();
@@ -401,7 +400,7 @@
                     const password = document.getElementById('signup-password').value;
                     const userType = document.getElementById('signup-usertype').value;
         
-                    let users = JSON.parse(localStorage.getItem('users')) || []; // Obtém os usuários do localStorage
+                    let users = JSON.parse(localStorage.getItem('users')) || [];
         
                     const existingUser = users.find(user => user.email === email);
                     if (existingUser) {
@@ -417,13 +416,12 @@
                         userType: userType
                     };
         
-                    users.push(newUser); // Adiciona o novo usuário ao array de usuários
-                    localStorage.setItem('users', JSON.stringify(users)); // Salva os usuários atualizados no localStorage
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));
         
                     alert('Cadastro efetuado com sucesso! Dados do usuário salvos.');
-                    window.location.href = "index.html"; // Redirecionamento para a página de login após o cadastro bem-sucedido
-        
-                    // Limpa os campos do formulário
+                    window.location.href = "LoguinPerfil.html";
+
                     signupForm.reset();
                 });
         
@@ -451,13 +449,11 @@
                 forgotPasswordForm.addEventListener('submit', function (event) {
                     checkCPFAndSendEmail(event);
                 });
-        
-                // Função para verificar o CPF e enviar email
+
                 function checkCPFAndSendEmail(event) {
                     event.preventDefault();
                     const enteredCPF = document.getElementById('forgot-password-cpf').value;
         
-                    // Verifica se o CPF foi inserido
                     if (!enteredCPF.trim()) {
                         alert('Por favor, insira o CPF.');
                         return;
@@ -467,21 +463,19 @@
                     const user = users.find(user => user.cpf === enteredCPF);
         
                     if (user) {
-                        // Exibir os campos de redefinição de senha
                         document.getElementById('reset-password-fields').style.display = 'block';
                         document.getElementById('confirm-password-fields').style.display = 'block';
-                        // Adicionar a propriedade required aos campos de senha
+                        
                         document.getElementById('new-password').setAttribute('required', 'true');
                         document.getElementById('confirm-password').setAttribute('required', 'true');
-                        // Focar no campo de nova senha
+                        
                         document.getElementById('new-password').focus();
-                        localStorage.setItem('resetUser', JSON.stringify(user)); // Salva o usuário para redefinição de senha
+                        localStorage.setItem('resetUser', JSON.stringify(user));
                     } else {
                         alert('CPF incorreto. Por favor, verifique e tente novamente.');
                     }
                 }
         
-                // Função para redefinir a senha
                 function resetPassword(event) {
                     event.preventDefault();
                     const newPassword = document.getElementById('new-password').value;
@@ -492,10 +486,10 @@
         
                     if (newPassword.trim() !== '' && confirmPassword.trim() !== '') {
                         if (newPassword === confirmPassword) {
-                            const storedUser = JSON.parse(localStorage.getItem('resetUser')); // Alterado para 'resetUser'
+                            const storedUser = JSON.parse(localStorage.getItem('resetUser'));
                             if (storedUser) {
                                 storedUser.password = newPassword;
-                                // Atualiza a senha do usuário no array de usuários
+                                
                                 const users = JSON.parse(localStorage.getItem('users')) || [];
                                 const index = users.findIndex(u => u.cpf === storedUser.cpf);
                                 if (index !== -1) {
@@ -505,7 +499,7 @@
                                     alert('Usuário não encontrado na lista de usuários.');
                                 }
                                 alert('Senha redefinida com sucesso!');
-                                window.location.href = "PerfilUsuario.html";
+                                window.location.href = "LoguinPerfil.html";
                             } else {
                                 alert('Usuário não encontrado para redefinição de senha.');
                             }
@@ -523,12 +517,11 @@
                     resetPassword(event);
                 });
         
-                // Adicionando evento ao pressionar a tecla Enter
                 document.addEventListener('keydown', function (event) {
                     if (event.key === 'Enter') {
                         const activeElement = document.activeElement;
                         if (activeElement.tagName === 'BUTTON') {
-                            activeElement.click(); // Simular clique no botão atualmente focado
+                            activeElement.click();
                         }
                     }
                 });

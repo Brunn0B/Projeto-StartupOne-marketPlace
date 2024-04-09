@@ -207,12 +207,13 @@
 
         .user-type {
             margin-left: 50px;
-            color: #fff;
+            color: #040404;
         }
 
         .privacy-paragraph {
     margin-bottom: 15px;
 }
+
 
 
 
@@ -428,23 +429,21 @@ let currentUser;
 let cardData;
 
 function fillProfileFields() {
-    // Verificar se há um usuário logado
     const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
         const currentUserInfo = JSON.parse(currentUserData);
         userEmail = currentUserInfo.email;
 
-        // Obter os dados do perfil do usuário usando o email como parte da chave
         currentUser = JSON.parse(localStorage.getItem(userEmail + '_profile')) || {};
+        const userType = currentUserInfo.userType || '';
 
-        // Obter os dados do cartão do usuário usando o email como parte da chave
         cardData = JSON.parse(localStorage.getItem(userEmail + '_cardData'));
 
         if (currentUser) {
             document.getElementById('profileName').value = currentUser.name || '';
-            document.getElementById('profileEmail').value = userEmail || ''; // Usar o email do usuário atual
+            document.getElementById('profileEmail').value = userEmail || '';
             document.getElementById('profileCPF').value = currentUser.cpf || '';
-            document.getElementById('userType').textContent = currentUser.userType === 'vendedor' ? 'Vendedor' : 'Comprador';
+            document.getElementById('userType').textContent = userType === 'vendedor' ? 'Vendedor' : 'Comprador';
 
             if (currentUser.address) {
                 document.getElementById('profileAddressCEP').value = currentUser.address.cep || '';
@@ -468,35 +467,28 @@ function fillProfileFields() {
             document.getElementById('card-ccv').value = cardData.ccv || '';
         }
     } else {
-        // Se não houver um usuário logado, redirecionar para a página de login ou executar outra ação adequada
         console.log('Nenhum usuário logado');
-        // Aqui você pode redirecionar para a página de login ou executar outra ação adequada, conforme necessário
     }
 }
 
 function saveUserData() {
-    // Salva os dados do perfil do usuário usando o email como parte da chave
     localStorage.setItem(userEmail + '_profile', JSON.stringify(currentUser));
 }
 
 function saveCardData() {
-    // Salva os dados do cartão do usuário usando o email como parte da chave
     localStorage.setItem(userEmail + '_cardData', JSON.stringify(cardData));
 }
 
 function submitProfileForm() {
-    // Obter os dados do usuário atualizados do formulário
     const newName = document.getElementById('profileName').value;
     const newEmail = document.getElementById('profileEmail').value;
     const newCPF = document.getElementById('profileCPF').value;
 
-    // Atualizar os dados do usuário apenas se todos os campos estiverem preenchidos
     if (newName && newEmail && newCPF) {
         currentUser.name = newName;
         currentUser.email = newEmail;
         currentUser.cpf = newCPF;
 
-        // Atualizar os dados do endereço
         if (!currentUser.address) {
             currentUser.address = {};
         }
@@ -507,10 +499,9 @@ function submitProfileForm() {
         currentUser.address.street = document.getElementById('profileAddressStreet').value;
         currentUser.address.number = document.getElementById('profileAddressNumber').value;
 
-        // Salvar os dados atualizados do usuário
         saveUserData();
         alert('Dados do perfil atualizados com sucesso!');
-    } 
+    }
 }
 
 function fillCardFields() {
