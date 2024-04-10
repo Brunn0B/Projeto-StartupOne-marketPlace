@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
     <link rel="stylesheet" href="/Cartao de Credito/Estilo.css">
+    <link rel="stylesheet" href="/AddProduto/EstiloDoProduto.css">
     <style>
         body {
             background-color: #f7f2f2;
@@ -216,6 +217,65 @@
 
 
 
+.productContainer {
+    background-color: #fff;
+    height: 600px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.productContainer h2 {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.product-form .form-group {
+    margin-bottom: 15px;
+}
+
+.product-form label {
+    margin-left: 15px;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.product-form input[type="text"],
+.product-form textarea,
+.product-form input[type="file"] {
+    width: 450px;
+    margin-left: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.product-form .radio-group {
+    display: flex;
+}
+
+.product-form .radio-group input[type="radio"] {
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.product-form .btn-submit {
+    margin-left: 15px;
+    padding: 10px 20px;
+    background-color: #5a5a5a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-form .btn-submit:hover {
+    background-color: #c9c9c9;
+}
 
     </style>
 </head>
@@ -228,6 +288,7 @@
         <ul>
             <li><a href="#" onclick="showSection('profile')">Perfil</a></li>
             <li><a href="#" onclick="showSection('cardData')">Dados do Cartão</a></li>
+            <li><a href="#" onclick="showSection('addProduct')">Adicionar Produros</a></li>
             <li><a href="#" onclick="showSection('purchaseHistory')">Histórico de Compra</a></li>
             <li><a href="#" onclick="showSection('privacy')">Política e Privacidade</a></li>
             <li><a href="index.html" onclick="logout()" style="color: red;">Sair</a></li>
@@ -371,16 +432,16 @@
                       <div class="select">
                           <select id="card-expiration-year">
                               <option></option>
-                              <option>2016</option>
-                              <option>2017</option>
-                              <option>2018</option>
-                              <option>2019</option>
-                              <option>2020</option>
-                              <option>2021</option>
-                              <option>2022</option>
-                              <option>2023</option>
                               <option>2024</option>
                               <option>2025</option>
+                              <option>2026</option>
+                              <option>2027</option>
+                              <option>2028</option>
+                              <option>2029</option>
+                              <option>2030</option>
+                              <option>2031</option>
+                              <option>2032</option>
+                              <option>2034</option>
                           </select>
                       </div>
                   </fieldset>
@@ -393,6 +454,41 @@
           </div>
       </section>
         
+      <section id="addProduct" class="forms-section">
+        <div class="productContainer">
+            <h2>Adicionar Produto</h2>
+            <form action="#" method="post" class="product-form">
+                <div class="form-group">
+                    <label for="productName">Nome do Produto:</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="productDescription">Descrição do Produto:</label>
+                    <textarea name="productDescription" id="productDescription" rows="4" required></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="productPrice">Preço do Produto:</label>
+                    <input type="text" id="productPrice" name="productPrice" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="productImage">Imagem do Produto:</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                </div>
+    
+                
+    
+                <button type="submit" class="btn-submit">Adicionar Produto</button>
+            </form>
+        </div>
+    
+        <div class="productPreview">
+            <!-- Aqui você pode adicionar a representação estilizada do produto -->
+        </div>
+    </section>
+    
 
         <section id="purchaseHistory">
             <button id="updateButton" onclick="refreshPurchaseHistory()">Atualizar</button>
@@ -560,7 +656,7 @@ fillCardFields();
     </script>
     
 
-
+<script src="/AddProduto/Produto.js"></script>
 <script src="/Cartao de Credito/script.js"></script>
 </body>
 
