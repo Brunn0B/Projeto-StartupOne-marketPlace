@@ -59,8 +59,6 @@
     max-width: 200px;
     max-height: 70px;
     margin-bottom: 20px;
-
-    
 }
 
 
@@ -98,7 +96,7 @@
 }
 
 .product {
-    width: 290px;
+    width: 300px;
     background-color: #ededed;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -107,8 +105,9 @@
 }
 
 .product img {
-    height: 320px;
-    width: 290px;
+    margin-left: -5px;
+    height: 310px;
+    width: 310px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
