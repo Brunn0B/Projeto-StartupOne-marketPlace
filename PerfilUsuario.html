@@ -12,13 +12,20 @@
     <link rel="stylesheet" href="/AddProduto/EstiloDoProduto.css">
     <style>
         body {
-            background-color: #f7f2f2;
+            background-image: url(IMG/OIG2.jpg);
+            background-position-x: center;
+            background-position-y: center;
+            overflow-x: hidden;
             color: #ddd;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             height: 100vh;
+        }
+        html, body {
+            overflow: hidden;
+            height: 100%;
         }
 
         nav {
@@ -73,14 +80,14 @@
 
         section {
             padding: 20px;
-            background-color: #cccccc;
+            background-color: #121212d1;
             margin: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             flex-grow: 1;
             display: none;
             overflow: auto;
-            color: black;
+            color: rgb(252, 249, 249);
         }
 
         section.active {
@@ -223,6 +230,7 @@
     width: 500px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
 .productContainer h2 {
@@ -277,6 +285,14 @@
     background-color: #c9c9c9;
 }
 
+.form{
+   box-sizing: 20px;
+   background-image: url(IMG/OIG3.UePgfskWLbw.jpg);
+   color: #000000;
+   box-shadow: #040404;
+   border-radius: 20px;
+   padding: 20px;
+}
     </style>
 </head>
 
@@ -485,7 +501,6 @@
         </div>
     
         <div class="productPreview">
-            <!-- Aqui você pode adicionar a representação estilizada do produto -->
         </div>
     </section>
     
