@@ -16,7 +16,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #e5e5e5;
             color: #fff;
             transition: background-color 0.5s ease;
         }
@@ -24,7 +24,9 @@
 
         section.banner {
             position: relative;
-            height: 300px;
+            margin-left: 80px;
+            height: auto;
+            width: 90%;
             overflow: hidden;
             text-align: center;
             color: #000000;
@@ -38,7 +40,7 @@
 
 .carousel img {
     width: 100%;
-    height: auto;
+    height: 600px;
 }
 
 @keyframes carousel {
@@ -94,7 +96,7 @@ section.products {
 
 .product {
     width: calc(33.33% - 20px);
-    background-color: #d0d0d0;
+    background-color: #c0c0c0;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -108,8 +110,6 @@ section.products {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-
-
 
 .product h3 {
     font-size: 20px;
@@ -146,11 +146,6 @@ section.products {
     border: 1px solid #000000;
     margin-right: 10px;
 }
-
-
-
-
-
 .slide {
     flex: 1 0 100%;
     overflow: hidden;
@@ -581,11 +576,25 @@ footer {
             background-color: #1d1d1d;
         }
     }
+.filterButton {
+    background-color: #5e5d5d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.filterButton:hover {
+    background-color: #eeebeb;
+    color: #000000;
+}
+    
 </style>
 
 </head>
 <body>
-   <header style="background-color: #ffffff; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+   <header style="background-color: #f4eeeea0; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
         <img src="IMG/EASEWALK-removebg-preview hd.png" alt="Logo" style="width: auto; max-height: 200px;">
         <nav>
     <ul style="list-style: none; display: flex; align-items: center; font-size: 20px;">
@@ -640,7 +649,7 @@ footer {
     
     <section class="banner">
         <div class="carousel">
-            <div class="slide"><img src="IMG/midia-social-do-produto-postar-modelo-de-banner-ou-folheto-de-venda-de-sapatos_135461-147.avif" alt="Banner 1"></div>
+            <div class="slide"><img src="IMG/Ease propaganda.jpeg" alt="Banner 1"></div>
             <div class="slide"><img src="IMG/R.jpg" alt="Banner 2"></div>
             <div class="slide"><img src="IMG/f2b8bb64f1e47c9ee1e9161fc8a82613.jpg" alt="Banner 3"></div>
             <div class="slide"><img src="IMG/como_montar_uma_loja_de_calcados.webp" alt="Banner 4"></div>
@@ -650,12 +659,50 @@ footer {
     
 
     <section class="filter">
-        <label for="productTypeFilter">Filtrar:</label>
-        <select id="productTypeFilter" onchange="filterProducts()">
-            <option value="all">Todos</option>
-            <option value="buy">Comprando</option>
-            <option value="sell">Vendendo</option>
-        </select>
+        <button class ="filterButton" id="filterButton" onclick="toggleFilters()">Filtros...</button>
+        <div id="filterOptions" style="display: none;">
+            <label for="productTypeFilter">Filtrar por Tipo:</label>
+            <select id="productTypeFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="buy">Comprando</option>
+                <option value="sell">Vendendo</option>
+            </select>
+            <label for="sideFilter">Filtrar por Par:</label>
+            <select id="sideFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="esquerda">Esquerdo</option>
+                <option value="direita">Direito</option>
+            </select>
+            <label for="sizeFilter">Filtrar por Tamanho:</label>
+            <select id="sizeFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+            <label for="stateFilter">Filtrar por Estado:</label>
+            <select id="stateFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="Novo">Novo</option>
+                <option value="Usado">Usado</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+            <label for="brandFilter">Filtrar por Marca:</label>
+            <select id="brandFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="EaseWalk">EaseWalk</option>
+                <option value="OutraMarca">Outra Marca</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+            <label for="genderFilter">Filtrar por Gênero:</label>
+            <select id="genderFilter" onchange="filterProducts()">
+                <option value="all">Todos</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="gay">37 Tipos de GAY</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+        </div>
         <label for="toggleSpeech">Ativar Descrição por Voz:</label>
         <input type="checkbox" id="toggleSpeech" onchange="toggleSpeech()">
     </section>
@@ -859,6 +906,18 @@ footer {
         <button onclick="topFunction()" class="scroll-to-top" id="scrollBtn" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
+    <!--filtro-->
+    <script>
+        function toggleFilters() {
+            var filterOptions = document.getElementById("filterOptions");
+            if (filterOptions.style.display === "none") {
+                filterOptions.style.display = "block";
+            } else {
+                filterOptions.style.display = "none";
+            }
+        }
+    </script>
+
    <!-- Script da Paginação de Produtos -->
     <script>
         var currentPage = 1;
@@ -968,14 +1027,12 @@ footer {
         speakDescription(description);
     }
 
-    // Função para falar a descrição
     function speakDescription(description) {
         const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(description);
         synth.speak(utterance);
     }
 
-    // Adiciona a capacidade de ativar/desativar a descrição por voz ao pressionar a tecla "L"
     document.addEventListener('keydown', function(event) {
         if (event.key === 'l' || event.key === 'L') {
             toggleSpeech();
