@@ -391,40 +391,57 @@
                     loginForm.reset();
                 });
         
-                const signupForm = document.querySelector('.form-signup');
-                signupForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    const email = document.getElementById('signup-email').value;
-                    const name = document.getElementById('signup-name').value;
-                    const cpf = document.getElementById('signup-cpf').value;
-                    const password = document.getElementById('signup-password').value;
-                    const userType = document.getElementById('signup-usertype').value;
-        
-                    let users = JSON.parse(localStorage.getItem('users')) || [];
-        
-                    const existingUser = users.find(user => user.email === email);
-                    if (existingUser) {
-                        alert('Este email já está cadastrado!');
-                        return;
-                    }
-        
-                    const newUser = {
-                        email: email,
-                        name: name,
-                        cpf: cpf,
-                        password: password,
-                        userType: userType
-                    };
-        
-                    users.push(newUser);
-                    localStorage.setItem('users', JSON.stringify(users));
-        
-                    alert('Cadastro efetuado com sucesso! Dados do usuário salvos.');
-                    window.location.href = "LoguinPerfil.html";
 
-                    signupForm.reset();
-                });
-        
+
+                const signupForm = document.querySelector('.form-signup');
+signupForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const email = document.getElementById('signup-email').value;
+    const name = document.getElementById('signup-name').value;
+    let cpf = document.getElementById('signup-cpf').value;
+    const password = document.getElementById('signup-password').value;
+    const userType = document.getElementById('signup-usertype').value;
+
+    const cpfInput = document.getElementById('signup-cpf');
+cpfInput.addEventListener('input', function () {
+    let cpf = this.value.replace(/\D/g, '');
+    cpf = cpf.slice(0, 11);
+    cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+
+    this.value = cpf;
+});
+
+    if (cpf.length < 14) {
+        alert('CPF incompleto. Por favor, insira os 11 dígitos.');
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const existingUser = users.find(user => user.email === email);
+    if (existingUser) {
+        alert('Este email já está cadastrado!');
+        return;
+    }
+
+    const newUser = {
+        email: email,
+        name: name,
+        cpf: cpf,
+        password: password,
+        userType: userType
+    };
+
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('Cadastro efetuado com sucesso! Dados do usuário salvos.');
+    window.location.href = "LoguinPerfil.html";
+
+    signupForm.reset();
+});
+
+
                 const inputFields = document.querySelectorAll('.form input');
                 inputFields.forEach(input => {
                     input.addEventListener('keydown', function (event) {
@@ -474,6 +491,7 @@
                     } else {
                         alert('CPF incorreto. Por favor, verifique e tente novamente.');
                     }
+                    
                 }
         
                 function resetPassword(event) {

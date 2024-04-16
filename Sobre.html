@@ -186,9 +186,11 @@
         <p>Conheça mais sobre o projeto Ease Walk e como ele pode te ajudar.</p>
     </div>
 
-    <button id="toggleButton" style="padding: 10px; border-radius: 5px; background-color: #424141; color: #f3eeee; font-size: 15px">
+    <button id="toggleButton" style="padding: 10px; border-radius: 5px; background-color: #424141; color: #f3eeee; font-size: 25px; position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">
         <i class="fa-solid fa-ear-listen"></i>
-      </button>
+    </button>
+    
+    
 
 
   <div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
@@ -262,14 +264,25 @@ endus, vitae similique.</p>
 
   <script>
     const toggleButton = document.getElementById('toggleButton');
-    const textoParaLer = 'Este é o texto que será lido quando o botão for clicado.';
+    const textoParaLer = 'Este texto sera lido assim que os cards forem feitos';
   
     toggleButton.addEventListener('click', function() {
+      lerTexto();
+    });
+
+    function lerTexto() {
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(textoParaLer);
       synth.speak(utterance);
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'l' || event.key === 'L') {
+        lerTexto();
+      }
     });
-  </script>
+</script>
+
 
 
 </body>
