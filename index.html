@@ -25,7 +25,7 @@
         section.banner {
             position: relative;
             margin-left: 80px;
-            height: auto;
+            height: 400px;
             width: 90%;
             overflow: hidden;
             text-align: center;
@@ -670,37 +670,77 @@ footer {
             <label for="sideFilter">Filtrar por Par:</label>
             <select id="sideFilter" onchange="filterProducts()">
                 <option value="all">Todos</option>
-                <option value="esquerda">Esquerdo</option>
-                <option value="direita">Direito</option>
+                <option value="Esquerdo">Esquerdo</option>
+                <option value="Direito">Direito</option>
             </select>
             <label for="sizeFilter">Filtrar por Tamanho:</label>
             <select id="sizeFilter" onchange="filterProducts()">
                 <option value="all">Todos</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
                 <option value="42">42</option>
                 <option value="43">43</option>
-                <!-- Adicione mais opções conforme necessário -->
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                
             </select>
             <label for="stateFilter">Filtrar por Estado:</label>
             <select id="stateFilter" onchange="filterProducts()">
                 <option value="all">Todos</option>
                 <option value="Novo">Novo</option>
                 <option value="Usado">Usado</option>
-                <!-- Adicione mais opções conforme necessário -->
+                
             </select>
             <label for="brandFilter">Filtrar por Marca:</label>
             <select id="brandFilter" onchange="filterProducts()">
                 <option value="all">Todos</option>
                 <option value="EaseWalk">EaseWalk</option>
                 <option value="OutraMarca">Outra Marca</option>
-                <!-- Adicione mais opções conforme necessário -->
+                
             </select>
             <label for="genderFilter">Filtrar por Gênero:</label>
             <select id="genderFilter" onchange="filterProducts()">
                 <option value="all">Todos</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
-                <option value="gay">37 Tipos de GAY</option>
-                <!-- Adicione mais opções conforme necessário -->
+                
+                
             </select>
         </div>
         <label for="toggleSpeech">Ativar Descrição por Voz:</label>
@@ -708,160 +748,894 @@ footer {
     </section>
 
     <section class="products">
-        <div class="product" data-type="buy" onmouseover="speakProduct(this, 'Tênis Esportivo Modelo X, Tênis esportivo de alta performance para corridas e treinos intensos, Preço: R$ 199,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.2FWICMHEAjKLvNQI_R-mQgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 1">
-            <h3>Tênis Esportivo Modelo YAHIA</h3>
-            <p>Tênis esportivo de perna esquera.</p>
-            <p>Tamanho: 42</p>
-            <p>Preço: R$ 199,99</p>
+        <div class="product" data-type="buy" data-ID="T001" data-TITULO="ABOTINADO INFANTIL BIBI GLAM - PRETO" data-LADO="Esquerdo" data-TAMANHO="25" data-ESTADO="Novo" data-PREÇO="164,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'ABOTINADO INFANTIL BIBI GLAM, PRETO, LADO: ESQUERDO, TAMANHO: 25, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 164,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T001_ABOTINADO INFANTIL BIBI GLAM - PRETO.png" alt="Tênis 1">
+            <h3>ABOTINADO INFANTIL BIBI GLAM - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 25</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 164,95</p>
             <br>
             <button>Comprar</button>
         </div>
-    
+
+        <div class="product" data-type="buy" data-ID="T003" data-TITULO="SANDÁLIA INFANTIL MOLEKINHA - ROSA" data-LADO="Direito" data-TAMANHO="25" data-ESTADO="Usado" data-PREÇO="12,50" data-MARCA="Molekinha" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'SANDÁLIA INFANTIL MOLEKINHA, ROSA, LADO: DIREITO, TAMANHO: 25, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 12,50')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T003_SANDÁLIA INFANTIL MOLEKINHA - ROSA.png" alt="Tênis 2">
+            <h3>SANDÁLIA INFANTIL MOLEKINHA - ROSA</h3>
+            <p>Marca: Molekinha</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 25</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 12,50</p>
+            <br>
+            <button>Comprar</button>
+        </div>
         
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
+        <div class="product" data-type="buy" data-ID="T005" data-TITULO="SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - PRETA" data-LADO="Esquerdo" data-TAMANHO="25" data-ESTADO="Novo" data-PREÇO="129,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS, PRETA, LADO: ESQUERDO, TAMANHO: 25, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 129,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T005_SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - PRETA.png" alt="Tênis 3">
+            <h3>SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 25</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 129,95</p>
             <br>
             <button>Comprar</button>
         </div>
-    
+         
+        <div class="product" data-type="sell" data-ID="T007" data-TITULO="SANDALIA ARANHA INFANTIL - ROXA" data-LADO="Esquerdo" data-TAMANHO="25" data-ESTADO="Usado" data-PREÇO="9" data-MARCA="EaseWalk" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDALIA ARANHA INFANTIL, ROXA, LADO: ESQUERO, TAMANHO: 25, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 9')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T007_SANDALIA ARANHA INFANTIL - ROXA.png" alt="Tênis 4">
+            <h3>SANDALIA ARANHA INFANTIL - ROXA</h3>
+            <p>Marca: EaseWalk</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 25</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 9,00</p>
+            <br>
+            <button>Vender</button>
+        </div>
+         
+        <div class="product" data-type="sell" data-ID="T009" data-TITULO="SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - BRANCA" data-LADO="Esquerdo" data-TAMANHO="26" data-ESTADO="Novo" data-PREÇO="129,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS, BRANCA, LADO: ESQUERDO, TAMANHO: 26, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 129,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T009_SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - BRANCA.png" alt="Tênis 5">
+            <h3>SAPATILHA INFANTIL BIBI COM PEDRINHAS BRILHOSAS - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 26</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 129,95</p>
+            <br>
+            <button>Vender</button>
+        </div>
+         
+        <div class="product" data-type="buy" data-ID="T011" data-TITULO="BOTA INFANTIL - PRETA" data-LADO="Esquerdo" data-TAMANHO="26" data-ESTADO="Usado" data-PREÇO="14,25" data-MARCA="EaseWalk" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'BOTA INFANTIL, PRETA, LADO: ESQUERDO, TAMANHO: 26, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 14,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T011_BOTA INFANTIL - PRETA.png" alt="Tênis 6">
+            <h3>BOTA INFANTIL - PRETA</h3>
+            <p>Marca: EaseWalk</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 26</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 14,25</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+          
+        <div class="product" data-type="buy" data-ID="T013" data-TITULO="TÊNIS INFANTIL BIBI ROLLER - ROSA" data-LADO="Direito" data-TAMANHO="26" data-ESTADO="Novo" data-PREÇO="104,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI ROLLER, ROSA, LADO: DIREITO, TAMANHO: 26, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 104,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T013_TÊNIS INFANTIL BIBI ROLLER - ROSA.png" alt="Tênis 7">
+            <h3>TÊNIS INFANTIL BIBI ROLLER - ROSA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Direto</p>
+            <p>Tamanho: 26</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 104,95</p>
+            <br>
+            <button>Comprar</button>
+        </div>
+                  
+        <div class="product" data-type="sell" data-ID="T015" data-TITULO="TÊNIS INFANTIL ALL STAR - ROSA CLARO" data-LADO="Direito" data-TAMANHO="26" data-ESTADO="Usado" data-PREÇO="19,75" data-MARCA="Converse" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL ALL STAR, ROSA CLARO, LADO: DIREITO, TAMANHO: 26, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 19,75')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T015_TÊNIS INFANTIL ALL STAR - ROSA CLARO.png" alt="Tênis 8">
+            <h3>TÊNIS INFANTIL ALL STAR - ROSA CLARO</h3>
+            <p>Marca: Converse</p>
+            <p>Lado: Direto</p>
+            <p>Tamanho: 26</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 19,75</p>
+            <br>
+            <button>Vender</button>
+        </div>
+                          
+        <div class="product" data-type="sell" data-ID="T017" data-TITULO="SANDÁLIA INFANTIL BIBI PLATAFORMA - BRANCA" data-LADO="Esquerdo" data-TAMANHO="27" data-ESTADO="Novo" data-PREÇO="124,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDÁLIA INFANTIL BIBI PLATAFORMA, BRANCA, LADO: ESQUERDO, TAMANHO: 27, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 124,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T017_SANDÁLIA INFANTIL BIBI PLATAFORMA - BRANCA.png" alt="Tênis 9">
+            <h3>SANDÁLIA INFANTIL BIBI PLATAFORMA - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 27</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 124,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                    
+        <div class="product" data-type="buy" data-ID="T019" data-TITULO="TÊNIS - BRANCO" data-LADO="Esquerdo" data-TAMANHO="27" data-ESTADO="Usado" data-PREÇO="14,25" data-MARCA="EaseWalk" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'TÊNIS BRANCO, BRANCO, LADO: ESQUERDO, TAMANHO: 27, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 14,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T019_TÊNIS - BRANCO.png" alt="Tênis 10">
+            <h3>TÊNIS - BRANCO</h3>
+            <p>Marca: EaseWalk</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 27</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 14,25</p>   
+            <br>
+            <button>Comprar</button>
+        </div>
+                    
+        <div class="product" data-type="buy" data-ID="T021" data-TITULO="SANDÁLIA INFANTIL BIBI - BRANCA" data-LADO="Direito" data-TAMANHO="27" data-ESTADO="Novo" data-PREÇO="94,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'SANDÁLIA INFANTIL BIBI, BRANCA, LADO: DIREITO, TAMANHO: 27, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 94,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T021_SANDÁLIA INFANTIL BIBI - BRANCA.png" alt="Tênis 11">
+            <h3>SANDÁLIA INFANTIL BIBI - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 27</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 94,95</p>   
+            <br>
+            <button>Comprar</button>
+        </div>
+                     
+        <div class="product" data-type="sell" data-ID="T023" data-TITULO="TÊNIS NIKE - PRETO" data-LADO="Direito" data-TAMANHO="27" data-ESTADO="Usado" data-PREÇO="19,25" data-MARCA="Nike" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS NIKE, PRETO, LADO: DIREITO, TAMANHO: 27, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 19,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T023_TÊNIS NIKE - PRETO.png" alt="Tênis 12">
+            <h3>TÊNIS NIKE - PRETO</h3>
+            <p>Marca: Nike</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 27</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 19,25</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                     
+        <div class="product" data-type="buy" data-ID="T025" data-TITULO="TÊNIS INFANTIL BIBI AGILITY MINI - BRANCO" data-LADO="Direito" data-TAMANHO="28" data-ESTADO="Novo" data-PREÇO="129,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI AGILITY MINI, BRANCO, LADO: ESQUERDO, TAMANHO: 28, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 129,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T025_TÊNIS INFANTIL BIBI AGILITY MINI - BRANCO.png" alt="Tênis 13">
+            <h3>TÊNIS INFANTIL BIBI AGILITY MINI - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 28</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 129,95</p>   
+            <br>
+            <button>Comprar</button>
+        </div>
+                             
+        <div class="product" data-type="sell" data-ID="T027" data-TITULO="ALL STAR CONVERSE - PRETO" data-LADO="Direito" data-TAMANHO="28" data-ESTADO="Usado" data-PREÇO="37,50" data-MARCA="Converse" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'ALL STAR CONVERSE, PRETO, LADO: DIREITO, TAMANHO: 28, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 37,50')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T027_ALL STAR CONVERSE - PRETO.png" alt="Tênis 14">
+            <h3>ALL STAR CONVERSE - PRETO</h3>
+            <p>Marca: Converse</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 28</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 37,50</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                             
+        <div class="product" data-type="buy" data-ID="T029" data-TITULO="TÊNIS INFANTIL BIBI SHINE COM PEDRINHAS BRILHOSAS - PRETO" data-LADO="Esquerdo" data-TAMANHO="28" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI SHINE COM PEDRINHAS BRILHOSAS, PRETO, LADO: ESQUERDO, TAMANHO: 28, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T029_TÊNIS INFANTIL BIBI SHINE COM PEDRINHAS BRILHOSAS - PRETO.png" alt="Tênis 14">
+            <h3>TÊNIS INFANTIL BIBI SHINE COM PEDRINHAS BRILHOSAS - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 28</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Comprar</button>
+        </div>
+                             
+        <div class="product" data-type="buy" data-ID="T031" data-TITULO="MOCASSIM OFF WHITE SALTO PLATAFORMA COURO SINTETICO - BRANCO" data-LADO="Direito" data-TAMANHO="28" data-ESTADO="Usado" data-PREÇO="15" data-MARCA="EaseWalk" data-GÊNERO="Feminino" data-OPERAÇÃO="Comprar" onmouseover="speakProduct(this, 'MOCASSIM OFF WHITE SALTO PLATAFORMA COURO SINTETICO, BRANCO, LADO: DIREITO, TAMANHO: 28, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 15')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T031_MOCASSIM OFF WHITE SALTO PLATAFORMA COURO SINTETICO - BRANCO.png" alt="Tênis 15">
+            <h3>MOCASSIM OFF WHITE SALTO PLATAFORMA COURO SINTETICO - BRANCO</h3>
+            <p>Marca: EaseWalk</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 28</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 15,00</p>   
+            <br>
+            <button>Comprar</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T033" data-TITULO="TÊNIS INFANTIL BIBI GLAM - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T033_TÊNIS INFANTIL BIBI GLAM - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS INFANTIL BIBI GLAM - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="sell" data-ID="T035" data-TITULO="TÊNIS NIKE COM GLITTER - ROSA" data-LADO="Direito" data-TAMANHO="29" data-ESTADO="Usado" data-PREÇO="17,50" data-MARCA="Nike" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS NIKE COM GLITTER, ROSA, LADO: DIREITO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 17,50')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T035_TÊNIS NIKE COM GLITTER - ROSA.png" alt="Tênis 17">
+            <h3>TÊNIS NIKE COM GLITTER - ROSA</h3>
+            <p>Marca: Nike</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Usado</p>
+            <br>
+            <p>R$: 17,50</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="sell" data-ID="T037" data-TITULO="SANDÁLIA INFANTIL BIBI FLAT KIDS - ROSA" data-LADO="Direito" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="59,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDÁLIA INFANTIL BIBI FLAT KIDS, ROSA, LADO: DIREITO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 59,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T037_SANDÁLIA INFANTIL BIBI FLAT KIDS - ROSA.png" alt="Tênis 18">
+            <h3>SANDÁLIA INFANTIL BIBI FLAT KIDS - ROSA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Direito</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 59,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="sell" data-ID="T039" data-TITULO="COTURNO PINK CATS - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'COTURNO PINK CATS, PRETO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$ 24,75')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T039_COTURNO PINK CATS - PRETO.png" alt="Tênis 19">
+            <h3>COTURNO PINK CATS - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T041" data-TITULO="TÊNIS INFANTIL BIBI FLY BABY COM ESTAMPA DE CORAÇÕES - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI FLY BABY COM ESTAMPA DE CORAÇÕES, PRETO, LADO: ESQUERDO, TAMANHO: 30, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$64,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T041_TÊNIS INFANTIL BIBI FLY BABY COM ESTAMPA DE CORAÇÕES - PRETO.png" alt="Tênis 20">
+            <h3>TÊNIS INFANTIL BIBI FLY BABY COM ESTAMPA DE CORAÇÕES - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T043" data-TITULO="SANDÁLIA PAPETE - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDÁLIA PAPETE, PRETA, LADO: ESQUERDO, TAMANHO: 30, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$11,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T043_SANDÁLIA PAPETE - PRETA.png" alt="Tênis 16">
+            <h3>SANDÁLIA PAPETE - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T045" data-TITULO="SANDÁLIA INFANTIL BIBI FLAT KIDS - BRANCA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDÁLIA INFANTIL BIBI FLAT KIDS, BRANCA, LADO: ESQUERDO, TAMANHO: 30, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$59,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T045_SANDÁLIA INFANTIL BIBI FLAT KIDS - BRANCA.png" alt="Tênis 16">
+            <h3>SANDÁLIA INFANTIL BIBI FLAT KIDS - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T047" data-TITULO="TÊNIS STITCH - ROSA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS STITCH, ROSA, LADO: ESQUERDO, TAMANHO: 30, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$33,75')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T047_TÊNIS STITCH - ROSA.png" alt="Tênis 16">
+            <h3>TÊNIS STITCH - ROSA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T049" data-TITULO="TÊNIS SANTA LOLLA RECORTES - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS SANTA LOLLA RECORTES, BRANCO, LADO: ESQUERDO, TAMANHO: 31, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$67,50')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T049_TÊNIS SANTA LOLLA RECORTES - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS SANTA LOLLA RECORTES - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T051" data-TITULO="MINI MELISSA STELLAR INFANTIL - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'MINI MELISSA STELLAR INFANTIL, PRETA, LADO: DIREITO, TAMANHO: 31, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T051_MINI MELISSA STELLAR INFANTIL - PRETA.png" alt="Tênis 16">
+            <h3>MINI MELISSA STELLAR INFANTIL - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T053" data-TITULO="TÊNIS SANTA LOLLA CADARÇO - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS SANTA LOLLA, BRANCO, LADO: ESQUERDO, TAMANHO: 31, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$60')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T053_TÊNIS SANTA LOLLA CADARÇO - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS SANTA LOLLA CADARÇO - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T055" data-TITULO="RASTEIRA COLCCI - ROSA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'RASTEIRA COLCCI, ROSA, LADO: ESQUERDO, TAMANHO: 32, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$30')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T055_RASTEIRA COLCCI - ROSA.png" alt="Tênis 16">
+            <h3>RASTEIRA COLCCI - ROSA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T057" data-TITULO="TÊNIS ALL STAR BOTINHA INFANTIL - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS ALL STAR BOTINHA INFANTIL, PRETO, LADO: ESQUERDO, TAMANHO: 32, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$42,50')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T057_TÊNIS ALL STAR BOTINHA INFANTIL - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS ALL STAR BOTINHA INFANTIL - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T059" data-TITULO="RASTEIRA COLCCI TRANSPASSE - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'RASTEIRA COLCCI TRANSPASSE, PRETA, LADO: ESQUERDO, TAMANHO: 32, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$30')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T059_RASTEIRA COLCCI TRANSPASSE - PRETO.png" alt="Tênis 16">
+            <h3>RASTEIRA COLCCI TRANSPASSE - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T061" data-TITULO="PAPETE SCHUTZ - BRANCA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'PAPETE SCHUTZ, BRANCA, LADO: ESQUERDO, TAMANHO: 32, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$110,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T061_PAPETE SCHUTZ - BRANCA.png" alt="Tênis 16">
+            <h3>PAPETE SCHUTZ - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T063" data-TITULO="SCARPIN VIZZANO TIRAS OFF-WHITE - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SCARPIN VIZZANO TIRAS OFF-WHITE, MARROM, LADO: DIREITO, TAMANHO: 33, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$55')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T063_SCARPIN VIZZANO TIRAS OFF-WHITE - MARROM.png" alt="Tênis 16">
+            <h3>SCARPIN VIZZANO TIRAS OFF-WHITE - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T065" data-TITULO="SANDÁLIA EM CETIM VELVET CASAMENTO - BRANCA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SANDÁLIA EM CETIM VELVET CASAMENTO, BRANCA, LADO: ESQUERDO, TAMANHO: 33, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$21,25')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T065_SANDÁLIA EM CETIM VELVET CASAMENTO - BRANCA.png" alt="Tênis 16">
+            <h3>SANDÁLIA EM CETIM VELVET CASAMENTO - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T067" data-TITULO="TÊNIS ADIDAS ORIGINALS SUPERSTAR SLIP ON - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS ADIDAS ORIGINALS SUPERSTAR SLIP ON, PRETO, LADO: DIREITO, TAMANHO: 33, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$185')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T067_TÊNIS ADIDAS ORIGINALS SUPERSTAR SLIP ON - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS ADIDAS ORIGINALS SUPERSTAR SLIP ON - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T069" data-TITULO="SAPATO PARA NOIVA - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'SAPATO PARA NOIVA, BRANCO, LADO: ESQUERDO, TAMANHO: 33, ESTADO DE CONSERVAÇÃO: USADO, PREÇO: R$30,75')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T069_SAPATO PARA NOIVA - BRANCO.png" alt="Tênis 16">
+            <h3>SAPATO PARA NOIVA - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T071" data-TITULO="BOTA BICO FINO GIGIL SALTO ALTO GROSSO NAPA - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'BOTA BICO FINO GIGIL SALTO ALTO GROSSO NAPA, PRETA, LADO: ESQUERDO, TAMANHO: 34, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$45')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T071_BOTA BICO FINO GIGIL SALTO ALTO GROSSO NAPA - PRETO.png" alt="Tênis 16">
+            <h3>BOTA BICO FINO GIGIL SALTO ALTO GROSSO NAPA - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T073" data-TITULO="CHINELO COLCCI LOGO - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'CHINELO COLCCI LOGO, PRETO, LADO: DIREITO, TAMANHO: 34, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$23')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T073_CHINELO COLCCI LOGO - PRETO.png" alt="Tênis 16">
+            <h3>CHINELO COLCCI LOGO - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T075" data-TITULO="BOTA DE COURO LEGÍTIMO - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T075_BOTA DE COURO LEGÍTIMO - PRETA.png" alt="Tênis 16">
+            <h3>BOTA DE COURO LEGÍTIMO - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T077" data-TITULO="BOTA VIA UNO BICO FINO - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T077_BOTA VIA UNO BICO FINO - PRETA.png" alt="Tênis 16">
+            <h3>BOTA VIA UNO BICO FINO - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T079" data-TITULO="SANDALIA BEBECE - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T079_SANDALIA BEBECE - MARROM.png" alt="Tênis 16">
+            <h3>SANDALIA BEBECE - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T081" data-TITULO="TÊNIS SLIP ON SANTA LOLLA SUEDE - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T081_TÊNIS SLIP ON SANTA LOLLA SUEDE - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS SLIP ON SANTA LOLLA SUEDE - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T083" data-TITULO="BOTA CANO CURTO - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T083_BOTA CANO CURTO - PRETA.png" alt="Tênis 16">
+            <h3>BOTA CANO CURTO - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T085" data-TITULO="TÊNIS BORDADO FARM GLOBAL - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T085_TÊNIS BORDADO FARM GLOBAL - MARROM.png" alt="Tênis 16">
+            <h3>TÊNIS BORDADO FARM GLOBAL - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T087" data-TITULO="BOTA COTURNO FEMININO TRATORADA DUBUY - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T087_BOTA COTURNO FEMININO TRATORADA DUBUY - PRETA.png" alt="Tênis 16">
+            <h3>BOTA COTURNO FEMININO TRATORADA DUBUY - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T089" data-TITULO="SANDÁLIA MINIMAL CROCO OFFWHITE AMARO - BRANCA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T089_SANDÁLIA MINIMAL CROCO OFFWHITE AMARO - BRANCA.png" alt="Tênis 16">
+            <h3>SANDÁLIA MINIMAL CROCO OFFWHITE AMARO - BRANCA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T091" data-TITULO="BOTA COTURNO MOLECA TRATORADA - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T091_BOTA COTURNO MOLECA TRATORADA - PRETO.png" alt="Tênis 16">
+            <h3>BOTA COTURNO MOLECA TRATORADA - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T093" data-TITULO="TÊNIS VANS AUTHENTIC - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T093_TÊNIS VANS AUTHENTIC - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS VANS AUTHENTIC - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T095" data-TITULO="TÊNIS KOLOSH CALCE FÁCIL - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T095_TÊNIS KOLOSH CALCE FÁCIL - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS KOLOSH CALCE FÁCIL - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T097" data-TITULO="BOTA RAMARIM - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T097_BOTA RAMARIM - MARROM.png" alt="Tênis 16">
+            <h3>BOTA RAMARIM - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T099" data-TITULO="TÊNIS VIZZANO BÁSICO CASUAL - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T099_TÊNIS VIZZANO BÁSICO CASUAL - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO BÁSICO CASUAL - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T101" data-TITULO="TÊNIS VIZZANO CASUAL - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T101_TÊNIS VIZZANO CASUAL - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO CASUAL - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T103" data-TITULO="TÊNIS VIZZANO CAMURÇÃO - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T103_TÊNIS VIZZANO CAMURÇÃO - MARROM.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO CAMURÇÃO - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T105" data-TITULO="SCARPIN MARISA - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T105_SCARPIN MARISA - PRETO.png" alt="Tênis 16">
+            <h3>SCARPIN MARISA - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T107" data-TITULO="TÊNIS CANO MÉDIO KOLOSH ABOTINADO - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T107_TÊNIS CANO MÉDIO KOLOSH ABOTINADO - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS CANO MÉDIO KOLOSH ABOTINADO - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T109" data-TITULO="SANDÁLIA SALTO ALTO PICCADILLY - PRETA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T109_SANDÁLIA SALTO ALTO PICCADILLY - PRETA.png" alt="Tênis 16">
+            <h3>SANDÁLIA SALTO ALTO PICCADILLY - PRETA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T111" data-TITULO="TÊNIS VIZZANO BÁSICO - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T111_TÊNIS VIZZANO BÁSICO - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO BÁSICO - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T113" data-TITULO="PAPETE TIRAS HOLLI OURO - MARROM" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T113_PAPETE TIRAS HOLLI OURO - MARROM.png" alt="Tênis 16">
+            <h3>PAPETE TIRAS HOLLI OURO - MARROM</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T115" data-TITULO="TÊNIS VIZZANO RECORTES - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T115_TÊNIS VIZZANO RECORTES - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO RECORTES - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T117" data-TITULO="SANDÁLIA AZALÉIA - BEGE" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T117_SANDÁLIA AZALÉIA - BEGE.png" alt="Tênis 16">
+            <h3>SANDÁLIA AZALÉIA - BEGE</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T119" data-TITULO="TÊNIS VIZZANO CASUAL TRATORADO - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T119_TÊNIS VIZZANO CASUAL TRATORADO - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO CASUAL TRATORADO - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T121" data-TITULO="TÊNIS OFF WHITE PRIMARK - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T121_TÊNIS OFF WHITE PRIMARK - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS OFF WHITE PRIMARK - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T123" data-TITULO="TÊNIS VIZZANO BÁSICO CASUAL - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T123_TÊNIS VIZZANO BÁSICO CASUAL - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO BÁSICO CASUAL - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T125" data-TITULO="TÊNIS VIZZANO BÁSICO OFF WHITE - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T125_TÊNIS VIZZANO BÁSICO OFF WHITE - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS VIZZANO BÁSICO OFF WHITE - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T127" data-TITULO="TÊNIS MODARE SALTO EMBUTIDO SEM CADARÇO - BRANCO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T127_TÊNIS MODARE SALTO EMBUTIDO SEM CADARÇO - BRANCO.png" alt="Tênis 16">
+            <h3>TÊNIS MODARE SALTO EMBUTIDO SEM CADARÇO - BRANCO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T129" data-TITULO="TÊNIS VANS RANGE EXP CASUAL - ROSA" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T129_TÊNIS VANS RANGE EXP CASUAL - ROSA.png" alt="Tênis 16">
+            <h3>TÊNIS VANS RANGE EXP CASUAL - ROSA</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T131" data-TITULO="TÊNIS PUMA X RAY GAME VALENTINE BDP CORRIDA - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T131_TÊNIS PUMA X RAY GAME VALENTINE BDP CORRIDA - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS PUMA X RAY GAME VALENTINE BDP CORRIDA - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T133" data-TITULO="TÊNIS PUMA R78 FUTR DECON CASUAL - PRETO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T133_TÊNIS PUMA R78 FUTR DECON CASUAL - PRETO.png" alt="Tênis 16">
+            <h3>TÊNIS PUMA R78 FUTR DECON CASUAL - PRETO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
+                               
+        <div class="product" data-type="buy" data-ID="T135" data-TITULO="TÊNIS PUMA AVIATOR ENG PRO BDP CORRIDA - ROXO" data-LADO="Esquerdo" data-TAMANHO="29" data-ESTADO="Novo" data-PREÇO="149,95" data-MARCA="Bibi" data-GÊNERO="Feminino" data-OPERAÇÃO="Vender" onmouseover="speakProduct(this, 'TÊNIS INFANTIL BIBI GLAM, BRANCO, LADO: ESQUERDO, TAMANHO: 29, ESTADO DE CONSERVAÇÃO: NOVO, PREÇO: R$ 149,95')" onmouseleave="stopSpeech()">
+            <img src= "TenisFemininos/T135_TÊNIS PUMA AVIATOR ENG PRO BDP CORRIDA - ROXO.png" alt="Tênis 16">
+            <h3>TÊNIS PUMA AVIATOR ENG PRO BDP CORRIDA - ROXO</h3>
+            <p>Marca: Bibi</p>
+            <p>Lado: Esquerdo</p>
+            <p>Tamanho: 29</p>
+            <p>Estado do item: Novo</p>
+            <br>
+            <p>R$: 149,95</p>   
+            <br>
+            <button>Vender</button>
+        </div>
         
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-    
         
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>  
         
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-    
-        
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
 
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
 
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div> 
-
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-    
-        
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-
-        <div class="product" data-type="buy" onmouseover="speakProduct(this,'Tênis de Corrida Modelo Z, Tênis de corrida com tecnologia avançada para máximo desempenho, Preço: R$ 249,99')" onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.zpVokHMJlAK-Owp8f0VlFgHaHa?rs=1&pid=ImgDetMain" alt="Tênis 3">
-            <h3>Tênis de Corrida Modelo Z</h3>
-            <p>Tênis de corrida perna direita.</p>
-            <p>Tamanho: 40</p>
-            <p>Preço: R$ 249,99</p>
-            <br>
-            <button>Comprar</button>
-        </div>
-
-        <div class="product" data-type="sell" onmouseover="speakProduct(this,'Tênis Casual Modelo Y, Tênis casual confortável e estiloso, ideal para uso no dia a dia, Preço: R$ 149,99')"  onmouseleave="stopSpeech()">
-            <img src="https://th.bing.com/th/id/OIP.YYywr7xKfW2a_l8X6-OKYAHaHa?rs=1&pid=ImgDetMain" alt="Tênis 2">
-            <h3>Tênis Casual Modelo Y</h3>
-            <p>Tênis casual perna direita.</p>
-            <p>Tamanho: 38</p>
-            <p>Preço: R$ 149,99</p>
-            <br>
-            <button>Comprar</button>
-        </div> 
     </section>
 
     <section class="pagination">
@@ -1007,19 +1781,49 @@ footer {
    <!-- Script do Popup Formulario/Filtro de Produtos/Assecibilidade Auditiva-->>
     <script>
         var speechEnabled = false;
+        var currentSpeech = null;
 
         function filterProducts() {
-            var filter = document.getElementById('productTypeFilter').value;
-            var products = document.querySelectorAll('.product');
-            
-            products.forEach(function(product) {
-                if (filter === 'all' || product.getAttribute('data-type') === filter) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
+    var typeFilter = document.getElementById('productTypeFilter').value;
+    var sideFilter = document.getElementById('sideFilter').value;
+    var sizeFilter = parseInt(document.getElementById('sizeFilter').value, 10); // Convertendo para número inteiro
+    var stateFilter = document.getElementById('stateFilter').value;
+    var brandFilter = document.getElementById('brandFilter').value;
+    var genderFilter = document.getElementById('genderFilter').value;
+
+    console.log("Type Filter:", typeFilter);
+    console.log("Side Filter:", sideFilter);
+    console.log("Size Filter:", sizeFilter);
+    console.log("State Filter:", stateFilter);
+    console.log("Brand Filter:", brandFilter);
+    console.log("Gender Filter:", genderFilter);
+
+    var products = document.querySelectorAll('.product');
+
+    products.forEach(function(product) {
+        var typeMatch = typeFilter === 'all' || product.getAttribute('data-type') === typeFilter;
+        var sideMatch = sideFilter === 'all' || product.getAttribute('data-LADO') === sideFilter;
+        var sizeMatch = sizeFilter === 'all' || productSize === sizeFilter;
+        var stateMatch = stateFilter === 'all' || product.getAttribute('data-ESTADO') === stateFilter;
+        var brandMatch = brandFilter === 'all' || product.getAttribute('data-MARCA') === brandFilter;
+        var genderMatch = genderFilter === 'all' || product.getAttribute('data-GÊNERO') === genderFilter;
+
+        // Verificar se o tamanho do produto corresponde ao filtro selecionado
+        var productSize = parseInt(product.getAttribute('data-TAMANHO'), 10); // Convertendo para número inteiro
+        var sizeMatch = sizeFilter === 'all' || productSize === sizeFilter;
+
+        console.log("Product Size:", productSize, "Size Filter:", sizeFilter);
+
+        if (typeMatch && sideMatch && sizeMatch && stateMatch && brandMatch && genderMatch) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
         }
+    });
+}
+
+
+
 
         function toggleSpeech() {
         speechEnabled = !speechEnabled;
@@ -1039,7 +1843,7 @@ footer {
         }
     });
 
-        function speakProduct(product, text) {
+    function speakProduct(product, text) {
         if (speechEnabled) {
             currentSpeech = new SpeechSynthesisUtterance();
             currentSpeech.text = text;
@@ -1057,7 +1861,6 @@ footer {
             currentSpeech = null;
         }
     }
-
     </script>
     
 </body>
