@@ -278,20 +278,15 @@ Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar 
 
     const doc = new PDFDocument();
 
-// Caminho para a imagem do logotipo (relativo ao arquivo HTML)
-const logoUrl = 'https://github.com/Brunn0B/Projeto-UPX-marketPlace/blob/main/IMG/Logo%202%20hd.png'; // Substitua pelo caminho correto da sua imagem
+    
+    doc.fontSize(18).text('Nota Fiscal Eletrônica',285, 60).moveDown();
+    doc.fontSize(18).text('Empresa: Croesus LTDA',70, 120).moveDown();
+    doc.fontSize(18).text('Projeto UPX3 - Facens',70, 60).moveDown();
+    doc.fontSize(10).text(`N° da Nota: ${generateInvoiceNumber()}`,471,61);
+    doc.text('Data de Emissão: ' + new Date().toLocaleDateString()).moveDown();
+    doc.rect(464, 60, 70, 65).stroke();
 
-// Adicione a imagem do logotipo ao documento PDF
-doc.image(logoUrl, {
-    fit: [100, 100], // Largura e altura desejadas da imagem
-    align: 'center', // Alinha a imagem ao centro
-    valign: 'top', // Alinha a imagem ao topo
-}).moveDown(0.5); // Ajusta o espaçamento após a imagem
-
-
-    doc.fontSize(18).text('Nota Fiscal', { align: 'center' }).moveDown();
-    doc.fontSize(12).text(`Número da Nota: ${generateInvoiceNumber()}`);
-    doc.text('Data: ' + new Date().toLocaleDateString()).moveDown();
+    doc.rect(55, 55, 225, 91).stroke();
 
     doc.lineWidth(1);
     doc.moveTo(50, 150).lineTo(550, 150).stroke();
@@ -351,6 +346,7 @@ const totalTaxes = deliveryFee + siteFee;
 y += 20;
 doc.text('Total a Pagar:', 55, y);
 doc.text(`R$ ${(total + totalTaxes).toFixed(2)}`, 250, y);
+
 
     const chunks = [];
     doc.on('data', function(chunk) {
