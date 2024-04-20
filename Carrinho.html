@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        #cartContainer {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #cartItems, #boughtItems {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .cartItem, .boughtItem {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #checkoutButton {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #checkoutButton:hover {
+            background-color: #45a049;
+        }
+
+        #confirmPopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #confirmPopup h2 {
+            margin-top: 0;
+        }
+
+        #confirmPopup img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 20px;
+        }
+
+        #confirmPopup p {
+            margin: 10px 0;
+        }
+
+        #confirmPopup button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #confirmPopup button:hover {
+            background-color: #45a049;
+        }
+
+        #confirmPopup .remove {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #confirmPopup .remove:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="cartContainer">
+        <h2>Meu Carrinho</h2>
+        <ul id="cartItems"></ul>
+        <button id="checkoutButton" onclick="showConfirmPopup()">Efetuar Compra</button>
+        <p id="cartEmptyMessage" style="display: none;">Seu carrinho está vazio.</p>
+    </div>
+
+    <div id="boughtContainer" style="display: none;">
+        <h2>Produtos Comprados</h2>
+        <ul id="boughtItems"></ul>
+    </div>
+
+    <div id="confirmPopup">
+        <h2>Confirmar Compra</h2>
+        <div id="popupContent"></div>
+        <button onclick="confirmPurchase()">Confirmar</button>
+        <button onclick="closeConfirmPopup()">Cancelar</button>
+    </div>
+
+<!--Notas de desenpenho: Foram efetuados diversos testes para inplementar uma biblioteca que fosse capas de gerar um pdf de uma nota fiscal
+Foram feitas diversas temtativas utilizando a biblioteca JSPDF porem o resultado foi muito ruim, ela nao funcionou e diversos erros foram apontados.
+Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar o pdf, e em poucas tentativas e ajustes ela conseguil atingir o melhor resultado ate agora.-->
+
+
+    <script src="pdfkit.standalone.js"></script>
+
+    <script>
+        function generateInvoiceNumber() {
+            return Math.floor(Math.random() * 1000000) + 1;
+        }
+        
+        function loadCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartEmptyMessage = document.getElementById('cartEmptyMessage');
+        
+            cartItemsContainer.innerHTML = '';
+        
+            const storage = window.localStorage;
+            for (const key in storage) {
+                if (key.includes('product_')) {
+                    const product = JSON.parse(storage.getItem(key));
+                    const listItem = document.createElement('li');
+                    listItem.className = 'cartItem';
+                    listItem.innerHTML = `
+                        <div>
+                            <h3>${product.TITULO}</h3>
+                            <p>Preço: R$ ${product.PREÇO}</p>
+                            <p>Marca: ${product.MARCA}</p>
+                            <p>Tamanho: ${product.TAMANHO}</p>
+                            <p>Estado: ${product.ESTADO}</p>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(listItem);
+                }
+            }
+        
+            if (cartItemsContainer.children.length === 0) {
+                cartEmptyMessage.style.display = 'block';
+            } else {
+                cartEmptyMessage.style.display = 'none';
+            }
+        }
+        
+        function showConfirmPopup() {
+            const popup = document.getElementById('confirmPopup');
+            const popupContent = document.getElementById('popupContent');
+            popupContent.innerHTML = '';
+        
+            const storage = window.localStorage;
+            for (const key in storage) {
+                if (key.includes('product_')) {
+                    const product = JSON.parse(storage.getItem(key));
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cartItem';
+                    cartItem.innerHTML = `
+                        <div>
+                            <h3>${product.TITULO}</h3>
+                            <p>Preço: R$ ${product.PREÇO}</p>
+                            <p>Marca: ${product.MARCA}</p>
+                            <p>Tamanho: ${product.TAMANHO}</p>
+                            <p>Estado: ${product.ESTADO}</p>
+                        </div>
+                    `;
+        
+                    const removeButton = document.createElement('span');
+                    removeButton.className = 'remove';
+                    removeButton.textContent = '[X]';
+                    removeButton.onclick = function() {
+                        cartItem.remove();
+                        const storageKey = `product_${product.ID}`;
+                        window.localStorage.removeItem(storageKey);
+                    };
+                    cartItem.appendChild(removeButton);
+                    popupContent.appendChild(cartItem);
+                }
+            }
+        
+            popup.style.display = 'block';
+        }
+        
+        function closeConfirmPopup() {
+            const popup = document.getElementById('confirmPopup');
+            popup.style.display = 'none';
+        }
+        
+        function confirmPurchase() {
+            alert('Compra efetuada com sucesso!');
+        
+            const cartItemsContainer = document.getElementById('cartItems');
+            const boughtItemsContainer = document.getElementById('boughtItems');
+        
+            const storage = window.localStorage;
+            for (const key in storage) {
+                if (key.includes('product_')) {
+                    const product = JSON.parse(storage.getItem(key));
+                    if (product.OPERAÇÃO === 'Comprar') {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'boughtItem';
+                        listItem.innerHTML = `
+                            <div>
+                                <h3>${product.TITULO}</h3>
+                                <p>Preço: R$ ${product.PREÇO}</p>
+                                <p>Marca: ${product.MARCA}</p>
+                                <p>Tamanho: ${product.TAMANHO}</p>
+                                <p>Estado: ${product.ESTADO}</p>
+                            </div>
+                        `;
+                        boughtItemsContainer.appendChild(listItem);
+        
+                        storage.removeItem(key);
+                    }
+                }
+            }
+        
+            
+            document.getElementById('boughtContainer').style.display = 'block';
+            
+            loadCartItems();
+            closeConfirmPopup();
+            saveAsPDF(storage);
+        }
+        
+       function saveAsPDF(storage) {
+    const boughtItemsContainer = document.getElementById('boughtItems');
+    const invoiceContent = [];
+
+    const currentUser = JSON.parse(storage.getItem('currentUser'));
+    const cardData = JSON.parse(storage.getItem(`${currentUser.email}_cardData`));
+    const profile = JSON.parse(storage.getItem(`${currentUser.email}_profile`));
+
+    let subtotal = 0;
+    for (const listItem of boughtItemsContainer.children) {
+        const productTitle = listItem.querySelector('h3').textContent;
+        const productPrice = parseFloat(listItem.querySelector('p:nth-child(2)').textContent.replace('Preço: R$ ', ''));
+        const productBrand = listItem.querySelector('p:nth-child(3)').textContent;
+        const productSize = listItem.querySelector('p:nth-child(4)').textContent;
+        const productCondition = listItem.querySelector('p:nth-child(5)').textContent;
+        invoiceContent.push([productTitle, productPrice, productBrand, productSize, productCondition]);
+        subtotal += productPrice;
+    }
+    
+
+    const taxRate = 0.1;
+    const tax = subtotal * taxRate;
+
+    const total = subtotal + tax;
+
+    const doc = new PDFDocument();
+
+// Caminho para a imagem do logotipo (relativo ao arquivo HTML)
+const logoUrl = 'https://github.com/Brunn0B/Projeto-UPX-marketPlace/blob/main/IMG/Logo%202%20hd.png'; // Substitua pelo caminho correto da sua imagem
+
+// Adicione a imagem do logotipo ao documento PDF
+doc.image(logoUrl, {
+    fit: [100, 100], // Largura e altura desejadas da imagem
+    align: 'center', // Alinha a imagem ao centro
+    valign: 'top', // Alinha a imagem ao topo
+}).moveDown(0.5); // Ajusta o espaçamento após a imagem
+
+
+    doc.fontSize(18).text('Nota Fiscal', { align: 'center' }).moveDown();
+    doc.fontSize(12).text(`Número da Nota: ${generateInvoiceNumber()}`);
+    doc.text('Data: ' + new Date().toLocaleDateString()).moveDown();
+
+    doc.lineWidth(1);
+    doc.moveTo(50, 150).lineTo(550, 150).stroke();
+
+    doc.font('Helvetica').fontSize(10);
+    doc.text(`Nome/Razão Social: ${profile.name}`, 55, 160);
+    doc.text(`Email: ${currentUser.email}`, 55, 175);
+    doc.text(`CPF: ${profile.cpf}`, 55, 190);
+
+    doc.text('Dados do Cartão:', 300, 160);
+    doc.text(`Número do Cartão: ${cardData.cardNumber}`, 300, 175);
+    doc.text(`Titular do Cartão: ${cardData.cardHolder}`, 300, 190);
+    doc.text(`Expiração: ${cardData.expirationMonth}/${cardData.expirationYear}`, 300, 205);
+    doc.text(`CCV: ${cardData.ccv}`, 300, 220);
+
+    doc.moveTo(50, 240).lineTo(550, 240).stroke();
+
+doc.font('Helvetica-Bold').fontSize(11);
+doc.moveDown();
+doc.text('Produto', 55, 260);
+doc.text('Preço', 280, 260);
+doc.text('Marca', 345, 260);
+doc.text('Tamanho', 425, 260);
+doc.text('Estado', 500, 260);
+doc.font('Helvetica').fontSize(6);
+
+let y = 280;
+for (const rowData of invoiceContent) {
+    doc.text(rowData[0], 55, y);
+    doc.text(`R$ ${rowData[1].toFixed(2)}`, 280, y);
+    doc.text(rowData[2], 345, y);
+    doc.text(rowData[3], 425, y);
+    doc.text(rowData[4], 500, y, { width: 50 });
+    y += 10;
+}
+
+    doc.moveTo(50, y).lineTo(550, y).stroke();
+
+const deliveryFee = 5.00;
+
+const siteFeeRate = 0.05;
+const siteFee = subtotal * siteFeeRate;
+
+doc.font('Helvetica-Bold').fontSize(12);
+y += 20;
+doc.text('Taxas:', 55, y);
+
+
+doc.text(`Frete de Entrega: R$ ${deliveryFee.toFixed(2)}`, 200, y);
+
+doc.rect(50, 50, 500, 700).stroke();
+
+doc.text(`Taxa do Site (${(siteFeeRate * 100).toFixed(2)}%): R$ ${siteFee.toFixed(2)}`, 360, y);
+
+const totalTaxes = deliveryFee + siteFee;
+
+y += 20;
+doc.text('Total a Pagar:', 55, y);
+doc.text(`R$ ${(total + totalTaxes).toFixed(2)}`, 250, y);
+
+    const chunks = [];
+    doc.on('data', function(chunk) {
+        chunks.push(chunk);
+    });
+    doc.on('end', function() {
+        const blob = new Blob(chunks, { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'nota_fiscal.pdf';
+        a.click();
+    });
+
+    doc.end();
+}
+
+        window.onload = function() {
+            loadCartItems();
+        };
+        </script>
+</body>
+</html>

@@ -628,7 +628,7 @@ footer {
         </a>
     </li>
     <li style="margin-right: 20px;">
-        <a href="#" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
+        <a href="Carrinho.html" style="color: #000000; text-decoration: none; transition: box-shadow 1.5s ease;"
            onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
            onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
            <i class=" fas fa-shopping-cart "></i> Carrinho  
@@ -1786,7 +1786,7 @@ footer {
         function filterProducts() {
     var typeFilter = document.getElementById('productTypeFilter').value;
     var sideFilter = document.getElementById('sideFilter').value;
-    var sizeFilter = parseInt(document.getElementById('sizeFilter').value, 10); // Convertendo para número inteiro
+    var sizeFilter = document.getElementById('sizeFilter').value;
     var stateFilter = document.getElementById('stateFilter').value;
     var brandFilter = document.getElementById('brandFilter').value;
     var genderFilter = document.getElementById('genderFilter').value;
@@ -1803,14 +1803,12 @@ footer {
     products.forEach(function(product) {
         var typeMatch = typeFilter === 'all' || product.getAttribute('data-type') === typeFilter;
         var sideMatch = sideFilter === 'all' || product.getAttribute('data-LADO') === sideFilter;
-        var sizeMatch = sizeFilter === 'all' || productSize === sizeFilter;
+        var productSize = parseInt(product.getAttribute('data-TAMANHO'), 10);
+        var sizeMatch = sizeFilter === 'all' || productSize.toString() === sizeFilter;
+
         var stateMatch = stateFilter === 'all' || product.getAttribute('data-ESTADO') === stateFilter;
         var brandMatch = brandFilter === 'all' || product.getAttribute('data-MARCA') === brandFilter;
         var genderMatch = genderFilter === 'all' || product.getAttribute('data-GÊNERO') === genderFilter;
-
-        // Verificar se o tamanho do produto corresponde ao filtro selecionado
-        var productSize = parseInt(product.getAttribute('data-TAMANHO'), 10); // Convertendo para número inteiro
-        var sizeMatch = sizeFilter === 'all' || productSize === sizeFilter;
 
         console.log("Product Size:", productSize, "Size Filter:", sizeFilter);
 
@@ -1821,9 +1819,6 @@ footer {
         }
     });
 }
-
-
-
 
         function toggleSpeech() {
         speechEnabled = !speechEnabled;
@@ -1862,6 +1857,8 @@ footer {
         }
     }
     </script>
+
+    <script src="/AddProduto/AtrelamentoProdutosAoUsuario-Index.js"></script>
     
 </body>
 </html>
