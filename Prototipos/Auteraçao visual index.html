@@ -23,6 +23,10 @@ body {
     transition: background-color 0.5s ease;
 }
 
+
+
+
+
         section.banner {
     position: relative;
     height: 650px;
@@ -31,7 +35,6 @@ body {
     overflow: hidden;
     text-align: center;
     color: #000000;
-    margin-top: 20px;
 }
 
 
@@ -202,8 +205,8 @@ nav ul li a:hover {
 }
 
 footer {
-    background: linear-gradient(to bottom, #2e495f, #000000);
-            color: #fbf9f9;
+            background-color:  #3d4f6e;
+            color: #000000;
             padding: 20px 50px;
             text-align: center;
             margin-top: auto;
@@ -227,7 +230,7 @@ footer {
 
         .footer-column h5 {
             margin-bottom: 15px;
-            color: #fafafa;
+            color: #000000;
         }
 
         .footer-column ul {
@@ -240,18 +243,18 @@ footer {
         }
 
         .footer-column ul li a {
-            color: #fffdfd;
+            color: #000000;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-column ul li a:hover {
-            color: #f8f3f3;
+            color: #131212;
         }
 
         .footer-bottom {
             margin-top: 20px;
-            color: #fbf9f9;
+            color: #0b0b0b;
         }
 
         .scroll-to-top {
@@ -311,96 +314,53 @@ footer {
     color: #000000;
 }
     
-.informacoes {
-    margin-top: 20px;
+.info-container {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-        padding: 20px;
-        background: linear-gradient(to bottom, #131e24cd, #fffdfda4);
-        box-shadow: #000000 55px 10px 100px;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 20px;
+        margin-left: -100px;
     }
-
     .info {
-        position: relative;
-        background: linear-gradient(to bottom, #000000, #f0f0f0);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: calc(33.33% - 40px);
-    }
-
-    .info:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .info img {
-        width: 100%;
-        display: block;
-        border-radius: 20px 20px 0 0;
-        object-fit: cover;
-    }
-
-    .info-content {
-        position: relative;
+        color:#000000;
+        width: 40%;
         padding: 20px;
-        background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+        margin: 0 150px;
+        display: flex;
+        align-items: center;
     }
-
-    .info p {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 10px;
-        color: #000000;
+    .info img {
+        max-width: 100%;
+        height: auto;
+        margin-right: 10px;
     }
-
-    .info b {
-        font-size: 20px;
-        display: block;
-        margin-bottom: 10px;
-        color: #000000;
-    }
-
-    .subcard {
-        background-color: #f5f5f5;
+    .info p{
+        background-color: #5b74aca5;
         border-radius: 10px;
-        padding: 10px;
-        z-index: 999;
-        width: 200px;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        display: none;
-        position: absolute;
-        bottom: calc(100% + 10px);
-        left: 50%;
-        transform: translateX(-50%);
+        font-size: 20px;
+        word-spacing: 2px;
+        max-height: none;
+        min-width: 300px;
     }
-
-    .subcard p {
-        font-size: 14px;
-        color: #666;
-        margin: 5px 0;
+    .informacoes {
+        background: rgba(223, 225, 226, 0.748);
+        border-radius: 20px;
+        margin-top: 0px;
+        width: 100%;
+        height: 1150px;
+        box-shadow: #414141 10px 10px 10px;
     }
-
-    .subcard a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
+    .info.left img {
+        margin-right: 10px;
+        order: -1;
+        max-width: 100%;
+        max-height: 400px;
     }
-
-    @media screen and (max-width: 768px) {
-        .info {
-            width: calc(50% - 40px);
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .info {
-            width: calc(100% - 40px);
-        }
+    .info.right img {
+        margin-left: 10px;
+        order: 2;
+        max-height: 400px;
+        max-width: 300px;
     }
 </style>
 
@@ -458,49 +418,33 @@ footer {
             
         </nav>
     </header>
-
     <section class="informacoes">
-        <div class="info" onmouseleave="hideSubcard(this)">
-            <img src="https://via.placeholder.com/400x300" alt="Foto 1">
-            <div class="info-content">
-                <b>Info 1</b>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis at tempora necessitatibus vitae ab non qui dignissimos corporis animi accusantium consequatur dolores quasi quas, minima praesentium blanditiis aspernatur, delectus iure!</p>
-                <button onclick="showSubcard(this)">Saiba Mais</button>
-                <div class="subcard">
-                    <p>Para mais informações, visite nosso site <a href="#">aqui</a>.</p>
-                    <p>Confira também nossa seção de <a href="#">produtos relacionados</a>.</p>
+        <div class="info-container">
+            <div class="info left">
+                <img src="/IMG/Proposito-1024x683.jpg" alt="Foto 1">
+                <div>
+                    <p> <b style="font-size: 25px;"> Info 1</b> <br>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis at tempora necessitatibus vitae ab non qui dignissimos corporis animi accusantium consequatur dolores quasi quas, minima praesentium blanditiis aspernatur, delectus iure!</p>
                 </div>
             </div>
+            <div class="info right" style="margin-top: 300px; margin-right: 350px;">
+                <div>
+                    <p> <b style="font-size: 25px;"> Info 2</b><br> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi doloremque quas ex quaerat dolorum explicabo inventore sunt provident, cum iure, eos esse est numquam repellat officiis? Aut quasi veniam deleniti.</p>
+                </div>
+                <img src="/IMG/Mensagens.png" alt="Foto 2">
+            </div>
+            
         </div>
         
-        <div class="info" onmouseleave="hideSubcard(this)">
-            <img src="https://via.placeholder.com/400x300" alt="Foto 2">
-            <div class="info-content">
-                <b>Info 2</b>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi doloremque quas ex quaerat dolorum explicabo inventore sunt provident, cum iure, eos esse est numquam repellat officiis? Aut quasi veniam deleniti.</p>
-                <button onclick="showSubcard(this)">Saiba Mais</button>
-                <div class="subcard">
-                    <p>Confira os depoimentos dos nossos clientes <a href="#">aqui</a>.</p>
-                    <p>Para novidades e promoções, siga-nos nas redes sociais <a href="#">aqui</a>.</p>
+        <div class="info-container">
+            <div class="info left">
+                <img src="/IMG/Objetivo.jpg" alt="Foto 3">
+                <div>
+                    <p> <b style="font-size: 25px;"> Info 3</b> <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, dolorum voluptatibus veritatis velit dignissimos quae itaque harum rem, magni et possimus adipisci molestiae voluptates atque nemo! Eveniet accusantium culpa alias.</p>
                 </div>
             </div>
         </div>
-    
-        <div class="info" onmouseleave="hideSubcard(this)">
-            <img src="https://via.placeholder.com/400x300" alt="Foto 3">
-            <div class="info-content">
-                <b>Info 3</b>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, dolorum voluptatibus veritatis velit dignissimos quae itaque harum rem, magni et possimus adipisci molestiae voluptates atque nemo! Eveniet accusantium culpa alias.</p>
-                <button onclick="showSubcard(this)">Saiba Mais</button>
-                <div class="subcard">
-                    <p>Leia nosso blog para mais informações sobre nossa missão <a href="#">aqui</a>.</p>
-                    <p>Conheça nossa equipe e história <a href="#">aqui</a>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-  
+        </section>
+  </div>
 
     <section class="banner">
         <div class="carousel">
@@ -1545,31 +1489,6 @@ footer {
         <button onclick="topFunction()" class="scroll-to-top" id="scrollBtn" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
-
-    <script>
-        function showSubcard(button) {
-            var subcard = button.nextElementSibling;
-            if (subcard) {
-                subcard.style.display = 'block';
-                console.log("Pop-up aberto.");
-            } else {
-                console.log("Erro: subcard não encontrado.");
-            }
-            console.log("Botão clicado:", button);
-            console.log("Subcard selecionado:", subcard);
-        }
-    
-        function hideSubcard(info) {
-            var subcard = info.querySelector('.subcard');
-            if (subcard) {
-                subcard.style.display = 'none';
-                console.log("Pop-up fechado.");
-            } else {
-                console.log("Erro: subcard não encontrado.");
-            }
-            console.log("Info hover out:", info);
-        }
-    </script>
 <script>
     
 function toggleFilters() {
