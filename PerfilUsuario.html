@@ -505,11 +505,9 @@
     </section>
     
 
-        <section id="purchaseHistory">
-            <button id="updateButton" onclick="refreshPurchaseHistory()">Atualizar</button>
-
-            <ul id="purchaseHistoryList"></ul>
-        </section>
+    <section id="purchaseHistory">
+        <ul id="purchaseHistoryList"></ul>
+    </section>
 
         <section id="privacy" class="privacy-section">
             <h2>Política de Privacidade</h2>
@@ -664,11 +662,81 @@ function showSection(sectionId) {
     });
     document.getElementById(sectionId).classList.add('active');
 }
+function refreshPurchaseHistory() {
+    console.log('Refreshing purchase history...');
+    
+    const purchaseHistoryList = document.getElementById('purchaseHistoryList');
+    if (!purchaseHistoryList) {
+        console.log('Purchase history list element not found.');
+        return;
+    }
+    
+    purchaseHistoryList.innerHTML = ''; // Limpa a lista antes de preencher novamente
+
+    const storage = window.localStorage;
+    const currentUserData = JSON.parse(storage.getItem('currentUser'));
+    if (!currentUserData) {
+        console.log('Current user data not found.');
+        return;
+    }
+    
+    const userEmail = currentUserData.email;
+
+    console.log('User email:', userEmail);
+
+    const purchaseHistoryData = storage.getItem(userEmail + '_purchaseHistory');
+    if (!purchaseHistoryData) {
+        console.log('Purchase history data not found.');
+        return;
+    }
+    
+    const purchaseHistory = JSON.parse(purchaseHistoryData) || [];
+
+    console.log('Purchase history:', purchaseHistory);
+
+    purchaseHistory.forEach(purchase => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Data: ${purchase.date}, Produto: ${purchase.product}, Preço: ${purchase.price}`;
+        purchaseHistoryList.appendChild(listItem);
+    });
+}
+
+function addToPurchaseHistory(product, price) {
+    console.log('Adding to purchase history...');
+    
+    const currentUserData = localStorage.getItem('currentUser');
+    if (!currentUserData) {
+        console.log('Current user data not found.');
+        return;
+    }
+    
+    const currentUserInfo = JSON.parse(currentUserData);
+    const userEmail = currentUserInfo.email;
+    
+    console.log('User email:', userEmail);
+
+    let purchaseHistoryData = localStorage.getItem(userEmail + '_purchaseHistory');
+    let purchaseHistory = purchaseHistoryData ? JSON.parse(purchaseHistoryData) : [];
+    
+    const date = new Date().toLocaleDateString();
+    const purchase = { date, product, price };
+    purchaseHistory.push(purchase);
+    
+    localStorage.setItem(userEmail + '_purchaseHistory', JSON.stringify(purchaseHistory));
+
+    console.log('Updated purchase history:', purchaseHistory);
+
+    refreshPurchaseHistory();
+}
+
+refreshPurchaseHistory();
+
 
 fillProfileFields();
 fillCardFields();
 
     </script>
+    
     
 
 <script src="/AddProduto/Produto.js"></script>

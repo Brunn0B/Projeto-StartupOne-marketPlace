@@ -42,7 +42,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #4caf50;
+            background-color: #444444;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
@@ -50,7 +50,8 @@
         }
 
         #checkoutButton:hover {
-            background-color: #45a049;
+            background-color: #f0f4f0;
+            color: black;
         }
 
         #confirmPopup {
@@ -85,7 +86,7 @@
 
         #confirmPopup button {
             padding: 10px 20px;
-            background-color: #4caf50;
+            background-color: #393a39;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -94,7 +95,8 @@
         }
 
         #confirmPopup button:hover {
-            background-color: #45a049;
+            background-color: #e9e7e7;
+            color: black;
         }
 
         #confirmPopup .remove {
@@ -215,42 +217,50 @@ Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar 
         }
         
         function confirmPurchase() {
-            alert('Compra efetuada com sucesso!');
-        
-            const cartItemsContainer = document.getElementById('cartItems');
-            const boughtItemsContainer = document.getElementById('boughtItems');
-        
-            const storage = window.localStorage;
-            for (const key in storage) {
-                if (key.includes('product_')) {
-                    const product = JSON.parse(storage.getItem(key));
-                    if (product.OPERAÇÃO === 'Comprar') {
-                        const listItem = document.createElement('li');
-                        listItem.className = 'boughtItem';
-                        listItem.innerHTML = `
-                            <div>
-                                <h3>${product.TITULO}</h3>
-                                <p>Preço: R$ ${product.PREÇO}</p>
-                                <p>Marca: ${product.MARCA}</p>
-                                <p>Tamanho: ${product.TAMANHO}</p>
-                                <p>Estado: ${product.ESTADO}</p>
-                            </div>
-                        `;
-                        boughtItemsContainer.appendChild(listItem);
-        
-                        storage.removeItem(key);
-                    }
-                }
+    alert('Compra efetuada com sucesso!');
+
+    const cartItemsContainer = document.getElementById('cartItems');
+    const boughtItemsContainer = document.getElementById('boughtItems');
+
+    const storage = window.localStorage;
+    const currentUserData = JSON.parse(storage.getItem('currentUser'));
+    const userEmail = currentUserData.email;
+
+    for (const key in storage) {
+        if (key.includes('product_')) {
+            const product = JSON.parse(storage.getItem(key));
+            if (product.OPERAÇÃO === 'Comprar') {
+                const listItem = document.createElement('li');
+                listItem.className = 'boughtItem';
+                listItem.innerHTML = `
+                    <div>
+                        <h3>${product.TITULO}</h3>
+                        <p>Preço: R$ ${product.PREÇO}</p>
+                        <p>Marca: ${product.MARCA}</p>
+                        <p>Tamanho: ${product.TAMANHO}</p>
+                        <p>Estado: ${product.ESTADO}</p>
+                    </div>
+                `;
+                boughtItemsContainer.appendChild(listItem);
+
+                let purchaseHistory = JSON.parse(storage.getItem(userEmail + '_purchaseHistory')) || [];
+                const date = new Date().toLocaleDateString();
+                const purchase = { date, product: product.TITULO, price: product.PREÇO };
+                purchaseHistory.push(purchase);
+                storage.setItem(userEmail + '_purchaseHistory', JSON.stringify(purchaseHistory));
+
+                storage.removeItem(key);
             }
-        
-            
-            document.getElementById('boughtContainer').style.display = 'block';
-            
-            loadCartItems();
-            closeConfirmPopup();
-            saveAsPDF(storage);
         }
-        
+    }
+
+    document.getElementById('boughtContainer').style.display = 'block';
+    loadCartItems();
+    closeConfirmPopup();
+    saveAsPDF(storage);
+}
+
+
        function saveAsPDF(storage) {
     const boughtItemsContainer = document.getElementById('boughtItems');
     const invoiceContent = [];
