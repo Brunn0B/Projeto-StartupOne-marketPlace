@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .category-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .category-card:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-5px);
+        }
+
+        .category-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .selected {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .selected:hover {
+            background-color: #0056b3;
+        }
+
+        .category-form {
+            display: none;
+        }
+
+        .category-form.active {
+            display: block;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .requirements {
+            margin-top: 10px;
+        }
+
+        .requirements ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fale Conosco</h1>
+
+        <div class="category-card" id="doubtCard">
+            <div class="category-title">Dúvida</div>
+            <div class="category-description">Tem alguma dúvida sobre como usar o nosso serviço?</div>
+            <div class="category-form">
+                <form action="">
+                    <label for="doubtMessage">Detalhes da Dúvida:</label>
+                    <textarea id="doubtMessage" name="doubtMessage" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="category-card" id="complaintCard">
+            <div class="category-title">Reclamação</div>
+            <div class="category-description">Quer fazer uma reclamação sobre algum problema ou serviço?</div>
+            <div class="category-form">
+                <form action="">
+                    <label for="complaintMessage">Detalhes da Reclamação:</label>
+                    <textarea id="complaintMessage" name="complaintMessage" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="category-card" id="returnCard">
+            <div class="category-title">Devolução de Produto</div>
+            <div class="category-description">Precisa devolver um produto? Informe-nos aqui.</div>
+            <div class="category-form">
+                <form action="">
+                    <label for="returnMessage">Detalhes da Devolução:</label>
+                    <textarea id="returnMessage" name="returnMessage" required></textarea>
+                    <div class="requirements">
+                        <h3>Requisitos para Devolução:</h3>
+                        <ul>
+                            <li>O produto deve estar nas mesmas condições em que foi enviado.</li>
+                            <li>A devolução deve ser solicitada dentro do prazo estabelecido pela política de devolução.</li>
+                            <li>É necessário apresentar o comprovante de compra, ou a nota fiscal emitida apos a compra.</li>
+                        </ul>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="category-card" id="othersCard">
+            <div class="category-title">Outros</div>
+            <div class="category-description">Seu problema não se encaixa em nenhuma das categorias acima?</div>
+            <div class="category-form">
+                <form action="">
+                    <label for="othersMessage">Detalhes do Problema:</label>
+                    <textarea id="othersMessage" name="othersMessage" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const doubtCard = document.getElementById('doubtCard');
+        const complaintCard = document.getElementById('complaintCard');
+        const returnCard = document.getElementById('returnCard');
+        const othersCard = document.getElementById('othersCard');
+        const categoryForm = document.querySelectorAll('.category-form');
+
+        doubtCard.addEventListener('click', () => {
+            selectCategory(doubtCard);
+        });
+
+        complaintCard.addEventListener('click', () => {
+            selectCategory(complaintCard);
+        });
+
+        returnCard.addEventListener('click', () => {
+            selectCategory(returnCard);
+        });
+
+        othersCard.addEventListener('click', () => {
+            selectCategory(othersCard);
+        });
+
+        function selectCategory(selectedCard) {
+            const cards = [doubtCard, complaintCard, returnCard, othersCard];
+            cards.forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedCard.classList.add('selected');
+
+            categoryForm.forEach(form => {
+                form.classList.remove('active');
+            });
+
+            const selectedForm = selectedCard.querySelector('.category-form');
+            selectedForm.classList.add('active');
+        }
+    </script>
+     <script>
+        const isLoggedIn = localStorage.getItem('currentUser');
+
+        const categoryForms = document.querySelectorAll('.category-form');
+
+        if (!isLoggedIn) {
+            categoryForms.forEach(form => {
+                form.style.display = 'none';
+            });
+        } else {
+            const doubtCard = document.getElementById('doubtCard');
+            const complaintCard = document.getElementById('complaintCard');
+            const returnCard = document.getElementById('returnCard');
+            const othersCard = document.getElementById('othersCard');
+
+            // Event listeners para os cartões de categoria
+            doubtCard.addEventListener('click', () => {
+                selectCategory(doubtCard);
+            });
+
+            complaintCard.addEventListener('click', () => {
+                selectCategory(complaintCard);
+            });
+
+            returnCard.addEventListener('click', () => {
+                selectCategory(returnCard);
+            });
+
+            othersCard.addEventListener('click', () => {
+                selectCategory(othersCard);
+            });
+
+            function selectCategory(selectedCard) {
+                const cards = [doubtCard, complaintCard, returnCard, othersCard];
+                cards.forEach(card => {
+                    card.classList.remove('selected');
+                });
+                selectedCard.classList.add('selected');
+
+                categoryForms.forEach(form => {
+                    form.classList.remove('active');
+                });
+
+                const selectedForm = selectedCard.querySelector('.category-form');
+                selectedForm.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
