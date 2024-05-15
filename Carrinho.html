@@ -246,6 +246,14 @@ Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar 
             const popup = document.getElementById('confirmPopup');
             popup.style.display = 'none';
         }
+
+        function checkUser() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+        const loginOverlay = document.getElementById('loginOverlay');
+        loginOverlay.style.display = 'flex';
+    }
+}
         
         function confirmPurchase() {
     alert('Compra efetuada com sucesso!');
@@ -281,6 +289,9 @@ Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar 
                 storage.setItem(userEmail + '_purchaseHistory', JSON.stringify(purchaseHistory));
 
                 storage.removeItem(key);
+
+                saveAsPDF(storage);
+    checkUser();
             }
         }
     }
@@ -292,13 +303,17 @@ Potr fim em uma ultiva alternativa Foi utilizado a biblioteca PDFKit para gerar 
 }
 
 
-       function saveAsPDF(storage) {
+function saveAsPDF(storage) {
     const boughtItemsContainer = document.getElementById('boughtItems');
     const invoiceContent = [];
 
+    // Recuperando dados do usuário e do cartão
     const currentUser = JSON.parse(storage.getItem('currentUser'));
+    console.log(currentUser);
     const cardData = JSON.parse(storage.getItem(`${currentUser.email}_cardData`));
     const profile = JSON.parse(storage.getItem(`${currentUser.email}_profile`));
+    console.log(profile);
+
 
     let subtotal = 0;
     for (const listItem of boughtItemsContainer.children) {
