@@ -391,17 +391,24 @@ footer {
         font-weight: bold;
     }
 
-    @media screen and (max-width: 768px) {
-        .info {
-            width: calc(50% - 40px);
-        }
-    }
+    /* Estilos para telas menores que 600px */
+@media (max-width: 600px) {
+  /* Defina estilos específicos para telas menores */
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+}
 
-    @media screen and (max-width: 480px) {
-        .info {
-            width: calc(100% - 40px);
-        }
-    }
+/* Estilos para telas maiores que 600px */
+@media (min-width: 600px) {
+  /* Defina estilos específicos para telas maiores */
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
 </style>
 
 </head>
@@ -433,7 +440,7 @@ footer {
     </li>
 
     <li style="margin-right: 20px;">
-        <a href="#" style="color: #f8f7f7; text-decoration: none; transition: box-shadow 1.5s ease;"
+        <a href="Contato.html" style="color: #f8f7f7; text-decoration: none; transition: box-shadow 1.5s ease;"
            onmouseover="this.style.backgroundColor='#bebebe'; this.style.boxShadow='0 0 15px #bebebe, 0 0 20px #bebebe, 0 0 25px #bebebe, 0 0 30px #bebebe, 0 0 35px #bebebe, 0 0 40px #bebebe, 0 0 45px #bebebe, 0 0 50px #bebebe';"
            onmouseout="this.style.backgroundColor='transparent'; this.style.boxShadow='none';">
            <i class="fas fa-envelope"></i> Contato
