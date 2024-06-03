@@ -22,7 +22,7 @@
       height: 100vh;
     }
     body {
-      background: radial-gradient(ellipse at bottom, #607f87 0%, #243c43 100%);
+      background-image: url('./IMG-Novas/EasyWalk\ Background.png');
     }
 
 
@@ -120,7 +120,7 @@
       opacity: 1;
     }
     .slider__nav {
-      margin: 1rem 0 4rem;
+      margin: 4rem 0 4rem;
       width: 100%;
       padding: 0;
       display: flex;
@@ -260,6 +260,9 @@
   <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
   <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
 </div>
+
+<div><br></div>
+
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.js"></script>
 
