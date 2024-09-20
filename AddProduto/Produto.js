@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const productPrice = document.createElement('p2');
         productPrice.textContent = `Preço: ${formattedPrice}`;
     
-        // Recuperar os dados do usuário do localStorage
         const currentUserData = localStorage.getItem('currentUser');
         if (currentUserData) {
             const currentUserInfo = JSON.parse(currentUserData);

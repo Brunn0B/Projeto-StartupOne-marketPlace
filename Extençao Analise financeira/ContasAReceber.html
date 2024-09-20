@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Sistema de Contas a Receber</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #222222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+    
+        .container {
+            color: white;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #393838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e3e3e3;
+        }
+    
+        /* Formulário */
+        form {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #0d264e;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #f0e8e8;
+            color: #000000;
+        }
+    
+        .dropdown-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ffffff;
+            display: block; /* Garante que o label ocupe toda a largura do pai */
+            padding: 14px 20px;
+            text-decoration: none;
+            background-color: #000000; /* Cor de fundo */
+            transition: background-color 0.3s ease; /* Transição suave */
+            cursor: pointer; /* Mostra que é clicável */
+            border-radius: 4px; /* Borda arredondada */
+        }
+    
+        .dropdown-label:hover {
+            background-color: #333333; /* Cor de fundo ao passar o mouse */
+        }
+    
+        /* Dropdown visível */
+        .dropdown-open {
+            display: block;
+            position: absolute;
+            margin-top: 5px; /* Espaçamento superior */
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            width: calc(100% - 40px); /* Ajusta a largura subtraindo o padding do label */
+            z-index: 1000; /* Garante que o dropdown esteja sobreposto */
+        }
+    
+        .dropdown-open option {
+            padding: 8px;
+        }
+    
+        /* Ocultar o select inicialmente */
+        #servicos {
+            display: none;
+        }
+    
+        /* Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            color: white;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #1c1a1a;
+            font-weight: bold;
+            color: #f3f2f2;
+        }
+    
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    
+        .modal.open {
+            display: block;
+        }
+    
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        .modal-header h2 {
+            margin: 0;
+            color: #333333;
+        }
+    
+        .modal-close {
+            cursor: pointer;
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .modal-close:hover {
+            background-color: #bd2130;
+        }
+    
+        .navbar {
+            background-color: #000000;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+    
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+            float: left;
+            margin-left: 10px;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .modal2 {
+            display: none;
+            position: left;
+            z-index: 1;
+            left: 1000px;
+            top: 0;
+            width: 1100px;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(110, 109, 109, 0.5);
+        }
+
+        .modal-content2 {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .BotaoFechar {
+            color: #ffffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .BotaoFechar:hover,
+        .BotaoFechar:focus {
+            color: rgb(242, 5, 5);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #VisualizarPDF {
+            width: 600px;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/Sistema_de_Sao_Jorge/IMG/F-Sao-jorge.png" alt="Logo" class="logo">
+        <a href="/Sistema_de_Sao_Jorge/-TelaDoAdministrador.html"><i class="fas fa-home"></i> Home</a>
+        <a href="/Sistema_de_Sao_Jorge/SuporteUsuarios.html"><i class="fas fa-headset"></i> Suporte</a>
+        <a href="ContasAPagar.html"><i class="fas fa-file-invoice-dollar"></i> Contas a Pagar</a>
+        <a href="FluxoDeCaixa.html"><i class="fas fa-chart-line"></i>Fluxo de Caixa</a>
+        <a href="Orçamentos.html"><i class="fas fa-file-invoice-dollar"></i>Orçamentos</a>
+        <a href="RelatoriosFinanceiros-AnáliseDeCustos.html"><i class="fas fa-file-invoice-dollar"></i>Relatórios - Analise de Custo</a>
+        <a href="#about" onclick="carregarAtividade('/Sistema_de_Sao_Jorge/TesteManual.pdf')"><i class="fas fa-question-circle"></i> Manual do Usuário</a>
+    </div>
+    
+    <div id="pdfModal" class="modal2" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="BotaoFechar" onclick="fecharModal()">&times;</span>
+            <iframe id="VisualizarPDF"></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <h1><br><br>Sistema de Contas a Receber</h1>
+        
+        
+        <form id="accountForm">
+            <label for="IDCliente">ID do Cliente:</label>
+            <input type="text" id="IDCliente" name="IDCliente" required>
+
+            <label for="NomeCliente">Nome do Cliente:</label>
+            <input type="text" id="NomeCliente" name="NomeCliente" required>
+
+            <label for="CPF">CPF:</label>
+            <input type="text" id="CPF" name="CPF" required>
+
+            <label for="Valor">Valor:</label>
+            <input type="text" id="Valor" name="Valor" required>
+
+            <label for="DataVencimento">Data de Vencimento:</label>
+            <input type="date" id="DataVencimento" name="DataVencimento" required>
+
+            <label for="Status">Status:</label>
+            <select id="Status" name="Status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+            </select>
+
+            <button type="button" onclick="submitAccount()">Cadastrar</button>
+            <button onclick="deleteSelected()">Excluir Usuários Selecionados</button>
+        </form>
+
+        <table id="accountTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Cliente</th>
+                    <th>CPF</th>
+                    <th>Valor</th>
+                    <th>Data de Vencimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                    <th>Selecionar</th> 
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-header">
+            <h2>Editar Conta a Receber</h2>
+            <button class="modal-close" onclick="closeModal()">X</button>
+        </div>
+        <form id="editForm">
+            <input type="hidden" id="editID">
+            <label for="editNomeCliente">Nome do Cliente:</label>
+            <input type="text" id="editNomeCliente" name="NomeCliente" required>
+
+            <label for="editCPF">CPF:</label>
+            <input type="text" id="editCPF" name="CPF" required>
+
+            <label for="editValor">Valor:</label>
+            <input type="text" id="editValor" name="Valor" required>
+
+            <label for="editDataVencimento">Data de Vencimento:</label>
+            <input type="date" id="editDataVencimento" name="DataVencimento" required>
+
+            <label for="editStatus">Status:</label>
+            <select id="editStatus" name="Status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+            </select>
+
+            <button type="button" onclick="saveEdit()">Salvar</button>
+        </form>
+    </div>
+
+    
+    <script>
+        async function carregarAtividade(url) {
+           try {
+               const response = await fetch(url);
+               if (!response.ok) {
+                   throw new Error('Não foi possível carregar a atividade.');
+               }
+               const blob = await response.blob();
+               const objectURL = URL.createObjectURL(blob);
+
+               abrirModal(objectURL);
+
+           } catch (error) {
+               console.error(error.message);
+           }
+       }
+
+       function abrirModal(url) {
+           const modal = document.getElementById('pdfModal');
+           const VisualizarPDF = document.getElementById('VisualizarPDF');
+
+           VisualizarPDF.src = url;
+           modal.style.display = 'block';
+       }
+       function fecharModal() {
+           const modal = document.getElementById('pdfModal');
+           modal.style.display = 'none';
+       }
+   </script>
+   
+    <script>
+        document.getElementById('Valor').addEventListener('input', function() {
+            var valor = this.value.replace(/\D/g, '');
+            valor = (parseFloat(valor) / 100).toFixed(2);
+            this.value = 'R$ ' + valor.replace('.', ',');
+        });
+    
+        document.getElementById('editValor').addEventListener('input', function() {
+            var valor = this.value.replace(/\D/g, '');
+            valor = (parseFloat(valor) / 100).toFixed(2);
+            this.value = 'R$ ' + valor.replace('.', ',');
+        });
+    
+        document.getElementById('CPF').addEventListener('input', function() {
+            var cpf = this.value.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            this.value = cpf;
+        });
+    
+        document.getElementById('editCPF').addEventListener('input', function() {
+            var cpf = this.value.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            this.value = cpf;
+        });
+    
+        function submitAccount() {
+            var cpfValue = document.getElementById('CPF').value.replace(/[^\d]/g, '');
+            if (cpfValue.length !== 11) {
+                alert('CPF deve ter exatamente 11 dígitos.');
+                return;
+            }
+    
+            var dataVencimento = document.getElementById('DataVencimento').value;
+            if (!dataVencimento) {
+                alert('Informe a data de vencimento.');
+                return;
+            }
+    
+            var formData = {
+                IDCliente: document.getElementById('IDCliente').value,
+                NomeCliente: document.getElementById('NomeCliente').value,
+                CPF: cpfValue,
+                Valor: parseFloat(document.getElementById('Valor').value.replace('R$ ', '').replace(',', '.')).toFixed(2),
+                DataVencimento: dataVencimento,
+                Status: document.getElementById('Status').value
+            };
+    
+            fetch('CR-php/save_account.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(data.message);
+                    refreshAccountTable();
+                } else {
+                    console.error('Erro ao salvar a conta:', data.error);
+                }
+            })
+            .catch(error => console.error('Erro na requisição:', error));
+        }
+    
+        function fetchAccounts() {
+            fetch('CR-php/get_accounts.php')
+            .then(response => response.json())
+            .then(data => {
+                var tableBody = document.getElementById('accountTable').getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = '';
+                data.forEach(account => {
+                    var row = tableBody.insertRow();
+                    row.insertCell(0).innerText = account.id;
+                    row.insertCell(1).innerText = account.nome_cliente;
+                    row.insertCell(2).innerText = account.CPF.replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+                    row.insertCell(3).innerText = 'R$ ' + parseFloat(account.valor).toFixed(2).replace('.', ',');
+                    row.insertCell(4).innerText = account.data_vencimento;
+                    row.insertCell(5).innerText = account.status;
+                    var actionsCell = row.insertCell(6);
+                    var editButton = document.createElement('button');
+                    editButton.innerText = 'Editar';
+                    editButton.onclick = () => editAccount(account);
+                    actionsCell.appendChild(editButton);
+    
+                    var selectCell = row.insertCell(7);
+                    var checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.value = account.id;
+                    selectCell.appendChild(checkbox);
+                });
+            })
+            .catch(error => console.error('Erro na requisição:', error));
+        }
+    
+        function editAccount(account) {
+            document.getElementById('editID').value = account.id;
+            document.getElementById('editNomeCliente').value = account.nome_cliente;
+            document.getElementById('editCPF').value = account.CPF.replace(/[^\d]/g, '');
+            document.getElementById('editValor').value = 'R$ ' + parseFloat(account.valor).toFixed(2).replace('.', ',');
+            document.getElementById('editDataVencimento').value = account.data_vencimento;
+            document.getElementById('editStatus').value = account.status;
+            document.getElementById('editModal').style.display = 'block';
+        }
+    
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    
+        function saveEdit() {
+            var cpfValue = document.getElementById('editCPF').value.replace(/[^\d]/g, '');
+            if (cpfValue.length !== 11) {
+                alert('CPF deve ter exatamente 11 dígitos.');
+                return;
+            }
+    
+            var dataVencimento = document.getElementById('editDataVencimento').value;
+            if (!dataVencimento) {
+                alert('Informe a data de vencimento.');
+                return;
+            }
+    
+            var formData = {
+                id: document.getElementById('editID').value,
+                NomeCliente: document.getElementById('editNomeCliente').value,
+                CPF: cpfValue,
+                Valor: parseFloat(document.getElementById('editValor').value.replace('R$ ', '').replace(',', '.')).toFixed(2),
+                DataVencimento: dataVencimento,
+                Status: document.getElementById('editStatus').value
+            };
+    
+            fetch('CR-php/edit_account.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(data.message);
+                    closeModal();
+                    refreshAccountTable();
+                } else {
+                    console.error('Erro ao editar a conta:', data.error);
+                }
+            })
+            .catch(error => console.error('Erro na requisição:', error));
+        }
+    
+        function deleteSelected() {
+            var checkboxes = document.querySelectorAll('#accountTable tbody input[type="checkbox"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Selecione pelo menos uma conta para excluir.');
+                return;
+            }
+    
+            if (confirm(`Tem certeza que deseja excluir ${checkboxes.length} conta(s)?`)) {
+                var selectedIds = Array.from(checkboxes).map(checkbox => checkbox.value);
+    
+                fetch('CR-php/delete_account.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ids: selectedIds }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Contas excluídas com sucesso.');
+                        fetchAccounts();
+                    } else {
+                        alert('Erro ao excluir contas.');
+                    }
+                })
+                .catch(error => console.error('Erro na requisição:', error));
+            }
+        }
+    
+        function validaCPF(cpf) {
+            cpf = cpf.replace(/[^\d]/g, '');
+    
+            if (cpf.length !== 11) {
+                return false;
+            }
+            if (/^(\d)\1{10}$/.test(cpf)) {
+                return false;
+            }
+    
+            var soma = 0;
+            var resto;
+            for (var i = 1; i <= 9; i++) {
+                soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+            resto = (soma * 10) % 11;
+    
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+    
+            if (resto !== parseInt(cpf.substring(9, 10))) {
+                return false;
+            }
+    
+            soma = 0;
+            for (var i = 1; i <= 10; i++) {
+                soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+            resto = (soma * 10) % 11;
+    
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+    
+            if (resto !== parseInt(cpf.substring(10, 11))) {
+                return false;
+            }
+    
+            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6, 9) + '-' + cpf.substring(9, 11);
+    
+            return cpf;
+        }
+    
+        function refreshAccountTable() {
+            fetchAccounts();
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchAccounts();
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Relatórios Financeiros - Análise de Custos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222222;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f9f9f9;
+        }
+
+        .container {
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #393838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="date"], select {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0d264e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            color: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #1c1a1a;
+        }
+
+        .navbar {
+            background-color: #000000;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+    
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+            float: left;
+            margin-left: 10px;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .modal2 {
+            display: none;
+            position: left;
+            z-index: 1;
+            margin-top: 20px;
+            margin-left: 150px;
+            text-align: center;
+            top: 0;
+            width: 1100px;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(110, 109, 109, 0.5);
+        }
+
+        .modal-content2 {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .BotaoFechar {
+            color: #ffffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .BotaoFechar:hover,
+        .BotaoFechar:focus {
+            color: rgb(242, 5, 5);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #VisualizarPDF {
+            width: 600px;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/Sistema_de_Sao_Jorge/IMG/F-Sao-jorge.png" alt="Logo" class="logo">
+        <a href="/Sistema_de_Sao_Jorge/-TelaDoAdministrador.html"><i class="fas fa-home"></i> Home</a>
+        <a href="/Sistema_de_Sao_Jorge/SuporteUsuarios.html"><i class="fas fa-headset"></i> Suporte</a>
+        <a href="ContasAPagar.html"><i class="fas fa-file-invoice-dollar"></i> Contas a Pagar</a>
+        <a href="ContasAReceber.html"><i class="fas fa-file-invoice-dollar"></i>Contas a Receber</a>
+        <a href="FluxoDeCaixa.html"><i class="fas fa-chart-line"></i>Fluxo de Caixa</a>
+        <a href="Orçamentos.html"><i class="fas fa-file-invoice-dollar"></i>Orçamentos</a>
+        <a href="#about" onclick="carregarAtividade('/Sistema_de_Sao_Jorge/TesteManual.pdf')"><i class="fas fa-question-circle"></i> Manual do Usuário</a>
+    </div>
+    
+    <div id="pdfModal" class="modal2" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="BotaoFechar" onclick="fecharModal()">&times;</span>
+            <iframe id="VisualizarPDF"></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Relatórios Financeiros - Análise de Custos</h1>
+        <form id="reportForm">
+            <label for="startDate">Data de Início:</label>
+            <input type="date" id="startDate" name="startDate" required>
+            
+            <label for="endDate">Data de Fim:</label>
+            <input type="date" id="endDate" name="endDate" required>
+
+            <label for="reportType">Tipo de Relatório:</label>
+            <select id="reportType" name="reportType" required>
+                <option value="analise_custos">Análise de Custos</option>
+                <option value="contas_pagar">Contas a Pagar</option>
+                <option value="contas_receber">Contas a Receber</option>
+                <option value="fluxo_caixa">Fluxo de Caixa</option>
+                <option value="orcamentos">Orçamentos</option>
+                <option value="relatorios_financeiros">Relatórios Financeiros</option>
+            </select>
+
+            <button type="submit">Gerar Relatório</button>
+            <button type="button" id="generatePDF">Gerar PDF</button>
+        </form>
+        <div id="reportResult">
+            
+        </div>
+    </div>
+
+ <script>
+        async function carregarAtividade(url) {
+           try {
+               const response = await fetch(url);
+               if (!response.ok) {
+                   throw new Error('Não foi possível carregar a atividade.');
+               }
+               const blob = await response.blob();
+               const objectURL = URL.createObjectURL(blob);
+
+               abrirModal(objectURL);
+
+           } catch (error) {
+               console.error(error.message);
+           }
+       }
+
+       function abrirModal(url) {
+           const modal = document.getElementById('pdfModal');
+           const VisualizarPDF = document.getElementById('VisualizarPDF');
+
+           VisualizarPDF.src = url;
+           modal.style.display = 'block';
+       }
+       function fecharModal() {
+           const modal = document.getElementById('pdfModal');
+           modal.style.display = 'none';
+       }
+   </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+
+            fetch('Relatorio-php/generate_report.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('reportResult').innerHTML = data;
+            })
+            .catch(error => console.error('Erro:', error));
+        });
+
+        document.getElementById('generatePDF').addEventListener('click', function() {
+            const logoImg = new Image();
+            logoImg.src = '/Sistema_de_Sao_Jorge/IMG/F-Sao-jorge.png';
+
+            logoImg.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = logoImg.width;
+                canvas.height = logoImg.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(logoImg, 0, 0);
+                const logoBase64 = canvas.toDataURL('image/png');
+
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+                const reportType = document.getElementById('reportType').value;
+                const reportResult = document.getElementById('reportResult').innerHTML;
+
+                const protocoloText = `PROTOCOLO-(${Math.floor(Math.random() * 1000000)})`;
+
+                const docDefinition = {
+                    content: [
+                        {
+                            columns: [
+                                {
+                                    image: logoBase64,
+                                    width: 100
+                                },
+                                {
+                                    stack: [
+                                        {
+                                            canvas: [
+                                                {
+                                                    type: 'rect',
+                                                    x: 0,
+                                                    y: 0,
+                                                    w: 148,
+                                                    h: 30,
+                                                    r: 0,
+                                                    lineColor: 'black',
+                                                    lineWidth: 1
+                                                },
+                                            ],
+                                            margin: [0, 0, 0, 0]
+                                        },
+                                        {
+                                            text: protocoloText,
+                                            alignment: 'right',
+                                            style: 'subheader',
+                                            margin: [0, -25, 10, 0]
+                                        }
+                                    ],
+                                    alignment: 'right',
+                                    margin: [0, 15, 0, 0]
+                                }
+                            ]
+                        },
+                        {
+                            text: 'Razão Social: FSJORGE',
+                            style: 'header'
+                        },
+                        {
+                            text: `Data de Início: ${startDate}`,
+                            style: 'subheader'
+                        },
+                        {
+                            text: `Data de Fim: ${endDate}`,
+                            style: 'subheader'
+                        },
+                        {
+                            text: `Tipo de Relatório: ${reportType}`,
+                            style: 'subheader'
+                        },
+                        {
+                            text: 'Relatório:',
+                            style: 'subheader'
+                        },
+                        {
+                            table: {
+                                headerRows: 1,
+                                widths: ['*', '*', '*', '*', '*', '*'],
+                                body: buildTableBody(reportResult)
+                            },
+                            layout: 'lightHorizontalLines',
+                            margin: [0, 10, 0, 10]
+                        },
+                        {
+                            text: buildFooter(reportResult, reportType),
+                            style: 'subheader',
+                            alignment: 'right'
+                        }
+                    ],
+                    styles: {
+                        header: {
+                            fontSize: 18,
+                            bold: true,
+                            margin: [0, 0, 0, 10]
+                        },
+                        subheader: {
+                            fontSize: 14,
+                            bold: true,
+                            margin: [0, 10, 0, 5]
+                        },
+                        tableData: {
+                            fontSize: 9,
+                            color: 'black'
+                        }
+                    }
+                };
+
+                pdfMake.createPdf(docDefinition).download('relatorio_financeiro.pdf');
+            };
+        });
+
+        function buildTableBody(htmlTable) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlTable, 'text/html');
+            const rows = doc.querySelectorAll('tr');
+            const body = [];
+
+            rows.forEach((row, rowIndex) => {
+                const cells = row.children;
+                const rowData = [
+                    { text: cells[5].textContent.trim(), style: 'tableData' }, // Nome
+                    { text: cells[6].textContent.trim(), style: 'tableData' }, // CPF
+                    { text: cells[0].textContent.trim(), style: 'tableData' }, // ID
+                    { text: cells[4].textContent.trim(), style: 'tableData' }, // Status
+                    { text: cells[3].textContent.trim(), style: 'tableData' }, // Data de Vencimento
+                    { text: cells[2].textContent.trim(), style: 'tableData' }, // Valor
+                ];
+                body.push(rowData);
+            });
+
+            return body;
+        }
+
+        function buildFooter(htmlTable, reportType) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlTable, 'text/html');
+            const rows = doc.querySelectorAll('tr');
+            let totalValue = 0;
+            let totalUsers = rows.length - 1;
+
+            rows.forEach((row, rowIndex) => {
+                if (rowIndex > 0) {
+                    const cells = row.children;
+                    const value = parseFloat(cells[2].textContent.trim().replace(/[^0-9,-]+/g, '').replace(',', '.'));
+                    if (!isNaN(value)) {
+                        totalValue += value;
+                    }
+                }
+            });
+
+            const formattedTotalValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalValue / 100);
+            return `Total de Usuários: ${totalUsers}\nTotal ${reportType === 'contas_receber' ? 'a Receber' : 'a Pagar'}: ${formattedTotalValue}`;
+        }
+
+    </script>
+</body>
+</html>

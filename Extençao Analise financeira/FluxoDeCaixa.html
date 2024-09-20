@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Fluxo de Caixa</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #222222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+    
+        .container {
+            color: white;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #393838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e3e3e3;
+        }
+    
+        /* Formulário */
+        form {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #0d264e;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #f0e8e8;
+            color: #000000;
+        }
+    
+        .dropdown-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ffffff;
+            display: block; /* Garante que o label ocupe toda a largura do pai */
+            padding: 14px 20px;
+            text-decoration: none;
+            background-color: #000000; /* Cor de fundo */
+            transition: background-color 0.3s ease; /* Transição suave */
+            cursor: pointer; /* Mostra que é clicável */
+            border-radius: 4px; /* Borda arredondada */
+        }
+    
+        .dropdown-label:hover {
+            background-color: #333333; /* Cor de fundo ao passar o mouse */
+        }
+    
+        /* Dropdown visível */
+        .dropdown-open {
+            display: block;
+            position: absolute;
+            margin-top: 5px; /* Espaçamento superior */
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            width: calc(100% - 40px); /* Ajusta a largura subtraindo o padding do label */
+            z-index: 1000; /* Garante que o dropdown esteja sobreposto */
+        }
+    
+        .dropdown-open option {
+            padding: 8px;
+        }
+    
+        /* Ocultar o select inicialmente */
+        #servicos {
+            display: none;
+        }
+    
+        /* Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            color: white;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #1c1a1a;
+            font-weight: bold;
+            color: #f3f2f2;
+        }
+    
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    
+        .modal.open {
+            display: block;
+        }
+    
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        .modal-header h2 {
+            margin: 0;
+            color: #333333;
+        }
+    
+        .modal-close {
+            cursor: pointer;
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .modal-close:hover {
+            background-color: #bd2130;
+        }
+    
+        .navbar {
+            background-color: #000000;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+    
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+            float: left;
+            margin-left: 10px;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .modal2 {
+            display: none;
+            position: left;
+            z-index: 1;
+            left: 1000px;
+            top: 0;
+            width: 1100px;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(110, 109, 109, 0.5);
+        }
+
+        .modal-content2 {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .BotaoFechar {
+            color: #ffffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .BotaoFechar:hover,
+        .BotaoFechar:focus {
+            color: rgb(242, 5, 5);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #VisualizarPDF {
+            width: 600px;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/Sistema_de_Sao_Jorge/IMG/F-Sao-jorge.png" alt="Logo" class="logo">
+        <a href="/Sistema_de_Sao_Jorge/-TelaDoAdministrador.html"><i class="fas fa-home"></i> Home</a>
+        <a href="/Sistema_de_Sao_Jorge/SuporteUsuarios.html"><i class="fas fa-headset"></i> Suporte</a>
+        <a href="ContasAPagar.html"><i class="fas fa-file-invoice-dollar"></i> Contas a Pagar</a>
+        <a href="ContasAReceber.html"><i class="fas fa-file-invoice-dollar"></i>Contas a Receber</a>
+        <a href="Orçamentos.html"><i class="fas fa-file-invoice-dollar"></i>Orçamentos</a>
+        <a href="RelatoriosFinanceiros-AnáliseDeCustos.html"><i class="fas fa-file-invoice-dollar"></i>Relatórios - Analise de Custo</a>
+        <a href="#about" onclick="carregarAtividade('/Sistema_de_Sao_Jorge/TesteManual.pdf')"><i class="fas fa-question-circle"></i> Manual do Usuário</a>
+    </div>
+    
+    <div id="pdfModal" class="modal2" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="BotaoFechar" onclick="fecharModal()">&times;</span>
+            <iframe id="VisualizarPDF"></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <h1><br><br>Fluxo de Caixa</h1>
+        
+        <button class="botao" onclick="openModal()">+ Adicionar Conta</button>
+
+        <input type="text" id="searchInput" placeholder="Pesquisar por nome do cliente">
+
+        <button class="botao" onclick="openModal2()">Visualizar PDF</button>
+        <option value=""></option>
+        <button class="botao" onclick="openModal3()">+ Adicionar Receita</button>
+
+        <button class="botao" onclick="openModal4()">+ Adicionar Despesa</button>
+
+        <button class="botao" onclick="openModal5()">+ Adicionar Custo</button>
+
+        <button class="botao" onclick="openModal6()">+ Adicionar Custo Fixo</button>
+
+        <button class="botao" onclick="openModal7()">+ Adicionar Custo Variável</button>
+
+        <button class="botao" onclick="openModal8()">+ Adicionar Custo Extra</button>
+
+        <button class="botao" onclick="openModal9()">+ Adicionar Custo Adicional</button>
+
+        <button class="botao" onclick="openModal10()">+ Adicionar Custo Adicional Extra</button>
+
+        <button class="botao" onclick="openModal11()">+ Adicionar Custo Adicional Variável</button>
+
+        <button class="botao" onclick="openModal12()">+ Adicionar Custo Adicional Fixo</button>
+
+        <table id="accountTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Cliente</th>
+                    <th>CPF</th>
+                    <th>Valor</th>
+                    <th>Data de Vencimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                    <th>Selecionar</th> 
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-header">
+            <h2>Editar Conta a Receber</h2>
+            <button class="modal-close" onclick="closeModal()">X</button>
+        </div>
+        <form id="editForm">
+            <input type="hidden" id="editID">
+            <label for="editNomeCliente">Nome do Cliente:</label>
+            <input type="text" id="editNomeCliente" name="NomeCliente" required>
+
+            <label for="editCPF">CPF:</label>
+            <input type="text" id="editCPF" name="CPF" required>
+
+            <label for="editValor">Valor:</label>
+            <input type="text" id="editValor" name="Valor" required>
+
+            <label for="editDataVencimento">Data de Vencimento:</label>
+            <input type="date" id="editDataVencimento" name="DataVencimento" required>
+
+            <label for="editStatus">Status:</label>
+            <select id="editStatus" name="Status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+            </select>
+
+            <button type="button" onclick="saveEdit()">Salvar</button>
+        </form>
+    </div>

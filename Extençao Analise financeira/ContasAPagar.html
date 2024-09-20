@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Sistema de Contas a Pagar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #222222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+    
+        .container {
+            color: white;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #393838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e3e3e3;
+        }
+    
+        form {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #0d264e;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #f0e8e8;
+            color: #000000;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            color: white;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #1c1a1a;
+            font-weight: bold;
+            color: #f3f2f2;
+        }
+    
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    
+        .modal.open {
+            display: block;
+        }
+    
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        .modal-header h2 {
+            margin: 0;
+            color: #333333;
+        }
+    
+        .modal-close {
+            cursor: pointer;
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .modal-close:hover {
+            background-color: #bd2130;
+        }
+    
+        .navbar {
+            background-color: #000000;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+    
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+            float: left;
+            margin-left: 10px;
+        }
+    
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .modal2 {
+            display: none;
+            position: left;
+            z-index: 1;
+            left: 1000px;
+            top: 0;
+            width: 1100px;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(110, 109, 109, 0.5);
+        }
+
+        .modal-content2 {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .BotaoFechar {
+            color: #ffffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .BotaoFechar:hover,
+        .BotaoFechar:focus {
+            color: rgb(242, 5, 5);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #VisualizarPDF {
+            width: 600px;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/Sistema_de_Sao_Jorge/IMG/F-Sao-jorge.png" alt="Logo" class="logo">
+        <a href="/Sistema_de_Sao_Jorge/-TelaDoAdministrador.html"><i class="fas fa-home"></i> Home</a>
+        <a href="/Sistema_de_Sao_Jorge/SuporteUsuarios.html"><i class="fas fa-headset"></i> Suporte</a>
+        <a href="ContasAReceber.html"><i class="fas fa-file-invoice-dollar"></i> Contas a Receber</a>
+        <a href="FluxoDeCaixa.html"><i class="fas fa-chart-line"></i> Fluxo de Caixa</a>
+        <a href="Orçamentos.html"><i class="fas fa-file-invoice-dollar"></i> Orçamentos</a>
+        <a href="RelatoriosFinanceiros-AnáliseDeCustos.html"><i class="fas fa-file-invoice-dollar"></i> Relatórios - Analise de Custo</a>
+        <a href="#about" onclick="carregarAtividade('/Sistema_de_Sao_Jorge/TesteManual.pdf')"><i class="fas fa-question-circle"></i> Manual do Usuário</a>
+    </div>
+    
+    <div id="pdfModal" class="modal2" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="BotaoFechar" onclick="fecharModal()">&times;</span>
+            <iframe id="VisualizarPDF"></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Cadastro de Contas a Pagar</h1>
+        <button onclick="openModal('modalCadastro')">Adicionar Conta a Pagar</button>
+        <button onclick="openModal('modalFornecedor')">Cadastrar Fornecedor</button>
+        
+        <table id="contasTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fornecedor</th>
+                    <th>Valor</th>
+                    <th>Data de Vencimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="modalCadastro">
+        <div class="modal-header">
+            <h2>Adicionar Conta a Pagar</h2>
+            <button class="modal-close" onclick="closeModal('modalCadastro')">X</button>
+        </div>
+        <form id="cadastroForm" onsubmit="event.preventDefault(); submitContaPagar();">
+            <label for="fornecedor">Fornecedor:</label>
+            <select id="fornecedor" required>
+            </select>
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" step="0.01" required>
+            <label for="dataVencimento">Data de Vencimento:</label>
+            <input type="date" id="dataVencimento" required>
+            <label for="status">Status:</label>
+            <select id="status" required>
+                <option value="pendente">Pendente</option>
+                <option value="pago">Pago</option>
+                <option value="atrasado">Atrasado</option>
+            </select>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+
+    <div class="modal" id="modalFornecedor">
+        <div class="modal-header">
+            <h2>Cadastrar Fornecedor</h2>
+            <button class="modal-close" onclick="closeModal('modalFornecedor')">X</button>
+        </div>
+        <form id="fornecedorForm" onsubmit="event.preventDefault(); submitFornecedor();">
+            <label for="nomeFornecedor">Nome:</label>
+            <input type="text" id="nomeFornecedor" required>
+            <label for="cnpjFornecedor">CNPJ:</label>
+            <input type="text" id="cnpjFornecedor" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <div class="modal" id="modalEditar">
+        <div class="modal-header">
+            <h2>Editar Conta a Pagar</h2>
+            <button class="modal-close" onclick="closeModal('modalEditar')">X</button>
+        </div>
+        <form id="editarForm" onsubmit="event.preventDefault(); submitEditar();">
+            <input type="hidden" id="editId" value="">
+            <label for="editFornecedor">Fornecedor:</label>
+            <select id="editFornecedor" required>
+
+                
+            </select>
+            <label for="editValor">Valor:</label>
+            <input type="number" id="editValor" step="0.01" required>
+            <label for="editDataVencimento">Data de Vencimento:</label>
+            <input type="date" id="editDataVencimento" required>
+            <label for="editStatus">Status:</label>
+            <select id="editStatus" required>
+                <option value="pendente">Pendente</option>
+                <option value="pago">Pago</option>
+                <option value="atrasado">Atrasado</option>
+            </select>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <script>
+         async function carregarAtividade(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Não foi possível carregar a atividade.');
+                }
+                const blob = await response.blob();
+                const objectURL = URL.createObjectURL(blob);
+
+                abrirModal(objectURL);
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        function abrirModal(url) {
+            const modal = document.getElementById('pdfModal');
+            const VisualizarPDF = document.getElementById('VisualizarPDF');
+
+            VisualizarPDF.src = url;
+            modal.style.display = 'block';
+        }
+        function fecharModal() {
+            const modal = document.getElementById('pdfModal');
+            modal.style.display = 'none';
+        }
+    </script>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('open');
+            loadFornecedores();
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('open');
+        }
+
+        function loadFornecedores() {
+            fetch('CP-php/fetch_fornecedores.php')
+                .then(response => response.json())
+                .then(data => {
+                    const fornecedorSelect = document.getElementById('fornecedor');
+                    const editFornecedorSelect = document.getElementById('editFornecedor');
+                    fornecedorSelect.innerHTML = '';
+                    editFornecedorSelect.innerHTML = '';
+                    data.forEach(fornecedor => {
+                        let option = document.createElement('option');
+                        option.value = fornecedor.id;
+                        option.textContent = fornecedor.nome;
+                        fornecedorSelect.appendChild(option);
+
+                        let editOption = document.createElement('option');
+                        editOption.value = fornecedor.id;
+                        editOption.textContent = fornecedor.nome;
+                        editFornecedorSelect.appendChild(editOption);
+                    });
+                });
+        }
+
+        function submitContaPagar() {
+            const fornecedorId = document.getElementById('fornecedor').value;
+            const valor = document.getElementById('valor').value;
+            const dataVencimento = document.getElementById('dataVencimento').value;
+            const status = document.getElementById('status').value;
+
+            fetch('CP-php/insert_conta_pagar.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ fornecedorId, valor, dataVencimento, status }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Conta a pagar adicionada com sucesso!');
+                        closeModal('modalCadastro');
+                        loadContasPagar();
+                    } else {
+                        alert('Erro ao adicionar conta a pagar. Por favor, tente novamente.');
+                    }
+                });
+        }
+
+        function loadContasPagar() {
+    fetch('CP-php/fetch_contas_pagar.php')
+        .then(response => response.json())
+        .then(data => {
+            const contasTable = document.getElementById('contasTable').getElementsByTagName('tbody')[0];
+            contasTable.innerHTML = '';
+            data.forEach(conta => {
+                let row = contasTable.insertRow();
+                row.innerHTML = `
+                    <td>${conta.id}</td>
+                    <td>${conta.fornecedor_nome} - ${conta.fornecedor_cnpj}</td>
+                    <td>R$ ${conta.valor}</td>
+                    <td>${conta.data_vencimento}</td>
+                    <td>${conta.status}</td>
+                    <td>
+                        <button onclick="openModalEditar(${conta.id})">Editar</button>
+                        <button onclick="extornarConta(${conta.id})">Extornar</button>
+                    </td>
+                `;
+            });
+        });
+}
+
+        function openModalEditar(id) {
+            fetch('CP-php/fetch_conta_pagar.php?id=' + id)
+                .then(response => response.json())
+                .then(data => {
+                    const modal = document.getElementById('modalEditar');
+                    modal.classList.add('open');
+                    document.getElementById('editId').value = data.id;
+                    document.getElementById('editFornecedor').value = data.fornecedor_id;
+                    document.getElementById('editValor').value = data.valor;
+                    document.getElementById('editDataVencimento').value = data.data_vencimento;
+                    document.getElementById('editStatus').value = data.status;
+                    loadFornecedores();
+                });
+        }
+
+        function submitEditar() {
+            const id = document.getElementById('editId').value;
+            const fornecedorId = document.getElementById('editFornecedor').value;
+            const valor = document.getElementById('editValor').value;
+            const dataVencimento = document.getElementById('editDataVencimento').value;
+            const status = document.getElementById('editStatus').value;
+
+            fetch('CP-php/update_conta_pagar.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, fornecedorId, valor, dataVencimento, status }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Conta a pagar atualizada com sucesso!');
+                        closeModal('modalEditar');
+                        loadContasPagar();
+                    } else {
+                        alert('Erro ao atualizar conta a pagar. Por favor, tente novamente.');
+                    }
+                });
+        }
+
+        function extornarConta(id) {
+            if (confirm('Tem certeza que deseja extornar esta conta a pagar?')) {
+                fetch('CP-php/extornar_conta_pagar.php?id=' + id)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Conta a pagar extornada com sucesso!');
+                            loadContasPagar();
+                        } else {
+                            alert('Erro ao extornar conta a pagar. Por favor, tente novamente.');
+                        }
+                    });
+            }
+        }
+
+        function submitFornecedor() {
+            const nome = document.getElementById('nomeFornecedor').value;
+            const cnpj = document.getElementById('cnpjFornecedor').value;
+
+            fetch('CP-php/insert_fornecedor.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nome, cnpj }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Fornecedor cadastrado com sucesso!');
+                        closeModal('modalFornecedor');
+                        loadFornecedores();
+                    } else {
+                        alert('Erro ao cadastrar fornecedor. Por favor, tente novamente.');
+                    }
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadFornecedores();
+            loadContasPagar();
+        });
+    </script>
+</body>
+</html>
