@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+         body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(0, 24, 30, 255);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('/IMG/Backgraud escuro.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-size: cover;
+                background-attachment: fixed;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #c8c7c7;
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #c8c7c7;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #292525;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button.botao-entrar {
+            background-color: rgba(19, 55, 72, 255);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button.botao-entrar:hover {
+            background-color: rgba(28, 53, 57, 255);
+        }
+    </style>
+</head>
+
+<body class="background">
+    <div class="container">
+        <img src="IMG/Logo Do loguin.png" alt="Logo" style="max-width: 50%; height: auto;">
+        <h1>Fazer Login</h1>
+
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="username" required><br>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" autocomplete="current-password" required><br>
+
+            <button class="botao-entrar" type="button" onclick="fazerLogin()">Entrar</button>
+        </form>
+    </div>
+
+    <script>
+       function fazerLogin() {
+            var email = document.getElementById('email').value;
+            var senha = document.getElementById('senha').value;
+
+            console.log('Tentativa de login:');
+            console.log('Email:', email);
+            console.log('Senha:', senha);
+
+            if (!email || !senha) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+    // Contas a Receber
+    for (var contasAReceberKey in contasAReceber) {
+        if (contasAReceber.hasOwnProperty(contasAReceberKey) && contasAReceber[contasAReceberKey].email === email && contasAReceber[contasAReceberKey].senha === senha) {
+            console.log('Login bem-sucedido como usuário de Contas a Receber!');
+            alert('Login bem-sucedido como usuário de Contas a Receber!');
+            window.location.href = 'Analide_Financeira/ContasAReceber.html';
+            return;
+        }
+    }
+
+    // Contas a Pagar
+    for (var contasAPagarKey in contasAPagar) {
+        if (contasAPagar.hasOwnProperty(contasAPagarKey) && contasAPagar[contasAPagarKey].email === email && contasAPagar[contasAPagarKey].senha === senha) {
+            console.log('Login bem-sucedido como usuário de Contas a Pagar!');
+            alert('Login bem-sucedido como usuário de Contas a Pagar!');
+            window.location.href = 'Analide_Financeira/ContasAPagar.html';
+            return;
+        }
+    }
+
+    // Fluxo de Caixa-Orçamentos
+    for (var fluxoDeCaixaKey in fluxoDeCaixa) {
+        if (fluxoDeCaixa.hasOwnProperty(fluxoDeCaixaKey) && fluxoDeCaixa[fluxoDeCaixaKey].email === email && fluxoDeCaixa[fluxoDeCaixaKey].senha === senha) {
+            console.log('Login bem-sucedido como usuário de Fluxo de Caixa!');
+            alert('Login bem-sucedido como usuário de Fluxo de Caixa!');
+            window.location.href = 'Analide_Financeira/FluxoDeCaixa-Orçamentos.html';
+            return;
+        }
+    }
+    // Relatórios Financeiros-Análise de Custos
+    for (var relatoriosFinanceirosKey in relatoriosFinanceiros) {
+        if (relatoriosFinanceiros.hasOwnProperty(relatoriosFinanceirosKey) && relatoriosFinanceiros[relatoriosFinanceirosKey].email === email && relatoriosFinanceiros[relatoriosFinanceirosKey].senha === senha) {
+            console.log('Login bem-sucedido como usuário de Relatórios Financeiros!');
+            alert('Login bem-sucedido como usuário de Relatórios Financeiros!');
+            window.location.href = 'Analide_Financeira/RelatoriosFinanceiros-AnáliseDeCustos.html';
+            return;
+        }
+    }
+    console.log('Falha no login. Verifique suas credenciais.');
+    alert('Falha no login. Verifique suas credenciais.');
+}
+    </script>
+
+    <script>
+        var contasAReceber = {
+    'usuario1': { email: 'contasareceber1@croesus.com.br', senha: '123' },
+    'usuario2': { email: 'contasareceber2@croesus.com.br', senha: '123' }
+};
+
+var contasAPagar = {
+    'usuario1': { email: 'contasapagar1@croesus.com.br', senha: '123' },
+    'usuario2': { email: 'contasapagar2@croesus.com.br', senha: '123' }
+};
+
+var fluxoDeCaixa = {
+    'usuario1': { email: 'fluxodecaixa1@croesus.com.br', senha: '123' },
+    'usuario2': { email: 'fluxodecaixa2@croesus.com.br', senha: '123' }
+};
+
+var relatoriosFinanceiros = {
+    'usuario1': { email: 'relatoriosfinanceiros1@croesus.com.br', senha: '123' },
+    'usuario2': { email: 'relatoriosfinanceiros2@croesus.com.br', senha: '123' }
+};
+
+    </script>
+</body>
+
+</html>

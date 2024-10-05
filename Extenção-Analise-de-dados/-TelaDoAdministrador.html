@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: url('/IMG/Fundo preto e Dourado.avif');
+        }
+        
+
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        #menu-servicos {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 999;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        #menu-servicos h2 {
+            margin-bottom: 20px;
+        }
+
+        #menu-servicos .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #menu-servicos .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        #menu-servicos a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-servicos a i {
+            margin-right: 10px;
+        }
+
+        #menu-servicos a:hover {
+            color: #ffff00;
+        }
+
+        #conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        #descricao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(57, 52, 6, 0.708);
+            margin-top: 10px;
+            width: 80%;
+            background: rgb(0, 0, 0);
+        }
+
+        .descricao-texto {
+            flex: 1;
+            padding: 20px;
+            color: white;
+        }
+
+        .descricao-imagem {
+            flex: 1;
+            position: relative;
+        }
+
+        .descricao-imagem img {
+            max-width: 100%;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .descricao-imagem:hover img {
+            transform: scale(1.1);
+        }
+
+        .titulo-sobre-imagem {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: rgba(49, 52, 59, 255);
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        #botao-acesso:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px 0;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .rodape {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .informacoes-contato {
+            text-align: right;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(9, 9, 9, 0.8);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            left: 100%;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid #000000;
+            border-radius: 10px;
+            background-color: transparent;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            z-index: 1;
+        }
+
+        .submenu a {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .dropdown.active .submenu.active {
+            display: block;
+            top: 0;
+            left: 100%;
+        }
+
+        .dropdown .dropdown-content a:hover {
+            background-color: transparent;
+            background-color: #000000;
+            border-radius: 10px;
+        }
+
+        .submenu.financeiro,
+        .submenu.administracao-rh,
+        .submenu.administracao-geral,
+        .submenu.ti,
+        .submenu.marketing-vendas {
+            background-color: rgba(34, 34, 34, 0.8);
+            border-radius: 10px;
+            margin-top: -1px;
+        }
+
+        .submenu.financeiro a,
+        .submenu.administracao-rh a,
+        .submenu.administracao-geral a,
+        .submenu.ti a,
+        .submenu.marketing-vendas a {
+            background-color: transparent;
+            border-bottom: 1px solid #000000;
+            border-radius: 0;
+        }
+
+        .administracao-rh-btn,
+        .administracao-geral-btn,
+        .ti-btn,
+        .marketing-vendas-btn{
+            height: 20px;
+            width: 150px;
+            line-height: normal;
+            box-sizing: content-box;
+        }
+
+        .submenu.administracao-rh,
+        .submenu.administracao-geral,
+        .submenu.ti,
+        .submenu.marketing-vendas {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            z-index: 1;
+        }
+
+        .submenu.administracao-rh.active,
+        .submenu.administracao-geral.active,
+        .submenu.ti.active,
+        .submenu.marketing-vendas.active {
+            display: block;
+            top: 0;
+            left: 100%;
+        }
+
+        .submenu.administracao-rh a:hover,
+        .submenu.administracao-geral a:hover,
+        .submenu.ti a:hover,
+        .submenu.marketing-vendas a:hover{
+            background-color: #000000;
+            border-radius: 10px;
+        }
+
+        #conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        #chat-panel {
+            display: none;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 50%;
+            background-color: #2d2d2d;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            color: white;
+        }
+
+        #chat-header {
+            background-color: #000000;
+            color: #fffcfc;
+            padding: 10px;
+            text-align: right;
+            cursor: pointer;
+        }
+
+        #chat-messages {
+            height: calc(100% - 50px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #userInput {
+            width: calc(100% - 20px);
+            padding: 5px;
+            margin: 0 10px;
+            border: 1px solid #fffdfd;
+            border-radius: 5px;
+        }
+
+        #sendMessageBtn {
+            padding: 5px 10px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+
+       
+    </style>
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <div id="menu-servicos">
+        <div class="logo">
+            <img src="/IMG/Logo 2 hd.png" alt="Logo">
+
+        </div>
+
+        <a href="SuporteUsuarios.html">Suporte Técnico</a>
+        <a href="#">E-mail</a>
+
+        <div class="dropdown" onclick="toggleDropdown(event)">
+            <a href="#" class="dropdown-toggle">Serviços &#9662;</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="toggleSubMenu(event, 'financeiro')">Analise Finançeira&#9662;</a>
+                <div class="submenu financeiro">
+                    <a href="LoguinADM.html">Contas a Pagar</a>
+                    <a href="LoguinADM.html">Contas a Receber</a>
+                    <a href="LoguinADM.html">Fluxo de Caixa e Orçamentos</a>
+                    <a href="LoguinADM.html">Relatórios Financeiros e Análise de Custos</a>
+                </div>
+                
+                <a href="#" onclick="toggleSubMenu(event, 'administracao-rh')" class="administracao-rh-btn">Analise &#9662;</a>
+                <div class="submenu administracao-rh">
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Cadastro de Funcionarios</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Gerenciamento de folha de pagamento</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Controle de horas trabalhadas</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Administração de benefícios e férias</a>
+                </div>
+
+                <a href="#" onclick="toggleSubMenu(event, 'administracao-geral')" class="administracao-geral-btn">Administração Geral &#9662;</a>
+                <div class="submenu administracao-geral">
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Controle de usuários e permissões</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Gerenciamento de projetos e atividades</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Relatórios de desempenho global</a>
+                </div>
+
+                <a href="#" onclick="toggleSubMenu(event, 'ti')" class="ti-btn">Tecnologia da Informação (TI) &#9662;</a>
+                <div class="submenu ti">
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'ti')">Controle de ativos de TI</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'ti')">Registro e resolução de tickets de suporte</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'ti')">Segurança e acesso a sistemas</a>
+                </div>
+                <a href="#" onclick="toggleSubMenu(event, 'marketing-vendas')" class="marketing-vendas-btn">Marketing e Vendas &#9662;</a>
+            <div class="submenu marketing-vendas">
+                <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'marketing-vendas')">Acompanhamento de campanhas de marketing</a>
+                <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'marketing-vendas')">Registro de vendas e relatórios de desempenho</a>
+                <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'marketing-vendas')">Gestão de leads e clientes</a>
+            </div>
+            </div>
+        </div>
+        <a href="index.html" style="color: red;">Sair</a></li>
+    </div>
+
+    <div id="conteudo">
+        <section id="descricao">
+            <div class="descricao-texto">
+                <h2>Croesus: Recursos do Sistema</h2>
+                <p>O sistema apresenta funcionalidades específicas para diferentes áreas operacionais, proporcionando eficiência e controle. Alguns dos recursos incluem:</p>
+                <ul>
+                    <li><strong>Financeiro e Contabilidade:</strong> Gerenciamento de contas a pagar, contas a receber, fluxo de caixa, orçamentos, relatórios financeiros e análise de custos.</li>
+                    <li><strong>Recursos Humanos:</strong> Módulo de Recursos Humanos, gerenciamento de folha de pagamento, controle de horas trabalhadas, administração de benefícios e férias.</li>
+                    <li><strong>Administração Geral:</strong> Controle de usuários e permissões, gerenciamento de projetos e atividades, relatórios de desempenho global.</li>
+                    <li><strong>Tecnologia da Informação (TI):</strong> Controle de ativos de TI, registro e resolução de tickets de suporte, segurança e acesso a sistemas.</li>
+                </ul>
+                <p>Cada funcionário tem acesso restrito às funcionalidades relacionadas à sua área de atuação, garantindo segurança e eficiência nas operações.</p>
+            </div>
+
+            <div class="descricao-imagem">
+                <img src="IMG/h21.jpeg" alt="Imagem Grande">
+            </div>
+        </section>
+    </div>
+
+   <footer>
+        <div class="rodape">
+
+        </div>
+        <p class="direitos-autorais">&copy; Menu Administrativo.</p>
+    </footer>
+
+    <div id="chat-panel">
+        <div id="chat-header" onclick="toggleChatPanel()">Fechar</div>
+        <div id="chat-messages"></div>
+        <div id="userInputContainer">
+            <input type="text" id="userInput" placeholder="Digite sua mensagem" onkeypress="handleKeyPress(event)">
+            <button id="sendMessageBtn" onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+    
+
+
+    <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
+
+  
+    <script>
+        function toggleSubMenu(event, submenuClass) {
+            event.stopPropagation();
+    
+            var submenus = document.querySelectorAll(".submenu");
+            submenus.forEach(function (submenu) {
+                if (!submenu.classList.contains(submenuClass)) {
+                    submenu.classList.remove("active");
+                }
+            });
+    
+            var currentSubMenu = document.querySelector("." + submenuClass);
+            if (currentSubMenu) {
+                currentSubMenu.classList.toggle("active");
+            }
+        }
+    
+        function toggleChatPanel() {
+            var chatPanel = document.getElementById('chat-panel');
+            chatPanel.style.display = (chatPanel.style.display === 'none' || chatPanel.style.display === '') ? 'flex' : 'none';
+        }
+    
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value;
+            var chatMessages = document.getElementById('chat-messages');
+    
+            chatMessages.innerHTML += `<div><strong>Você:</strong> ${userInput}</div>`;
+    
+            const botResponse = getChatBotResponse(userInput);
+    
+            chatMessages.innerHTML += `<div><strong>Chatbot:</strong> ${botResponse}</div>`;
+    
+            document.getElementById('userInput').value = '';
+        }
+    
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    
+        function getChatBotResponse(userInput) {
+        
+            return "Olá! Como posso ajudar?";
+        }
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            var dropdowns = document.querySelectorAll(".dropdown");
+    
+            function closeAllDropdowns() {
+                dropdowns.forEach(function (dropdown) {
+                    dropdown.classList.remove("active");
+                });
+            }
+    
+            document.addEventListener("click", function () {
+                closeAllDropdowns();
+            });
+    
+            dropdowns.forEach(function (dropdown) {
+                var toggle = dropdown.querySelector(".dropdown-toggle");
+    
+                toggle.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    closeAllDropdowns();
+                    dropdown.classList.toggle("active");
+                });
+            });
+        });
+    </script>
+    
+  
+
+
+</body>
+
+</html>
+
