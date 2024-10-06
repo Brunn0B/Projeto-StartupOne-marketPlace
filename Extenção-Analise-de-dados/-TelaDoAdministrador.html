@@ -72,13 +72,27 @@
         }
 
         #conteudo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin-left: 250px;
-            min-height: 100vh;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-left: 250px;
+    min-height: 100vh;
+    overflow-y: hidden; 
+}
+
+.descricao-texto {
+    max-height: 600px; 
+    overflow-y: auto;  
+    width: 100%;       
+    padding-right: 10px;
+}
+
+.descricao-imagem img {
+    max-width: 100%; 
+    height: auto;   
+}
+
 
         #descricao {
             display: flex;
@@ -359,20 +373,12 @@
                     <a href="LoguinADM.html">Fluxo de Caixa e Orçamentos</a>
                     <a href="LoguinADM.html">Relatórios Financeiros e Análise de Custos</a>
                 </div>
-                
-                <a href="#" onclick="toggleSubMenu(event, 'administracao-rh')" class="administracao-rh-btn">Analise &#9662;</a>
-                <div class="submenu administracao-rh">
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Cadastro de Funcionarios</a>
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Gerenciamento de folha de pagamento</a>
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Controle de horas trabalhadas</a>
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'rh')">Administração de benefícios e férias</a>
-                </div>
-
-                <a href="#" onclick="toggleSubMenu(event, 'administracao-geral')" class="administracao-geral-btn">Administração Geral &#9662;</a>
+            
+                <a href="#" onclick="toggleSubMenu(event, 'administracao-geral')" class="administracao-geral-btn">Analise de usuarios&#9662;</a>
                 <div class="submenu administracao-geral">
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Controle de usuários e permissões</a>
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Gerenciamento de projetos e atividades</a>
-                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Relatórios de desempenho global</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Gerenciar Usuários </a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Analise de logs de acesso</a>
+                    <a href="LoguinADM.html" onclick="toggleSubMenu(event, 'adm-geral')">Media de acessos</a>
                 </div>
 
                 <a href="#" onclick="toggleSubMenu(event, 'ti')" class="ti-btn">Tecnologia da Informação (TI) &#9662;</a>
@@ -395,22 +401,52 @@
     <div id="conteudo">
         <section id="descricao">
             <div class="descricao-texto">
-                <h2>Croesus: Recursos do Sistema</h2>
-                <p>O sistema apresenta funcionalidades específicas para diferentes áreas operacionais, proporcionando eficiência e controle. Alguns dos recursos incluem:</p>
+                <h2>Croesus: Sistema de Análise Empresarial</h2>
+    
+                <p>
+                    O <strong>Croesus</strong> foi desenvolvido para aprimorar a análise e gestão empresarial, oferecendo soluções em finanças, administração e TI, com base em dados precisos para decisões estratégicas.
+                </p>
+    
+                <h3>Principais Funcionalidades:</h3>
+    
                 <ul>
-                    <li><strong>Financeiro e Contabilidade:</strong> Gerenciamento de contas a pagar, contas a receber, fluxo de caixa, orçamentos, relatórios financeiros e análise de custos.</li>
-                    <li><strong>Recursos Humanos:</strong> Módulo de Recursos Humanos, gerenciamento de folha de pagamento, controle de horas trabalhadas, administração de benefícios e férias.</li>
-                    <li><strong>Administração Geral:</strong> Controle de usuários e permissões, gerenciamento de projetos e atividades, relatórios de desempenho global.</li>
-                    <li><strong>Tecnologia da Informação (TI):</strong> Controle de ativos de TI, registro e resolução de tickets de suporte, segurança e acesso a sistemas.</li>
+                    <li><strong>Suporte Técnico:</strong> Gerenciamento de tickets e suporte aos usuários.</li>
+                    <li><strong>E-mail:</strong> Comunicação interna eficiente.</li>
                 </ul>
-                <p>Cada funcionário tem acesso restrito às funcionalidades relacionadas à sua área de atuação, garantindo segurança e eficiência nas operações.</p>
-            </div>
+    
+                <h4>Análise Financeira:</h4>
+                <ul>
+                    <li>Contas a Pagar e Receber, Fluxo de Caixa, Relatórios Financeiros.</li>
+                </ul>
+    
+                <h4>Administração Geral:</h4>
+                <ul>
+                    <li>Gerenciamento de Usuários, Logs de Acesso, Relatórios de Acessos.</li>
+                </ul>
+    
+                <h4>Tecnologia da Informação (TI):</h4>
+                <ul>
+                    <li>Ativos de TI, Resolução de Tickets, Segurança.</li>
+                </ul>
+    
+                <h4>Marketing e Vendas:</h4>
+                <ul>
+                    <li>Campanhas de Marketing, Relatórios de Vendas, Gestão de Leads.</li>
+                </ul>
+    
+                <p>
+                    O sistema garante segurança e eficiência com módulos flexíveis, permitindo controle e visibilidade das operações empresariais.
+                </p>
 
+                <p>.</p>
+            </div> 
+    
             <div class="descricao-imagem">
-                <img src="IMG/h21.jpeg" alt="Imagem Grande">
+                <img src="/IMG/_feb886f3-ce31-4cde-bba2-3dd10a89ba69.jpeg" alt="Imagem Grande">
             </div>
         </section>
     </div>
+    
 
    <footer>
         <div class="rodape">
