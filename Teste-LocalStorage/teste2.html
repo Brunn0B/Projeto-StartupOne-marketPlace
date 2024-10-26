@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Fiscal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfkit/0.8.3/pdfkit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blob-stream/0.1.3/blob-stream.js"></script>
+</head>
+<body>
+
+<h1>Nota Fiscal de Compras</h1>
+
+<ul id="cartItems"></ul>
+<div id="cartEmptyMessage" style="display: none;">Carrinho vazio</div>
+
+<button onclick="confirmPurchase()">Finalizar Compra</button>
+
+<div id="confirmPopup" style="display: none;">
+    <div id="popupContent"></div>
+    <button onclick="closeConfirmPopup()">Fechar</button>
+</div>
+
+<ul id="boughtItems"></ul>
+<div id="boughtContainer" style="display: none;"></div>
+
+<script>
+    // Gera um número aleatório para a nota fiscal
+    function generateInvoiceNumber() {
+        return Math.floor(Math.random() * 1000000) + 1;
+    }
+
+    // Função para carregar itens do carrinho
+    function loadCartItems() {
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartEmptyMessage = document.getElementById('cartEmptyMessage');
+
+        cartItemsContainer.innerHTML = '';
+
+        const storage = window.localStorage;
+        for (const key in storage) {
+            if (key.includes('product_')) {
+                const product = JSON.parse(storage.getItem(key));
+                const listItem = document.createElement('li');
+                listItem.className = 'cartItem';
+                listItem.innerHTML = `
+                    <div>
+                        <h3>${product.TITULO}</h3>
+                        <p>Preço: R$ ${product.PREÇO}</p>
+                        <p>Marca: ${product.MARCA}</p>
+                        <p>Tamanho: ${product.TAMANHO}</p>
+                        <p>Estado: ${product.ESTADO}</p>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(listItem);
+            }
+        }
+
+        if (cartItemsContainer.children.length === 0) {
+            cartEmptyMessage.style.display = 'block';
+        } else {
+            cartEmptyMessage.style.display = 'none';
+        }
+    }
+
+    // Função para confirmar a compra e gerar o PDF da nota fiscal
+    function confirmPurchase() {
+        alert('Compra efetuada com sucesso!');
+
+        const cartItemsContainer = document.getElementById('cartItems');
+        const boughtItemsContainer = document.getElementById('boughtItems');
+
+        const storage = window.localStorage;
+        const currentUserData = JSON.parse(storage.getItem('currentUser'));
+        const userEmail = currentUserData.email;
+
+        for (const key in storage) {
+            if (key.includes('product_')) {
+                const product = JSON.parse(storage.getItem(key));
+                if (product.OPERAÇÃO === 'Comprar') {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'boughtItem';
+                    listItem.innerHTML = `
+                        <div>
+                            <h3>${product.TITULO}</h3>
+                            <p>Preço: R$ ${product.PREÇO}</p>
+                            <p>Marca: ${product.MARCA}</p>
+                            <p>Tamanho: ${product.TAMANHO}</p>
+                            <p>Estado: ${product.ESTADO}</p>
+                        </div>
+                    `;
+                    boughtItemsContainer.appendChild(listItem);
+
+                    let purchaseHistory = JSON.parse(storage.getItem(userEmail + '_purchaseHistory')) || [];
+                    const date = new Date().toLocaleDateString();
+                    const purchase = { date, product: product.TITULO, price: product.PREÇO };
+                    purchaseHistory.push(purchase);
+                    storage.setItem(userEmail + '_purchaseHistory', JSON.stringify(purchaseHistory));
+
+                    storage.removeItem(key);
+                }
+            }
+        }
+
+        document.getElementById('boughtContainer').style.display = 'block';
+        loadCartItems();
+        closeConfirmPopup();
+        saveAsPDF(storage);
+    }
+
+    // Função para gerar o PDF da nota fiscal
+    function saveAsPDF(storage) {
+        const boughtItemsContainer = document.getElementById('boughtItems');
+        const invoiceContent = [];
+
+        const currentUser = JSON.parse(storage.getItem('currentUser'));
+        const profile = JSON.parse(storage.getItem(`${currentUser.email}_profile`));
+
+        let subtotal = 0;
+        for (const listItem of boughtItemsContainer.children) {
+            const productTitle = listItem.querySelector('h3').textContent;
+            const productPrice = parseFloat(listItem.querySelector('p:nth-child(2)').textContent.replace('Preço: R$ ', ''));
+            const productBrand = listItem.querySelector('p:nth-child(3)').textContent;
+            const productSize = listItem.querySelector('p:nth-child(4)').textContent;
+            const productCondition = listItem.querySelector('p:nth-child(5)').textContent;
+            invoiceContent.push([productTitle, productPrice, productBrand, productSize, productCondition]);
+            subtotal += productPrice;
+        }
+
+        const taxRate = 0.1;
+        const tax = subtotal * taxRate;
+        const total = subtotal + tax;
+        const deliveryFee = 5.00;
+
+        const doc = new PDFDocument();
+        const stream = doc.pipe(blobStream());
+
+        // Título e Informações da Empresa
+        doc.fontSize(18).text('Nota Fiscal Eletrônica', 285, 60).moveDown();
+        doc.fontSize(16).text('Empresa: Croesus LTDA', 70, 120).moveDown();
+        doc.fontSize(10).text(`N° da Nota: ${generateInvoiceNumber()}`, 471, 61);
+        doc.text('Data de Emissão: ' + new Date().toLocaleDateString()).moveDown();
+        doc.rect(55, 55, 500, 90).stroke();
+
+        // Informações do Cliente
+        doc.fontSize(10).text(`Nome: ${profile.name}`, 55, 160);
+        doc.text(`Email: ${currentUser.email}`, 55, 175);
+        doc.text(`CPF: ${profile.cpf}`, 55, 190);
+        doc.text(`Endereço: ${profile.address.street}, ${profile.address.city} - ${profile.address.state}`, 55, 205);
+
+        // Itens Comprados
+        let y = 240;
+        doc.fontSize(12).text('Itens:', 55, y);
+        doc.fontSize(10);
+        y += 20;
+        invoiceContent.forEach(item => {
+            doc.text(`Produto: ${item[0]} | Marca: ${item[2]} | Tamanho: ${item[3]} | Estado: ${item[4]}`, 55, y);
+            doc.text(`Preço: R$ ${item[1].toFixed(2)}`, 400, y);
+            y += 15;
+        });
+
+        // Subtotal, Impostos e Total
+        y += 20;
+        doc.fontSize(12).text('Subtotal: R$ ' + subtotal.toFixed(2), 55, y);
+        doc.text('Imposto (10%): R$ ' + tax.toFixed(2), 55, y + 15);
+        doc.text('Frete: R$ ' + deliveryFee.toFixed(2), 55, y + 30);
+        doc.text('Total: R$ ' + (total + deliveryFee).toFixed(2), 55, y + 45);
+
+        doc.end();
+
+        stream.on('finish', function () {
+            const url = stream.toBlobURL('application/pdf');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'nota_fiscal.pdf';
+            a.click();
+        });
+    }
+
+    window.onload = function() {
+        loadCartItems();
+    };
+</script>
+
+</body>
+</html>

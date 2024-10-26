@@ -308,7 +308,6 @@ function saveAsPDF(storage) {
     const boughtItemsContainer = document.getElementById('boughtItems');
     const invoiceContent = [];
 
-    // Recuperando dados do usuário e do cartão
     const currentUser = JSON.parse(storage.getItem('currentUser'));
     console.log(currentUser);
     const cardData = JSON.parse(storage.getItem(`${currentUser.email}_cardData`));
@@ -337,8 +336,10 @@ function saveAsPDF(storage) {
 
     
     doc.fontSize(18).text('Nota Fiscal Eletrônica',285, 60).moveDown();
+
+  
     doc.fontSize(18).text('Empresa: Croesus LTDA',70, 120).moveDown();
-    doc.fontSize(18).text('Projeto UPX3 - Facens',70, 60).moveDown();
+    doc.fontSize(16).text('Projeto StartupOne - Facens',70, 60).moveDown();
     doc.fontSize(10).text(`N° da Nota: ${generateInvoiceNumber()}`,471,61);
     doc.text('Data de Emissão: ' + new Date().toLocaleDateString()).moveDown();
     doc.rect(464, 60, 70, 65).stroke();
@@ -351,15 +352,17 @@ function saveAsPDF(storage) {
     doc.font('Helvetica').fontSize(10);
     doc.text(`Nome/Razão Social: ${profile.name}`, 55, 160);
     doc.text(`Email: ${currentUser.email}`, 55, 175);
-    doc.text(`CPF: ${profile.cpf}`, 55, 190);
+    doc.text(`CPF: ${profile.cpf}`, 55, 190);7
+    doc.text('Usuário: ' + currentUser.userType, 55, 205);
 
-    doc.text('Dados do Cartão:', 300, 160);
-    doc.text(`Número do Cartão: ${cardData.cardNumber}`, 300, 175);
-    doc.text(`Titular do Cartão: ${cardData.cardHolder}`, 300, 190);
-    doc.text(`Expiração: ${cardData.expirationMonth}/${cardData.expirationYear}`, 300, 205);
-    doc.text(`CCV: ${cardData.ccv}`, 300, 220);
+    doc.text('Endereço de Entrega:', 300, 155);
+    doc.text(`Estado: ${profile.address.state}`, 300, 170);
+    doc.text(`Cidade: ${profile.address.city}`, 300, 185);
+    doc.text(`Bairro: ${profile.address.neighborhood}`, 300, 200);
+    doc.text(`CEP: ${profile.address.cep}`, 300, 215);
+    doc.text(`Rua: ${profile.address.street}`, 300, 230);
 
-    doc.moveTo(50, 240).lineTo(550, 240).stroke();
+    doc.moveTo(60, 240).lineTo(550, 240).stroke();
 
 doc.font('Helvetica-Bold').fontSize(11);
 doc.moveDown();

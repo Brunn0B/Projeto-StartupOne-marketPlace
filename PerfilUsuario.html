@@ -299,7 +299,7 @@
 <body>
     <nav>
         <div class="logo">
-            <img src="./IMG-Novas/LogoEasyWalk222.png" alt="Logo">
+            <img src="./IMG/Logo_Pevivace.png" alt="Logo">
         </div>
         <ul>
             <li><a href="#" onclick="showSection('profile')">Perfil</a></li>
@@ -493,6 +493,7 @@
                 <div class="form-group">
                     <label for="productImage">Imagem do Produto:</label>
                     <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                    
                 </div>
     
                 
@@ -543,17 +544,27 @@
 
     <script>
     let userEmail;
-let currentUser;
-let cardData;
+    let userCPF;
+    let userName;
+    let currentUser;
+    let cardData;
 
 function fillProfileFields() {
     const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
         const currentUserInfo = JSON.parse(currentUserData);
         userEmail = currentUserInfo.email;
+        userCPF= currentUserInfo.cpf;
+        userName = currentUserInfo.name;
+
+
 
         currentUser = JSON.parse(localStorage.getItem(userEmail + '_profile')) || {};
+        correntUser = JSON.parse(localStorage.getItem(userName + '_profile')) || {};
+        correntUser =  JSON.parse(localStorage.getItem(userCPF + '_profile')) || {};
         const userType = currentUserInfo.userType || '';
+
+        console.log('User email:', userEmail);
 
         cardData = JSON.parse(localStorage.getItem(userEmail + '_cardData'));
 
