@@ -1,0 +1,84 @@
+@media (max-width: 768px) {
+    .logo {
+        display: none;
+    }
+
+    nav {
+        width: 100%;
+        padding: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-icon {
+        font-size: 24px;
+        cursor: pointer;
+        width: 150px;
+        top: 10px;
+        color: black;
+        display: block;
+    }
+
+    .menu-options {
+        display: none;
+        flex-direction: column;
+        top: 0px;
+        right: 0px;
+        background-color: rgba(51, 51, 51, 0);
+        width: 100%;
+        padding: 10px;
+        gap: 5px;
+    }
+    
+    .menu-options a {
+        margin: 0;
+        padding: 1px;
+    }
+    
+    
+
+    .menu-options.active {
+        display: flex;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    section {
+        margin: 5px;
+        flex-direction: column;
+    }
+
+    #profile form label,
+    #profile form input,
+    #profile form select,
+    #seller form label,
+    #seller form input,
+    #seller form select {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #profile form button,
+    #seller form button {
+        margin-left: 0; 
+        width: 100%; 
+    }
+
+    .productContainer {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .product-form input[type="text"],
+    .product-form textarea,
+    .product-form input[type="file"] {
+        width: calc(100% - 30px); 
+    }
+
+    #menu {
+        display: none;
+    }
+}

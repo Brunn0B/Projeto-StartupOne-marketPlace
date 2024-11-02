@@ -1,0 +1,209 @@
+@media only screen and (max-width: 768px) {
+    /* Ajustes Globais */
+    * { 
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: url('/IMG-Novas/IndexCell.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;  
+     }
+
+     .menu-icon {
+        display: block;
+    }
+
+    .menu-options {
+        display: none;
+        flex-direction: column;
+      
+        top: 0px;
+        right: -150px;
+        background-color: rgba(51, 51, 51, 0);
+        width: 100%;
+        padding: 10px;
+        gap: 5px;
+    }
+    
+    .menu-options a {
+        margin: 0;
+        padding: 1px;
+    }
+    
+    
+
+    .menu-options.active {
+        display: flex;
+    }
+
+
+    
+    section.banner, section.products, .informacoes, .footer-container {
+        background-color: rgba(255, 255, 255, 0.49);
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    
+
+    section.banner {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-top: 10px;
+        padding: 20px;
+    }
+
+    .banner-content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .banner h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .banner p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .banner button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .carousel {
+        flex-direction: column;
+        animation: none;
+    }
+
+    .carousel img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    section.products {
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .product img {
+        width: 100%;
+        height: auto;
+    }
+
+    .product h3 {
+        font-size: 1.2rem;
+    }
+
+    .product p {
+        font-size: 0.9rem;
+    }
+
+    .product button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .filterButton {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .filterOptions {
+        width: 100%;
+    }
+
+    .informacoes {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .info {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .info-content {
+        padding: 15px;
+    }
+
+    .subcard {
+        width: 90%;
+        left: 5%;
+        transform: translateX(0);
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    footer {
+        padding: 15px 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-column {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .scroll-to-top {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px;
+    }
+
+    .pagination button {
+        padding: 8px 16px;
+        margin: 5px 2px;
+    }
+
+    
+    body.loading:after {
+        width: 30px;
+        height: 30px;
+        margin: -15px 0 0 -15px;
+    }
+    
+}
+
+.sobre {
+    
+    display: none; 
+}
