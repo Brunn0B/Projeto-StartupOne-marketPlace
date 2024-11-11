@@ -1,174 +1,205 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto Detalhes</title>
+    <title>Detalhes do Produto</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
+            background-color: #E6EAF5;
             font-family: Arial, sans-serif;
-            background-color: #d0d8ff;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 900px;
-            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            background-color: #D7DDF0;
+            border-radius: 15px;
             padding: 20px;
-            background-color: #e6eafc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .top-icons {
+        .product-info {
             display: flex;
-            justify-content: flex-end;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .top-icons img {
-            width: 24px;
-            cursor: pointer;
-        }
-
-        .info-section {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .info-text {
+        .product-details {
             flex: 1;
+            margin-right: 20px;
         }
 
-        .info-text h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .product-image {
-            max-width: 200px;
+        .product-details h2 {
+            margin-top: 0;
         }
 
         .description {
-            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            max-height: 100px;
+            overflow-y: auto;
+            padding: 0 10px;
         }
 
-        .buttons {
+        #product-img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .button-container {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
 
-        .buttons button {
-            padding: 10px 15px;
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            color: white;
-            font-weight: bold;
+            font-size: 14px;
         }
 
-        .cart-btn {
-            background-color: #007bff;
+        .button:hover {
+            background-color: #0056b3;
         }
 
-        .buy-btn {
-            background-color: #28a745;
-        }
-
-        .reviews {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f1f3ff;
-            border-radius: 5px;
-            overflow-y: auto;
-            max-height: 200px;
-        }
-
-        .review-item {
+        .stars {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
 
-        .review-item img {
+        .stars label {
+            font-size: 24px;
+            color: #ffc107;
+            cursor: pointer;
+        }
+        
+        .product-review h3 {
+            margin-top: 0;
+        }
+
+        .review-container {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .review {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .review img {
             width: 40px;
+            height: 40px;
             border-radius: 50%;
+            margin-right: 10px;
         }
 
-        .review-text {
-            max-width: 100%;
+        .review h4, .review p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="top-icons">
-            <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Carrinho">
-            <img src="https://img.icons8.com/ios-filled/50/000000/heart.png" alt="Favoritos">
-        </div>
 
-        <div class="info-section">
-            <div class="info-text">
-                <h2>Informações do Comprador Ou Vendedor:</h2>
-                <p>Nome: XXXXXXX XXXXX</p>
-                <p>CEP: XXXXXXX XXX</p>
-                <p>Estado: XXXXX</p>
-                <p>Cidade: XXXXXXXX</p>
-                <p>Bairro: XXXXXXX</p>
-                <p>Rua: XXXXX XXXXX XXXXX</p>
-
-                <p>
-                    <span>★ ★ ★ ★ ☆</span>
-                </p>
-            </div>
-            <div class="product-image">
-                <img src="https://via.placeholder.com/150" alt="Produto">
-            </div>
-        </div>
+<div class="container product-info">
+    <div class="product-details">
+        <h2>Informações do Comprador ou Vendedor:</h2>
+        <p id="name">Nome: </p>
+        <p id="cep">CEP: </p>
+        <p id="state">Estado: </p>
+        <p id="city">Cidade: </p>
+        <p id="neighborhood">Bairro: </p>
+        <p id="street">Rua: </p>
 
         <div class="description">
             <h3>Descrição Mais Detalhada</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit vehicula orci, ut laoreet velit dictum sed.</p>
+            <p id="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
-        <div class="buttons">
-            <button class="cart-btn">Adicionar ao Carrinho</button>
-            <button class="buy-btn">Comprar</button>
+        <div class="button-container">
+            <button class="button">Adicionar ao Carrinho</button>
+            <button class="button">Comprar</button>
         </div>
 
-        <div class="reviews">
-            <h3>Avaliações Referente ao Usuário:</h3>
-            <div class="review-item">
-                <img src="https://via.placeholder.com/40" alt="Avatar">
-                <div class="review-text">
-                    <p><strong>Jorginho do Pneu</strong>: Ótimo Produto estou muito satisfeito</p>
-                </div>
-            </div>
-            <div class="review-item">
-                <img src="https://via.placeholder.com/40" alt="Avatar">
-                <div class="review-text">
-                    <p><strong>Pedro Enforca gato</strong>: Esse vendedor já me vendeu antes não gostei dele, demorou 5 dias para chegar e eu moro na mesma cidade, horrível</p>
-                </div>
-            </div>
-            <div class="review-item">
-                <img src="https://via.placeholder.com/40" alt="Avatar">
-                <div class="review-text">
-                    <p><strong>Jose Amancio do Nascimento</strong>: Já vendi calçados para esse comprador, e ele sempre paga em dia, ótimo comprador</p>
-                </div>
-            </div>
+        <div class="stars">
+            <label>★</label>
+            <label>★</label>
+            <label>★</label>
+            <label>★</label>
+            <label>★</label>
         </div>
     </div>
 
-    <script>
-    </script>
+    <img id="product-img" src="" alt="Imagem do Produto">
+</div>
+
+<div class="container product-review">
+    <h3>Avaliações Referente ao Usuário:</h3>
+    <div class="review-container">
+        <div class="review">
+            <img src="https://via.placeholder.com/40" alt="Avatar">
+            <div>
+                <h4>Usuario Teste</h4>
+                <p>Ótimo Produto, muito bem acabado.</p>
+            </div>
+        </div>
+        <div class="review">
+            <img src="https://via.placeholder.com/40" alt="Avatar">
+            <div>
+                <h4>Usuario Teste2</h4>
+                <p>Poderia melhorar os valores, mas está bom.</p>
+            </div>
+        </div>
+        <div class="review">
+            <img src="https://via.placeholder.com/40" alt="Avatar">
+            <div>
+                <h4>Usuario Teste3</h4>
+                <p>Ótimo para quem precisa de sapato.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Informações do produto
+        const productImgElement = document.getElementById("product-img");
+        const savedImage = localStorage.getItem("productImage-T001"); 
+
+        if (savedImage) {
+            productImgElement.src = savedImage;
+        } else {
+            productImgElement.alt = "Imagem não disponível";
+        }
+
+        const savedDescription = localStorage.getItem("productDescription");
+        if (savedDescription) {
+            document.getElementById("product-description").innerText = savedDescription;
+        }
+
+        document.getElementById("name").innerText += localStorage.getItem("buyerName") || "Não disponível";
+        document.getElementById("cep").innerText += localStorage.getItem("buyerCEP") || "Não disponível";
+        document.getElementById("state").innerText += localStorage.getItem("buyerState") || "Não disponível";
+        document.getElementById("city").innerText += localStorage.getItem("buyerCity") || "Não disponível";
+        document.getElementById("neighborhood").innerText += localStorage.getItem("buyerNeighborhood") || "Não disponível";
+        document.getElementById("street").innerText += localStorage.getItem("buyerStreet") || "Não disponível";
+    });
+</script>
+
 </body>
 </html>

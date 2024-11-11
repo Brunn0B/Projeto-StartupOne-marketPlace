@@ -420,7 +420,7 @@ function refreshPurchaseHistory() {
         return;
     }
     
-    purchaseHistoryList.innerHTML = ''; // Limpa a lista antes de preencher novamente
+    purchaseHistoryList.innerHTML = '';
 
     const storage = window.localStorage;
     const currentUserData = JSON.parse(storage.getItem('currentUser'));
