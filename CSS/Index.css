@@ -114,7 +114,7 @@ justify-content: space-between;
 
 .product {
 width: calc(25% - 20px);
-background-image: linear-gradient(to bottom, rgba(23, 42, 69, 0.774), rgba(2, 1, 33, 0.829));
+background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.829));
 border-radius: 5px;
 box-shadow: 1 0 30px rgba(14, 9, 9, 0.1);
 padding: 20px;
@@ -132,15 +132,15 @@ margin-bottom: 10px;
 .product h3 {
 font-size: 20px;
 margin-bottom: 10px;
-color: #eae0e0;
+color: #000000;
 }
 
 .product p {
-color: #fbf6f6;
+color: #000000;
 }
 
 .product button {
-background-color: #6a97ce;
+background-color:  #ff9900;
 color: #eee7e7;
 border: none;
 padding: 10px 20px;
@@ -383,7 +383,7 @@ nav ul li a:hover {
     position: relative;
     margin: 2em 0;
     padding: 1em 2em;
-    background-color: #d1e7ff;
+    background: #f8f8f87d linear-gradient( #09e6df00, #ffffff1a);
 }
 
 .carousel-track {
@@ -402,7 +402,7 @@ nav ul li a:hover {
 
 .carousel-item img {
     width: 100%;
-    height: 300px;
+    height: 380px;
     border-radius: 8px;
 }
 
@@ -425,7 +425,6 @@ nav ul li a:hover {
     border-radius: 50%;
 }
 
-/* Grid de produtos */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
